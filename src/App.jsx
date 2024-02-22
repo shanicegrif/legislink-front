@@ -8,13 +8,20 @@ import { useState } from "react";
 import "./App.css";
 import { AuthProvider } from "./components/utils/Auth";
 
+/**
+ * App()
+ * ================================
+ * top component (except the root) to handle links and other components
+ * 
+ * @returns {ReactComponentElement}
+ */
 function App() {
   const [currentUser, setCurrentUser] = useState(null);
 
   return (
-    <>
-    <Reset />
+    <div>
       <Router>
+        {/** AuthProvider is a context hook to hold user info */}
         <AuthProvider>
           <Routes>
             {/* PUBLIC ROUTE FOR LOGIN */}
@@ -24,7 +31,7 @@ function App() {
           </Routes>
         </AuthProvider>
       </Router>
-    </>
+    </div>
   );
 }
 
