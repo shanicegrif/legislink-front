@@ -18,7 +18,7 @@ export default function LoginForm(){
         user_id: 0,
         user_email: "",
         user_password: "",
-        user_zipcode,
+        user_zipcode: 0,
         manager: false,
     });
     //auth is useContext hook to hold authenticate info. (a custom hook)

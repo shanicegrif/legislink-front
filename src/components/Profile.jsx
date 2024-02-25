@@ -3,7 +3,7 @@ import { useAuth } from "./Auth";
 import Button from 'react-bootstrap/Button';
 import { Form } from "react-bootstrap";
 import { useState, useEffect } from "react";
-import { deleteAccount, getUser, putExistingUser } from "../api/axios";
+import { deleteAccount, getSingleUser, putExistingUser } from "../api/axios";
 
 /**
  * Profile()
@@ -18,7 +18,7 @@ export default function Profile(){
         user_id: 0,
         user_email: "",
         user_password: "",
-        user_zipcode,
+        user_zipcode: 0,
         manager: false,
     });
 
@@ -43,7 +43,7 @@ export default function Profile(){
     };
 
     useEffect(() => {
-        getUser(String(auth.user_id))
+        getSingleUser(String(auth.user_id))
         .then((json) => {
             setUserInfo({...json.data.data.payload});
         }).catch((err)=> console.log(err));
@@ -61,9 +61,9 @@ export default function Profile(){
                 <Form.Control className="text-muted" id="user_password" type="password" placeholder="Password" value={userInfo.user_password}/>
             </Form.Group>
 
-            <Form.Group className="mb-3" controlId="formBasicPassword">
-                <Form.Label>Username</Form.Label>
-                <Form.Control id="user_name" placeholder="Password" value={userInfo.user_name} onChange={handleTextChange}/>
+            <Form.Group className="mb-3">
+                <Form.Label>Zip code</Form.Label>
+                <Form.Control id="user_zipcode" placeholder="ex: 11111" value={userInfo.user_zipcode} onChange={handleTextChange}/>
             </Form.Group>
 
             <Button variant="primary" type="submit" >
