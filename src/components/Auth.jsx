@@ -7,9 +7,8 @@ export const AuthProvider = () => {
     const [authenticated, setAuthenticated] = useState(false);
     const [email, setEmail] = useState("");
     const [password, setPassword] = useState("");
-    const [firstname, setFirstname] = useState("");
-    const [lastname, setLastname] = useState("");
-
+    const [zip, setZip] = useState(0);
+    
     const login = (input) => {
         axios.post(input)
         .then(((res) => {
@@ -17,18 +16,17 @@ export const AuthProvider = () => {
         })).catch((err)=> {
             console.log(err);
         })
-    }
+    };
 
     const logout = () => {
         setAuthenticated(false);
         setEmail("");
         setPassword("");
-        setFirstname("");
-        setLastname("");
-    }
+        setZip(0);
+    };
 
     return (
-        <AuthContext.Provider value={{authenticated, setAuthenticated, email, setEmail, password, setPassword, firstname, setFirstname, lastname, setLastname, login, logout}}>
+        <AuthContext.Provider value={{authenticated, setAuthenticated, email, setEmail, password, setPassword, zip, setZip, login, logout}}>
             <div>{props.children}</div>
         </AuthContext.Provider>
     )
