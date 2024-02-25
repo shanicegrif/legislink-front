@@ -1,7 +1,7 @@
 import { useState } from "react";
 import { useNavigate } from "react-router-dom";
 import { postAuth } from "../api/axios";
-import { useAuth } from "./Auth";
+import { useAuth } from "./utils/Auth";
 import { FormControl, FormLabel, Form, Button } from "react-bootstrap";
 
 /**

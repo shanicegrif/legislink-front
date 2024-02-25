@@ -1,5 +1,5 @@
 import { useNavigate } from "react-router-dom";
-import { useAuth } from "./Auth";
+import { useAuth } from "./utils/Auth";
 import Button from 'react-bootstrap/Button';
 import { Form } from "react-bootstrap";
 import { useState, useEffect } from "react";
