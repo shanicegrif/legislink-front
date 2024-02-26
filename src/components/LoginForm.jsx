@@ -49,7 +49,7 @@ export default function LoginForm(){
             console.log("login success!");
             //console.log(json.data.data.payload)
             auth.setAuthenticated(true);
-            auth.setUserEmail(json.data.data.payload.user_email);
+            auth.setEmail(json.data.data.payload.user_email);
             auth.setZip(json.data.data.payload.user_zipcode)
             nav("/lobby");
             })
