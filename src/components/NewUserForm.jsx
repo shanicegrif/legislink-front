@@ -55,6 +55,10 @@ export default function NewUserForm(){
                 <Form.Label>Confirm Password</Form.Label>
                 <Form.Control className="text-muted" id="user_password2" type="password" placeholder="Password" value={confirmPw} onChange={handleConfirmPwChange} required/>
             </Form.Group>
+            <Form.Group className="mb-3" >
+                <Form.Label>Zip</Form.Label>
+                <Form.Control id="user_zipcode" value={userInfo.user_zipcode} placeholder="zip" onChange={handleTextChange} maxLength={5} required/>
+            </Form.Group>
             <Button variant="primary" type="submit" >
                 Create New Account
             </Button>
