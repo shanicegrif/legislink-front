@@ -3,6 +3,7 @@ import Navbar from 'react-bootstrap/Navbar';
 import { Button } from 'react-bootstrap';
 import { Link, useNavigate } from 'react-router-dom';
 import { useAuth } from './utils/Auth';
+import './NavBar.css';
 
 export default function NavBar(){
     const nav = useNavigate();
@@ -21,7 +22,7 @@ export default function NavBar(){
     }
 
     return(
-        <Navbar expand="lg" className="bg-body-tertiary justify-content-between navbar" style={{background:'#3d405b'}}>
+        <Navbar expand="lg" className="justify-content-between navbar">
             <Container>
                 <Link to="/">
                     <img
@@ -31,7 +32,7 @@ export default function NavBar(){
                         className="d-inline-block align-top"
                         alt="React Bootstrap logo"
                     />
-                    <Navbar.Brand>LegisLink</Navbar.Brand>
+                    <Navbar.Brand style={{color:'white'}}>LegisLink</Navbar.Brand>
                 </Link>
                 <div>
                 {auth.authenticated ? 
