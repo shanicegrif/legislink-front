@@ -5,6 +5,7 @@ export const AuthContext = createContext();
 
 export const AuthProvider = (props) => {
     const [authenticated, setAuthenticated] = useState(false);
+    const [userID, setUserID] = useState(0);
     const [email, setEmail] = useState("");
     const [password, setPassword] = useState("");
     const [zip, setZip] = useState(0);
@@ -26,7 +27,7 @@ export const AuthProvider = (props) => {
     };
 
     return (
-        <AuthContext.Provider value={{authenticated, setAuthenticated, email, setEmail, password, setPassword, zip, setZip, login, logout}}>
+        <AuthContext.Provider value={{authenticated, setAuthenticated, userID, setUserID, email, setEmail, password, setPassword, zip, setZip, login, logout}}>
             <div>{props.children}</div>
         </AuthContext.Provider>
     )

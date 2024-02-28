@@ -8,7 +8,7 @@ export default function TestLobby(){
 
     useEffect(() => {
         if(!auth.authenticated){
-            nav('/');
+            nav('/login');
         }
     },[]);
     

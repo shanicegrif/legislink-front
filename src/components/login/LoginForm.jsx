@@ -1,7 +1,7 @@
 import { useState } from "react";
 import { useNavigate } from "react-router-dom";
-import { postAuth } from "../api/axios";
-import { useAuth } from "./utils/Auth";
+import { postAuth } from "../../api/axios";
+import { useAuth } from "../utils/Auth";
 import { FormControl, FormLabel, Form, Button } from "react-bootstrap";
 
 /**
@@ -49,6 +49,7 @@ export default function LoginForm(){
             console.log("login success!");
             //console.log(json.data.data.payload)
             auth.setAuthenticated(true);
+            auth.setUserID(json.data.data.payload.user_id)
             auth.setEmail(json.data.data.payload.user_email);
             auth.setZip(json.data.data.payload.user_zipcode)
             nav("/lobby");
