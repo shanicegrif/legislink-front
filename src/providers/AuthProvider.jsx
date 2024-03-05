@@ -21,7 +21,7 @@ export const AuthProvider = (props) => {
         postNewUser(user);
 
         /** move to dashboard */
-        nav('/lobby');
+        nav('/dashboard');
       } else {
         setUser(null);
       }

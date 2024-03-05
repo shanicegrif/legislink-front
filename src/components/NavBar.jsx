@@ -28,7 +28,7 @@ export default function NavBar(){
                 <div>
                     {auth ? auth.displayName : null}
                     {!auth ? (<button onClick={signInWithGoogle}>Login</button>) : null}
-                    {auth ? (<button onClick={logOut}>Logout</button>) : null}
+                    {/* {auth ? (<button onClick={logOut}>Logout</button>) : null} */}
                 </div>
             </Container>
         </Navbar>
