@@ -1,20 +1,23 @@
 import { useNavigate } from "react-router-dom";
-import { useAuth } from "../components/utils/Auth"
-import { useEffect } from "react";
+
+import { useLayoutEffect } from "react";
+import { useAuth } from "../hooks/useAuth";
 
 export default function TestLobby(){
     const auth = useAuth();
     const nav = useNavigate();
 
-    useEffect(() => {
-        if(!auth.authenticated){
-            nav('/login');
+    useLayoutEffect(() => {
+        if(!auth){
+            nav('/');
+        } else{
+            console.log('entered to the lobby');
         }
     },[]);
     
     return(
-        <div>
-            HELLO WORLD!
+        <div style={{backgroundColor:"black"}}>
+            <h1>HELLO WORLD</h1>'
         </div>
     )
 }

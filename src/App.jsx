@@ -7,8 +7,6 @@ import {
 import { useState } from "react";
 import "./App.css";
 import { AuthProvider } from "./providers/AuthProvider";
-import SignUp from "./pages/SignUp";
-import Login from "./pages/Login";
 import FoF from "./pages/FoF";
 import TestLobby from "./pages/TestLobby";
 import Home from "./pages/Home";
@@ -33,8 +31,6 @@ function App() {
           <main>
             <Routes>
               <Route path="/" element={<Home />} />
-              <Route path="/login" element={<Login />} />
-              <Route path='/signin' element={<SignUp />} />
               <Route path='/lobby' element={<TestLobby />} />
               <Route path="*" element={<FoF />} />
               {/* PUBLIC ROUTE FOR LOGIN */}
