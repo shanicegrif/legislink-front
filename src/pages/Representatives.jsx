@@ -1,9 +1,14 @@
 import { useLayoutEffect, useState } from "react"
 import { fetchForHouse } from "../api/axios"
 import RepresentativeCard from "../components/representatives/RepresentativeCard";
+import Container from 'react-bootstrap/Container';
+import Row from 'react-bootstrap/Row';
+import Col from 'react-bootstrap/Col';
+import { useLocation } from "react-router-dom";
 
 export default function Representatives(){
     const [ representativesNY, setRepresentativesNY ] = useState([]);
+    let location = useLocation();
 
     useLayoutEffect(()=>{
         fetchForHouse().then((res) => {
@@ -25,11 +30,13 @@ export default function Representatives(){
                 // Something happened in setting up the request that triggered an Error
                 console.log('Error', error.message);
             }
-    });},[]);
+    });},[location]);
 
     return(
-        <div>
-            {representativesNY.map((elem, index) => (<RepresentativeCard key={elem.id} representative={elem}/>))}
-        </div>
+        <Container fluid>
+            <Row>
+                {representativesNY.map((elem, index) => (<Col xs={6} md={3} s={4} ><RepresentativeCard key={elem.id} representative={elem} /></Col>))}
+            </Row>
+        </Container>
     )
 }
