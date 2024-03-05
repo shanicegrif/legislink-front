@@ -24,10 +24,12 @@ export default function NavBar(){
                     />
                     <Navbar.Brand style={{color:'white'}}>LegisLink</Navbar.Brand>
                 </Link>
-                {auth ? auth.displayName : null}
-                {!auth ? (<button onClick={signInWithGoogle}>Login</button>) : null}
-                {auth ? (<button onClick={logOut}>Logout</button>) : null}
-                
+                {auth ? (<Link to='/lobby'>Dashboard</Link>):null}
+                <div>
+                    {auth ? auth.displayName : null}
+                    {!auth ? (<button onClick={signInWithGoogle}>Login</button>) : null}
+                    {auth ? (<button onClick={logOut}>Logout</button>) : null}
+                </div>
             </Container>
         </Navbar>
     )

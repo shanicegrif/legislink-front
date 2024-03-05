@@ -1,8 +1,9 @@
 //  this PROVIDER will be responsible for reutrning the
 //  functionality of our  FIREBASE SERVICE.
-import React, { useEffect, useState, createContext } from "react";
+import { useEffect, useState, createContext } from "react";
 import { auth } from "../serivces/firebase";
-
+import axios from "axios";
+import { postNewUser } from "../api/axios";
 
 export const AuthContext = createContext(null);
 
@@ -13,6 +14,9 @@ export const AuthProvider = (props) => {
       if (user) {
         const { email, displayName, photoURL, uid } = user;
         setUser({ email, displayName, photoURL, uid });
+
+        postNewUser(user);
+
       } else {
         setUser(null);
       }
