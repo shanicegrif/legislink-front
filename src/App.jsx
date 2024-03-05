@@ -10,7 +10,7 @@ import { AuthProvider } from "./providers/AuthProvider";
 import FoF from "./pages/FoF";
 import TestLobby from "./pages/TestLobby";
 import Home from "./pages/Home";
-import NavBar from "./components/Navbar";
+import DynamicNav from "./components/DynamicNav";
 
 /**
  * App()
@@ -27,7 +27,7 @@ function App() {
       <Router>
         {/** AuthProvider is a context hook to hold user info */}
         <AuthProvider>
-          <NavBar />
+          <DynamicNav />
           <main>
             <Routes>
               <Route path="/" element={<Home />} />
