@@ -34,19 +34,7 @@ export default function NavBar(){
                     />
                     <Navbar.Brand style={{color:'white'}}>LegisLink</Navbar.Brand>
                 </Link>
-                <div>
-                {auth.authenticated ? 
-                (<>
-                    <Button type="button" onClick={handleMyProfile}>
-                        Profile
-                    </Button>
-                    <Button type="button" onClick={handleLougout}>
-                        Logout
-                    </Button>
-                    </>) 
-                : null
-                }
-                </div>
+                
             </Container>
         </Navbar>
     )

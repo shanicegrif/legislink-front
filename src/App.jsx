@@ -6,7 +6,7 @@ import {
 } from "react-router-dom";
 import { useState } from "react";
 import "./App.css";
-import { AuthProvider } from "./components/utils/Auth";
+import { AuthProvider } from "./providers/AuthProvider";
 import SignUp from "./pages/SignUp";
 import Login from "./pages/Login";
 import FoF from "./pages/FoF";
