@@ -1,5 +1,6 @@
 import axios from "axios";
 const serverURL = import.meta.env.VITE_BASE_URL;
+const propublicaAPIKey = import.meta.env.VITE_BASE_PROPUBLICA_KEY;
 
 /**
  * ToDo : need to check routers.
@@ -40,3 +41,15 @@ export async function getSingleUser(id){
 export async function deleteAccount(id){
     return await axios.delete(`${serverURL}/users/${id}`);
 }
+
+export async function fetchForHouse(){
+    return await axios.get("https://api.propublica.org/congress/v1/116/house/members.json", {headers: {
+        "X-API-Key": `${propublicaAPIKey}`,
+    }});
+};
+
+export async function fetchForBills(query){
+    return await axios.get(`https://api.propublica.org/congress/v1/bills/search.json?query=${query}`, {headers: {
+        "X-API-Key": `${propublicaAPIKey}`,
+    }});
+};

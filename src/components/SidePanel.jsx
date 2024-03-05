@@ -1,14 +1,24 @@
 import { useState } from "react";
 import { Link, useNavigate } from "react-router-dom";
 import "./NavBar.css";
+import { logOut } from "../serivces/firebase";
 
 export default function SidePanel() {
-  const nav = useNavigate();
   const [isSidebarOpen, setIsSidebarOpen] = useState(false);
+  const nav = useNavigate();
 
   const toggleSidebar = () => {
     console.log("Sidebar toggled");
     setIsSidebarOpen(!isSidebarOpen);
+  }
+
+  const handleLogout = () => {
+    try {
+        logOut().then(() =>nav('/'));
+        
+    } catch(err){
+        console.log(err);
+    };
   }
   return (
     <>
@@ -26,7 +36,7 @@ export default function SidePanel() {
               </div>
               <ul className="sidenav__list">
                 <li className="sidenav__list-item">
-                  <Link to={`/`}>
+                  <Link to={`/dashboard`}>
                     <img
                       src="https://cdn.jsdelivr.net/gh/walkxcode/dashboard-icons/png/jellystat-light.png"
                       alt="dashboard"
@@ -83,7 +93,8 @@ export default function SidePanel() {
                   </a>
                 </li>
 
-                <li className="sidenav__list-item">
+                <li className="sidenav__list-item" 
+                    onClick={handleLogout}>
                   <Link></Link>
                   <a href="#">
                     <img
