@@ -2,24 +2,14 @@ import Container from 'react-bootstrap/Container';
 import Navbar from 'react-bootstrap/Navbar';
 import { Button } from 'react-bootstrap';
 import { Link, useNavigate } from 'react-router-dom';
-import { useAuth } from './utils/Auth';
+import { useAuth } from "../hooks/useAuth";
+import { signInWithGoogle, logOut } from "../serivces/firebase";
+
 import './NavBar.css';
 
 export default function NavBar(){
     const nav = useNavigate();
     const auth = useAuth();
-
-    const handleLougout = () => {
-        auth.setAuthenticated(false);
-        auth.setEmail("");
-        auth.setUserID(0);
-        auth.setZip(0);
-        nav('/');
-    }
-
-    const handleMyProfile = () => {
-        nav('/profile');
-    }
 
     return(
         <Navbar expand="lg" className="justify-content-between navbar">
@@ -34,6 +24,9 @@ export default function NavBar(){
                     />
                     <Navbar.Brand style={{color:'white'}}>LegisLink</Navbar.Brand>
                 </Link>
+                {auth ? auth.displayName : null}
+                {!auth ? (<button onClick={signInWithGoogle}>Login</button>) : null}
+                {auth ? (<button onClick={logOut}>Logout</button>) : null}
                 
             </Container>
         </Navbar>
