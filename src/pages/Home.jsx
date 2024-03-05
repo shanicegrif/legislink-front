@@ -1,5 +1,4 @@
 import { useNavigate } from "react-router-dom";
-import { useEffect } from "react";
 import { useAuth } from "../hooks/useAuth";
 import { signInWithGoogle, logOut } from "../serivces/firebase";
 import Introduction from "../components/home/Introduction";
@@ -16,14 +15,11 @@ export default function Home(){
     //         console.log("Entered to the dashboard");
     //     }
     // },[]);
-console.log(auth)
+    console.log(auth)
     return(
         <div>
             <div>
-                {auth ? auth.displayName : null}
-                <button onClick={signInWithGoogle}>Login</button>
-                <button onClick={logOut}>Logout</button>
-                <TopCarousel />
+            <TopCarousel />
             {/** top right  */}
             </div>
             {/** bottom */}
