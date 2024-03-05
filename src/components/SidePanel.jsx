@@ -13,7 +13,7 @@ export default function SidePanel() {
   return (
     <>
         <div className="menu-icon" onClick={toggleSidebar}>
-            <i className="fas fa-bars header__menu">HI</i>
+            <i className="fas fa-bars header__menu">SIDE PANEL WILL POP Out WHEN YOU CLICK IT</i>
         </div>
 
           <aside className={`sidenav ${isSidebarOpen ? "active" : ""}`}>
