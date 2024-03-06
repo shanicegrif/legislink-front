@@ -14,7 +14,7 @@ LegisLink is a dedicated application designed to address the unique needs of fir
 
 ## Technologies Used
 
-EmpowerNY leverages cutting-edge technologies to deliver a robust and user-friendly experience:
+LegisLink leverages cutting-edge technologies to deliver a robust and user-friendly experience:
 
 * React: The frontend of LegisLink is built using React, ensuring a responsive and dynamic user interface. 
 * Express: The backend is powered by Express, providing a scalable and efficient server for handling requests and managing data.
@@ -27,7 +27,7 @@ Features
 Our application has a user-friendly interface, ensuring that even those unfamiliar with the political landscape can easily navigate through the application.
 
 2. Step-by-Step Voting Guide
-EmpowerNY provides a step-by-step guide through the entire voting process. From voter registration to casting your ballot, we're with you every step of the way.
+LegisLink provides a step-by-step guide through the entire voting process. From voter registration to casting your ballot, we're with you every step of the way.
 
 3. Candidate Information
 Access information about candidates running for various offices. Learn about their backgrounds, policies, and endorsements in an easily digestible format.
@@ -41,7 +41,7 @@ Find polling locations easily with our integrated map feature. Receive timely re
 
 ## APIs Integrated
 
-EmpowerNY integrates the following APIs to provide up-to-date and reliable information:
+LegisLink integrates the following APIs to provide up-to-date and reliable information:
 
 * ProPublica API: Access verified and comprehensive data about candidates, campaigns, and government activities.
 * Civic Information API: Retrieve accurate polling information, election dates, and candidate details to keep users informed and engaged.
