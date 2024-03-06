@@ -49,7 +49,7 @@ export async function fetchForHouse(){
 };
 
 export async function fetchForBills(query){
-    return await axios.get(`https://api.propublica.org/congress/v1/bills/search.json?query=${query}`, {headers: {
+    return await axios.get(`https://api.propublica.org/congress/v1/bills/search.json?query="${query}"` , {headers: {
         "X-API-Key": `${propublicaAPIKey}`,
     }});
 };
