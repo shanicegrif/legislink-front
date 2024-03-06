@@ -35,7 +35,11 @@ export default function Representatives(){
     return(
         <Container fluid>
             <Row>
-                {representativesNY.map((elem, index) => (<Col xs={6} md={3} s={4} ><RepresentativeCard key={elem.id} representative={elem} /></Col>))}
+                {representativesNY.map((elem) => (
+                    <Col key={elem.id} xs={6} md={3} sm={4}>
+                        <RepresentativeCard representative={elem} />
+                    </Col>
+                ))}
             </Row>
         </Container>
     )

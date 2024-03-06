@@ -13,6 +13,7 @@ import Home from "./pages/Home";
 import DynamicNav from "./components/DynamicNav";
 import Bills from "./pages/Bills";
 import Representatives from "./pages/Representatives";
+import Footer from "./components/Footer";
 
 /**
  * App()
@@ -25,12 +26,13 @@ function App() {
   const [currentUser, setCurrentUser] = useState(null);
 
   return (
-    <div>
+    <div className="App">
       <Router>
         <AuthProvider>
         {/** AuthProvider is a context hook to hold user info */}
+          <main className="grid-container">
           <DynamicNav />
-          <main>
+          <div className="content">
             <Routes>
               <Route path="/" element={<Home />} />
               <Route path='/dashboard' element={<TestLobby />} />
@@ -43,6 +45,8 @@ function App() {
               {/* ROUTE FOR "/" WITH REDIRECT TO LOGIN ROUTE */}
               {/* ROUTE TO USER PROFILE ROUTE WITH WILDCARD MATCHER */}
             </Routes>
+          </div>
+          <Footer/>
           </main>
         </AuthProvider>
       </Router>
