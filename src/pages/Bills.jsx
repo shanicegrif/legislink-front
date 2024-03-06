@@ -1,9 +1,6 @@
 import { useLayoutEffect, useState } from "react";
 import { fetchForBills } from "../api/axios";
 import BillsCard from "../components/bills/billscard";
-import Container from 'react-bootstrap/Container';
-import Row from 'react-bootstrap/Row';
-import Col from 'react-bootstrap/Col';
 import { useLocation } from "react-router-dom";
 
 
@@ -28,10 +25,10 @@ export default function Bills() {
     }, [location]);
 
     return (
-        <Container fluid>
-            <Row>
-                {bills.map((elem) => (<Col xs={6} md={3} s={4}><BillsCard bill={elem} /></Col>))}
-            </Row>
-        </Container>
-    )
+        <div>
+            <h1>
+                {bills.map((elem) => <BillsCard bill={elem} />)}
+            </h1>
+        </div>
+        );
 }

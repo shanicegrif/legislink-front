@@ -1,18 +1,15 @@
 import { useLayoutEffect, useState } from "react"
 import { fetchForHouse } from "../api/axios"
 import RepresentativeCard from "../components/representatives/RepresentativeCard";
-import Container from 'react-bootstrap/Container';
-import Row from 'react-bootstrap/Row';
-import Col from 'react-bootstrap/Col';
 import { useLocation } from "react-router-dom";
 
-export default function Representatives(){
-    const [ representativesNY, setRepresentativesNY ] = useState([]);
+export default function Representatives() {
+    const [representativesNY, setRepresentativesNY] = useState([]);
     let location = useLocation();
 
-    useLayoutEffect(()=>{
+    useLayoutEffect(() => {
         fetchForHouse().then((res) => {
-            console.log(res.data.results[0].members.filter(member => member.state ==="NY"))
+            console.log(res.data.results[0].members.filter(member => member.state === "NY"))
             setRepresentativesNY(res.data.results[0].members.filter(member => member.state === "NY"));
         }).catch(function (error) {
             if (error.response) {
@@ -30,17 +27,16 @@ export default function Representatives(){
                 // Something happened in setting up the request that triggered an Error
                 console.log('Error', error.message);
             }
-    });},[location]);
+        });
+    }, [location]);
 
-    return(
-        <Container fluid>
-            <Row>
+    return (
+        <div>
+            <p>
                 {representativesNY.map((elem) => (
-                    <Col key={elem.id} xs={6} md={3} sm={4}>
-                        <RepresentativeCard representative={elem} />
-                    </Col>
+                    <RepresentativeCard representative={elem} />
                 ))}
-            </Row>
-        </Container>
+            </p>
+        </div>
     )
 }
