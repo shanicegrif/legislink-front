@@ -2,9 +2,14 @@ import { useLayoutEffect, useState } from "react"
 import { fetchForHouse } from "../api/axios"
 import RepresentativeCard from "../components/representatives/RepresentativeCard";
 import { useLocation } from "react-router-dom";
+/** from react-bootstrap */
+import Container from 'react-bootstrap/Container';
+import Row from 'react-bootstrap/Row';
+import Col from 'react-bootstrap/Col';
+import 'bootstrap/dist/css/bootstrap.min.css';
 
-export default function Representatives() {
-    const [representativesNY, setRepresentativesNY] = useState([]);
+export default function Representatives(){
+    const [ representativesNY, setRepresentativesNY ] = useState([]);
     let location = useLocation();
 
     useLayoutEffect(() => {
@@ -27,16 +32,17 @@ export default function Representatives() {
                 // Something happened in setting up the request that triggered an Error
                 console.log('Error', error.message);
             }
-        });
-    }, [location]);
+    })},[location]);
 
-    return (
-        <div>
-            <p>
+    return(
+        <Container fluid style={{backgroundColor:"#f4f1de"}}>
+            <Row style={{backgroundColor:"#f4f1de"}}>
                 {representativesNY.map((elem) => (
-                    <RepresentativeCard representative={elem} />
+                    <Col key={elem.id} xs={12} md={3} sm={4} s={6} lg={2} style={{paddingBottom:"10px"}}>
+                        <RepresentativeCard representative={elem} />
+                    </Col>
                 ))}
-            </p>
-        </div>
+            </Row>
+        </Container>
     )
 }
