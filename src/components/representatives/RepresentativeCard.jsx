@@ -10,8 +10,6 @@ export default function RepresentativeCard({ representative }) {
                     width: "100%",
                     backgroundColor: "#81b29a",
                     marginBottom: "20px",
-                    //WebkitColumns
-                    //-webkit-column-break-inside: avoid;
                     padding: "24px",
                     height: "400px"}}>
       {/* {<Card.Img variant="top" src="holder.js/100px180?text=Image cap" />} */}

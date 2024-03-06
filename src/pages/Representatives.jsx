@@ -12,9 +12,9 @@ export default function Representatives(){
     const [ representativesNY, setRepresentativesNY ] = useState([]);
     let location = useLocation();
 
-    useLayoutEffect(()=>{
+    useLayoutEffect(() => {
         fetchForHouse().then((res) => {
-            console.log(res.data.results[0].members.filter(member => member.state ==="NY"))
+            console.log(res.data.results[0].members.filter(member => member.state === "NY"))
             setRepresentativesNY(res.data.results[0].members.filter(member => member.state === "NY"));
         }).catch(function (error) {
             if (error.response) {
@@ -32,7 +32,7 @@ export default function Representatives(){
                 // Something happened in setting up the request that triggered an Error
                 console.log('Error', error.message);
             }
-    });},[location]);
+    })},[location]);
 
     return(
         <Container fluid style={{backgroundColor:"#f4f1de"}}>
