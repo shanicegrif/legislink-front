@@ -1,5 +1,6 @@
 import Card from 'react-bootstrap/Card';
 import ListGroup from 'react-bootstrap/ListGroup';
+import 'bootstrap/dist/css/bootstrap.min.css';
 
 export default function RepresentativeCard({ representative }) {
   return (
