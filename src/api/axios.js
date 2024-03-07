@@ -43,7 +43,7 @@ export async function deleteAccount(id){
 }
 
 export async function fetchForHouse(){
-    return await axios.get("https://api.propublica.org/congress/v1/116/house/members.json", {headers: {
+    return await axios.get("https://api.propublica.org/congress/v1/117/house/members.json", {headers: {
         "X-API-Key": `${propublicaAPIKey}`,
     }});
 };
