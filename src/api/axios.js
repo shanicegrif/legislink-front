@@ -53,3 +53,9 @@ export async function fetchForBills(query){
         "X-API-Key": `${propublicaAPIKey}`,
     }});
 };
+
+export async function fetchForSenate(){
+    return await axios.get("https://api.propublica.org/congress/v1/116/senate/members.json", {headers: {
+        "X-API-Key": `${propublicaAPIKey}`,
+    }});
+};
