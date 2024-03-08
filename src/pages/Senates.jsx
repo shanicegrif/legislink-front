@@ -1,5 +1,5 @@
 import { useLayoutEffect, useState } from "react"
-import { fetchForHouse } from "../api/axios"
+import { fetchForSenate } from "../api/axios"
 import RepresentativeCard from "../components/representatives/RepresentativeCard";
 import { useLocation } from "react-router-dom";
 /** from react-bootstrap */
@@ -11,18 +11,18 @@ import 'bootstrap/dist/css/bootstrap.min.css';
 const serverURL = import.meta.env.VITE_BASE_URL;
 
 export default function Representatives(){
-    const [ representativesNY, setRepresentativesNY ] = useState([]);
+    const [ senatesNY, setSenatesNY ] = useState([]);
     let location = useLocation();
 
     useLayoutEffect(() => {
-        fetchForHouse().then((res) => {
+        fetchForSenate().then((res) => {
             if(res.status != 200){
-                axios.get(`${serverURL}/representatives`).then((res) => {
-                    setRepresentativesNY(res.data.data.payload);
+                axios.get(`${serverURL}/senates`).then((res) => {
+                    setSenatesNY(res.data.data.payload);
                 });
             } else {
                 console.log(res.data.results[0].members.filter(member => member.state === "NY"))
-                setRepresentativesNY(res.data.results[0].members.filter(member => member.state === "NY"));
+                setSenatesNY(res.data.results[0].members.filter(member => member.state === "NY"));
             }
         }).catch(function (error) {
             if (error.response) {
@@ -45,9 +45,10 @@ export default function Representatives(){
     return(
         <Container fluid style={{backgroundColor:"#f4f1de"}}>
             <Row style={{backgroundColor:"#f4f1de"}}>
-                {representativesNY.map((elem) => (
+                {senatesNY.map((elem) => (
                     <Col key={elem.id} xs={12} md={3} sm={4} s={6} lg={2} style={{paddingBottom:"10px"}}>
-                        <RepresentativeCard representative={elem} />
+                        {/** Card for senates */}
+                        {/* {<RepresentativeCard representative={elem} />} */}
                     </Col>
                 ))}
             </Row>
