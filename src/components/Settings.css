@@ -1,0 +1,41 @@
+/* Container for the settings page */
+.settings-container {
+  max-width: 600px;
+  margin: 0 auto;
+  padding: 20px;
+  background-color: #f4f4f4;
+  border-radius: 8px;
+  box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+}
+
+/* Heading styles */
+.settings-heading {
+  text-align: center;
+  margin-bottom: 20px;
+}
+
+/* Account information section */
+.account-info {
+  margin-bottom: 30px;
+}
+
+/* List of interests */
+.interests-list {
+  list-style-type: none;
+  padding: 0;
+}
+
+.interests-list li {
+  margin-bottom: 5px;
+}
+
+/* Style for each interest item */
+.interest-item {
+  padding: 8px;
+}
+
+.btn-primary {
+  margin-top: 15px;
+  background-color: #e07a5f; /* Change the background color to blue */
+  color: #fff; /* Change the text color to white */
+}
