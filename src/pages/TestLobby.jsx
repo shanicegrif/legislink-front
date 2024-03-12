@@ -1,22 +1,22 @@
 import { useNavigate } from "react-router-dom";
-
 import { useLayoutEffect } from "react";
 import { useAuth } from "../hooks/useAuth";
 
-export default function TestLobby(){
-    const auth = useAuth();
-    const nav = useNavigate();
+export default function TestLobby() {
+  const auth = useAuth();
+  const nav = useNavigate();
 
-    useLayoutEffect(() => {
-        if(!auth){
-            nav('/');
-        } else{
-            console.log('entered to the lobby');
-        }
-    },[]);
-    
-    return(
-        <>
+  useLayoutEffect(() => {
+    if (!auth) {
+      console.log("User is not authenticated. Redirecting to login page.");
+      nav("/");
+    } else {
+      console.log("User is authenticated. Entering the lobby.");
+    }
+  }, [auth, nav]);
+
+  return (
+    <>
       <main>
         <div className="main-header">
           <div className="main-header__heading">Hello User</div>
@@ -24,30 +24,39 @@ export default function TestLobby(){
         </div>
 
         <div className="main-overview">
-          <div className="overviewcard">
-            <div className="overviewcard__icon">Overview</div>
-            <div className="overviewcard__info">Card</div>
-          </div>
-          <div className="overviewcard">
-            <div className="overviewcard__icon">Overview</div>
-            <div className="overviewcard__info">Card</div>
-          </div>
-          <div className="overviewcard">
-            <div className="overviewcard__icon">Overview</div>
-            <div className="overviewcard__info">Card</div>
-          </div>
-          <div className="overviewcard">
-            <div className="overviewcard__icon">Overview</div>
-            <div className="overviewcard__info">Card</div>
-          </div>
+          {auth ? (
+            <>
+              <div className="overviewcard">
+                <div className="overviewcard__icon">Overview</div>
+                <div className="overviewcard__info">Card</div>
+              </div>
+              <div className="overviewcard">
+                <div className="overviewcard__icon">Overview</div>
+                <div className="overviewcard__info">Card</div>
+              </div>
+              <div className="overviewcard">
+                <div className="overviewcard__icon">Overview</div>
+                <div className="overviewcard__info">Card</div>
+              </div>
+              <div className="overviewcard">
+                <div className="overviewcard__icon">Overview</div>
+                <div className="overviewcard__info">Card</div>
+              </div>
+            </>
+          ) : (
+            <div>Loading...</div>
+          )}
         </div>
-
         <div className="main-cards">
-          <div className="card">Card</div>
-          <div className="card">Card</div>
-          <div className="card">Card</div>
+          {auth && (
+            <>
+              <div className="card">Card</div>
+              <div className="card">Card</div>
+              <div className="card">Card</div>
+            </>
+          )}
         </div>
       </main>
     </>
-    )
+  );
 }

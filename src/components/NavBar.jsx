@@ -1,36 +1,29 @@
-import Container from 'react-bootstrap/Container';
-import Navbar from 'react-bootstrap/Navbar';
-import { Button } from 'react-bootstrap';
-import { Link, useNavigate } from 'react-router-dom';
-import { useAuth } from "../hooks/useAuth";
-import { signInWithGoogle, logOut } from "../serivces/firebase";
+import brandImg from "../assets/brand-img.png";
+import "./NavBar.css";
 
-import './NavBar.css';
-
-export default function NavBar(){
-    const nav = useNavigate();
-    const auth = useAuth();
-
-    return(
-        <Navbar expand="lg" className="justify-content-between navbar">
-            <Container>
-                <Link to="/">
-                    <img
-                        src="https://react-bootstrap.netlify.app/img/logo.svg"
-                        width="30"
-                        height="30"
-                        className="d-inline-block align-top"
-                        alt="React Bootstrap logo"
-                    />
-                    <Navbar.Brand style={{color:'white'}}>LegisLink</Navbar.Brand>
-                </Link>
-                {auth ? (<Link to='/lobby'>Dashboard</Link>):null}
-                <div>
-                    {auth ? auth.displayName : null}
-                    {!auth ? (<button onClick={signInWithGoogle}>Login</button>) : null}
-                    {/* {auth ? (<button onClick={logOut}>Logout</button>) : null} */}
-                </div>
-            </Container>
-        </Navbar>
-    )
+export default function NavBar() {
+  return (
+    <div className="nav">
+      <input type="checkbox" id="nav-check" />
+      <div className="nav-header">
+        <img src={brandImg} alt="brand imglogo" />
+        <div className="nav-title">LegisLink </div>
+      </div>
+      <div className="nav-btn">
+        <label for="nav-check">
+          <span></span>
+          <span></span>
+          <span></span>
+        </label>
+      </div>
+      <div className="nav-links">
+        <a href="//github.io/jo_geek" target="_blank">
+          Home
+        </a>
+        <a href="http://stackoverflow.com/users/4084003/" target="_blank">
+          About Us
+        </a>
+      </div>
+    </div>
+  );
 }
