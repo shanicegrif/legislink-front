@@ -48,15 +48,6 @@ export default function TestLobby() {
             <div>Loading...</div>
           )}
         </div>
-        <div className="main-cards">
-          {auth && (
-            <>
-              <div className="card">Card</div>
-              <div className="card">Card</div>
-              <div className="card">Card</div>
-            </>
-          )}
-        </div>
       </main>
     </>
   );

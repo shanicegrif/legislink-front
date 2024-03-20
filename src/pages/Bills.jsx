@@ -45,7 +45,7 @@ export default function Bills() {
             <button>Search</button>
             <h1>
                 {bills.map((elem, index) => ( 
-                <BillsCard key={index} bill={elem} />
+                <BillsCard key={elem.id} bill={elem} />
                 ))}
 
             </h1>
