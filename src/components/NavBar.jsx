@@ -1,3 +1,4 @@
+import About from "../pages/About";
 import brandImg from "../assets/brand-img.png";
 import "./NavBar.css";
 
@@ -17,12 +18,12 @@ export default function NavBar() {
         </label>
       </div>
       <div className="nav-links">
-        <a href="//github.io/jo_geek" target="_blank">
+        <a>
           Home
         </a>
-        <a href="http://stackoverflow.com/users/4084003/" target="_blank">
+        <About>
           About Us
-        </a>
+        </About>
       </div>
     </div>
   );
