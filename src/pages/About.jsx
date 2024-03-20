@@ -5,7 +5,7 @@ const About = () => {
   return (
     <div className="About">
       <div className="description">
-        Welcome, this is our YouTube clone project <strong>LEGISLink!</strong>.
+        Welcome to <strong>LEGISLink!</strong>.
         This app is created by <strong>Genesis Lara</strong>,{" "}
         <strong>Shanice Griffin</strong>, <strong>Sung Yi</strong>, and{" "}
         <strong>Tonesha Rose</strong>. 
