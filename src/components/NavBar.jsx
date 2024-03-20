@@ -1,4 +1,4 @@
-import brandImg from "../assets/brand-img.png";
+import { Link } from "react-router-dom";
 import "./NavBar.css";
 
 export default function NavBar() {
@@ -6,7 +6,6 @@ export default function NavBar() {
     <div className="nav">
       <input type="checkbox" id="nav-check" />
       <div className="nav-header">
-        <img src={brandImg} alt="brand imglogo" />
         <div className="nav-title">LegisLink </div>
       </div>
       <div className="nav-btn">
@@ -20,9 +19,7 @@ export default function NavBar() {
         <a>
           Home
         </a>
-        <a href="http://stackoverflow.com/users/4084003/" target="_blank">
-          About Us
-        </a>
+        <Link to="/about">About Us</Link>
       </div>
     </div>
   );

@@ -3,7 +3,7 @@ import { Link, useNavigate } from "react-router-dom";
 import { useAuth } from "../hooks/useAuth";
 import { logOut } from "../services/firebase";
 import brandLogo from "../assets/brand-logo.png";
-import "./NavBar.css";
+import "./SidePanel.css";
 
 export default function SidePanel() {
   const [isSidebarOpen, setIsSidebarOpen] = useState(false);

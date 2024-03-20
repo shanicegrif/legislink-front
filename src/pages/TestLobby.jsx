@@ -1,6 +1,7 @@
 import { useNavigate } from "react-router-dom";
 import { useLayoutEffect } from "react";
 import { useAuth } from "../hooks/useAuth";
+import "../components/TestLobby.css"
 
 export default function TestLobby() {
   const auth = useAuth();

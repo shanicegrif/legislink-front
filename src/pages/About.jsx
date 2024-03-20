@@ -37,7 +37,8 @@ const About = () => {
         <a href="https://github.com/dreamseekerfromn">GitHub</a>
       </div>
 
-      <div className="tr-card card"> {/* corrected quotation marks */}
+
+      <div className="tr-card card"> 
         <h2>Tonesha Rose</h2>
         <p>Placeholder. </p> 
         <a href="https://github.com/tonesharose31">GitHub</a>

@@ -9,25 +9,21 @@ import Bills from "./pages/Bills";
 import Representatives from "./pages/Representatives";
 import Footer from "./components/Footer";
 import Settings from "./pages/Settings";
+import About from "./pages/About.jsx";
 
-/**
- * App()
- * ================================
- * top component (except the root) to handle links and other components
- *
- * @returns {ReactComponentElement}
- */
+
 function App() {
   return (
     <div className="App">
       <Router>
         <AuthProvider>
-          {/** AuthProvider is a context hook to hold user info */}
           <main className="grid-container">
             <DynamicNav />
             <div className="content">
               <Routes>
                 <Route path="/" element={<Home />} />
+                <Route path="/about" element={<About />} />
+                console.log(About)
                 <Route path="/dashboard" element={<TestLobby />} />
                 {/* {<Route path='/polls' />} */}
                 <Route path="/bills" element={<Bills />} />
