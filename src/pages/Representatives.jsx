@@ -54,9 +54,9 @@ export default function Representatives() {
 
   return (
     <Container fluid>
-      <div className="row">
-        {representativesNY.map((elem) => (
-          <RepresentativeCard representative={elem} />
+      <div className="representatives-grid">
+      {representativesNY.map((representative) => (
+          <RepresentativeCard key={representative.id} representative={representative} />
         ))}
       </div>
     </Container>

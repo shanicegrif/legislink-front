@@ -23,7 +23,6 @@ function App() {
               <Routes>
                 <Route path="/" element={<Home />} />
                 <Route path="/about" element={<About />} />
-                console.log(About)
                 <Route path="/dashboard" element={<TestLobby />} />
                 {/* {<Route path='/polls' />} */}
                 <Route path="/bills" element={<Bills />} />

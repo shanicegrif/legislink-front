@@ -40,7 +40,7 @@
     display: flex;
     flex-direction: column;
     height: 100%;
-    width: 240px;
+    width: 200px;
     position: fixed;
     overflow-y: auto;
     transform: translateX(-245px);
@@ -67,7 +67,7 @@
     margin-top: 85px;
     list-style-type: none;
     && img {
-      width: 30%;
+      width: 20%;
       border-radius: 50%;
       margin-right: 5px;
       margin-left: -20px;
@@ -86,7 +86,7 @@
     list-style-type: none;
     list-style-type: none;
     && img {
-      width: 30%;
+      width: 20%;
       border-radius: 50%;
       margin-right: 5px;
       margin-left: -20px;
