@@ -37,6 +37,7 @@ const About = () => {
         <a href="https://github.com/dreamseekerfromn">GitHub</a>
       </div>
 
+
       <div className="tr-card card"> 
         <h2>Tonesha Rose</h2>
         <p>Placeholder. </p> 
