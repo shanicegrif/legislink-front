@@ -23,7 +23,6 @@ export default function Bills() {
             }
         });
     }, [location]);
-
     return (
         <div>
             <h1>

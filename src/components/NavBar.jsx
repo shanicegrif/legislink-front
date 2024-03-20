@@ -17,7 +17,7 @@ export default function NavBar() {
         </label>
       </div>
       <div className="nav-links">
-        <a href="//github.io/jo_geek" target="_blank">
+        <a>
           Home
         </a>
         <a href="http://stackoverflow.com/users/4084003/" target="_blank">
