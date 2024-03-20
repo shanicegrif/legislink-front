@@ -4,12 +4,12 @@ import "./About.css";
 const About = () => {
   return (
     <div className="About">
-      <p>
+      <div className="description">
         Welcome, this is our YouTube clone project <strong>LEGISLink!</strong>.
         This app is created by <strong>Genesis Lara</strong>,{" "}
         <strong>Shanice Griffin</strong>, <strong>Sung Yi</strong>, and{" "}
         <strong>Tonesha Rose</strong>. 
-      </p>
+      </div>
       <div className="cards">
         <div className="gl-card card"> 
           <h2>Genesis Lara</h2>
