@@ -17,7 +17,7 @@ export default function NavBar() {
       </div>
       <div className="nav-links">
         <a>
-          Home
+         <Link to="/"> Home </Link>
         </a>
         <Link to="/about">About Us</Link>
       </div>
