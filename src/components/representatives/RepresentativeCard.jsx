@@ -7,6 +7,7 @@ export default function RepresentativeCard({ representative }) {
       className="card"
       style={{ backgroundColor: "#81b29a" }}
     >
+      <img src={`https://www.congress.gov/img/member/${representative.id.toLowerCase()}_200.jpg`} class="card-img-top" />
       <div className="card-body">
         <h5 className="card-title">
           {representative.short_title} {representative.first_name}{" "}
