@@ -2,6 +2,7 @@ import React from "react";
 import "../RepCard.css";
 
 export default function RepresentativeCard({ representative }) {
+
   return (
     <div
       className="card"
