@@ -1,8 +1,10 @@
-import React from "react";
+import { Link } from "react-router-dom";
 import "../RepCard.css";
 
 export default function RepresentativeCard({ representative }) {
+  
   return (
+    <Link to={`/representatives/${representative.id}`} state={{representative:representative}}>
     <div
       className="card"
       style={{ backgroundColor: "#81b29a" }}
@@ -18,5 +20,6 @@ export default function RepresentativeCard({ representative }) {
         <p className="card-text">Phone: {representative.phone}</p>
       </div>
     </div>
+    </Link>
   );
 }

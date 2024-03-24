@@ -10,6 +10,7 @@ import Representatives from "./pages/Representatives";
 import Footer from "./components/Footer";
 import Settings from "./pages/Settings";
 import About from "./pages/About.jsx";
+import RepresentativeDetail from "./pages/RepresentativeDetail.jsx";
 
 
 function App() {
@@ -27,6 +28,7 @@ function App() {
                 {/* {<Route path='/polls' />} */}
                 <Route path="/bills" element={<Bills />} />
                 <Route path="/representatives" element={<Representatives />} />
+                <Route path="/representatives/:bioguideID" element={<RepresentativeDetail />} />
                 <Route path="/settings" element={<Settings />} />
                 <Route path="*" element={<FoF />} />
                 {/* PUBLIC ROUTE FOR LOGIN */}
