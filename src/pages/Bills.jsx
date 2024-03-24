@@ -1,6 +1,8 @@
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import { fetchForBills } from "../api/axios";
+
 import BillsCard from "../components/bills/billscard";
+import { useLocation } from "react-router-dom";
 
 
 export default function Bills() {
@@ -9,19 +11,23 @@ export default function Bills() {
     const [activeTab, setActiveTab] = useState('introduced_date');
     const [loading, setLoading] = useState(false);
     const [error, setError] = useState(null);
+    const location = useLocation();
 
     const fetchBillsByKeyword = async () => {
         setLoading(true);
         setError(null);
         try {
             const res = await fetchForBills(keyword);
+            //console.log(res)
             if(res.data && res.data.results && res.data.results.length > 0) {
-                setBills(res.data.results[0].bills);
-                console.log(bills)
+                let fetchedBills = res.data.results[0].bills;
+                setBills(fetchedBills);
+                console.log(fetchedBills)
+                //console.log(bills)
             } else {
                 setBills([]);
             }
-            console.log(res)
+            //console.log(res)
 
         } catch (error) {
             console.error('Error fetching bills. Please try again.', error);
@@ -36,6 +42,10 @@ export default function Bills() {
     const handleTabChange = (tab) => {
         setActiveTab(tab);
     };
+
+    useEffect(() => {
+        fetchBillsByKeyword();
+    },[activeTab])
 
     return (
         <div>
@@ -55,9 +65,11 @@ export default function Bills() {
             {error && <p>{error}</p>}
 
             <div>
-                {bills.map((elem, index) => (
-                    elem[activeTab] && <BillsCard key={elem.id} bill={elem} />
-                ))}
+                {bills?.map((elem, index) => {
+                    console.log(elem)
+                    return (
+                        <BillsCard key={elem.id} bill={elem} />
+                    )})}
             </div>
         </div>
     );
