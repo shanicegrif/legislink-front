@@ -1,11 +1,23 @@
+/* Container to center the settings container */
+.settings-wrapper {
+  max-width: 640px; /* Adjust the width as needed */
+  margin: 0 auto; /* Center the container horizontally */
+  padding-bottom: 15px;
+}
+
 /* Container for the settings page */
 .settings-container {
   max-width: 600px;
-  margin: 0 auto;
-  padding: 20px;
+  margin: 0 auto; /* Center the container horizontally */
+  padding: 20px 40px; /* Add padding to the left and right */
   background-color: #f4f4f4;
   border-radius: 8px;
   box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+}
+
+/* Add space to the right */
+.settings-container {
+  margin-right: 20px; /* Adjust margin-right to add space */
 }
 
 /* Heading styles */
@@ -19,23 +31,6 @@
   margin-bottom: 30px;
 }
 
-/* List of interests */
-.interests-list {
-  list-style-type: none;
-  padding: 0;
-}
-
-.interests-list li {
-  margin-bottom: 5px;
-}
-
-/* Style for each interest item */
-.interest-item {
-  padding: 8px;
-}
-
-.btn-primary {
-  margin-top: 15px;
-  background-color: #e07a5f; /* Change the background color to blue */
-  color: #fff; /* Change the text color to white */
+.interests-container {
+  margin-bottom: 10px;
 }

@@ -3,7 +3,8 @@ import { useLayoutEffect, useState } from "react";
 import { fetchForHouse } from "../api/axios";
 import { useLocation } from "react-router-dom";
 import RepresentativeCard from "../components/representatives/RepresentativeCard";
-/** from react-bootstrap */
+import Loading from "../components/messages/Loading.jsx";
+import Error from "../components/messages/Error.jsx";
 import Container from "react-bootstrap/Container";
 import "bootstrap/dist/css/bootstrap.min.css";
 
@@ -11,14 +12,21 @@ const serverURL = import.meta.env.VITE_BASE_URL;
 
 export default function Representatives() {
   const [representativesNY, setRepresentativesNY] = useState([]);
+  const [loading, setLoading] = useState(true);
+  const [error, setError] = useState(null);
   let location = useLocation();
 
   useLayoutEffect(() => {
+    setLoading(true); // Set loading state to true when starting data fetching
     fetchForHouse()
       .then((res) => {
-        if (res.status != 200) {
+        if (res.status !== 200) {
           axios.get(`${serverURL}/representatives`).then((res) => {
             setRepresentativesNY(res.data.data.payload);
+            setLoading(false); // Update loading state after data fetching is complete
+          }).catch((error) => {
+            setError(error);
+            setLoading(false); // Update loading state even if there's an error
           });
         } else {
           console.log(
@@ -31,26 +39,23 @@ export default function Representatives() {
               (member) => member.state === "NY"
             )
           );
+          setLoading(false); // Update loading state after data fetching is complete
         }
       })
-      .catch(function (error) {
-        if (error.response) {
-          // The request was made and the server responded with a status code
-          // that falls out of the range of 2xx
-          console.log(error.response.data);
-          console.log(error.response.status);
-          console.log(error.response.headers);
-        } else if (error.request) {
-          // The request was made but no response was received
-          // `error.request` is an instance of XMLHttpRequest in the browser and an instance of
-          // http.ClientRequest in node.js
-          console.log(error.request);
-        } else {
-          // Something happened in setting up the request that triggered an Error
-          console.log("Error", error.message);
-        }
+      .catch((error) => {
+        setError(error);
+        setLoading(false); // Update loading state even if there's an error
       });
   }, [location]);
+  
+
+  if (loading) {
+    return <Loading />;
+  }
+
+  if (error) {
+    return <Error message={error.message} />;
+  }
 
   return (
     <Container fluid>
