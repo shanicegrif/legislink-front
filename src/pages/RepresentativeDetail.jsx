@@ -7,7 +7,7 @@ export default function RepresentativeDetail({location}){
     const { representative } = state;
     
     return(
-        <div>
+        <div className="rep-detail-container">
             <RepresentativeDetailCard representative={representative}/>
             <RepresntativeBill />
         </div>

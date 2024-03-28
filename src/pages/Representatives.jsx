@@ -5,7 +5,6 @@ import { useLocation } from "react-router-dom";
 import RepresentativeCard from "../components/representatives/RepresentativeCard";
 import Loading from "../components/messages/Loading.jsx";
 import Error from "../components/messages/Error.jsx";
-import Container from "react-bootstrap/Container";
 import "bootstrap/dist/css/bootstrap.min.css";
 
 const serverURL = import.meta.env.VITE_BASE_URL;
@@ -58,12 +57,12 @@ export default function Representatives() {
   }
 
   return (
-    <Container fluid>
-      <div className="representatives-grid">
+    <div className="container mt-4">
+      <div className="row">
       {representativesNY.map((representative) => (
           <RepresentativeCard key={representative.id} representative={representative} />
         ))}
       </div>
-    </Container>
+    </div>
   );
 }

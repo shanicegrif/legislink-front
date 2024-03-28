@@ -3,9 +3,11 @@ body {
     background-color: #f4f1de;
   }
   
-  .content {
+  .container {
     padding-top: 2rem;
-    padding-left: 3rem;
+    padding-left: 2rem;
+    padding-right: 1rem;
+    min-height: auto;
   }
   
   .main-overview {

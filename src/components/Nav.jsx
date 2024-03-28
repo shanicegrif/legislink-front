@@ -28,7 +28,7 @@ const Nav = () => {
             <i class="fas fa-times sidenav__brand-close"></i>
           )}
         </div>
-        <div className="brand-logo">
+        <div className="home-brand-logo">
           <p className="nav-title">LegisLink </p>
           <img src={brandImg} alt="brand imglogo" />
         </div>

@@ -6,13 +6,13 @@ import brandLogo from "../assets/brand-logo.png";
 import { Link } from "react-router-dom";
 import CloseIcon from "@mui/icons-material/Close";
 import MenuIcon from "@mui/icons-material/Menu";
-import SettingsIcon from '@mui/icons-material/Settings';
-import LogoutIcon from '@mui/icons-material/Logout';
-import WhereToVoteIcon from '@mui/icons-material/WhereToVote';
-import HomeIcon from '@mui/icons-material/Home';
-import LanguageIcon from '@mui/icons-material/Language';
-import PersonIcon from '@mui/icons-material/Person';
-import ReceiptLongIcon from '@mui/icons-material/ReceiptLong';
+import SettingsIcon from "@mui/icons-material/Settings";
+import LogoutIcon from "@mui/icons-material/Logout";
+import WhereToVoteIcon from "@mui/icons-material/WhereToVote";
+import HomeIcon from "@mui/icons-material/Home";
+import LanguageIcon from "@mui/icons-material/Language";
+import PersonIcon from "@mui/icons-material/Person";
+import ReceiptLongIcon from "@mui/icons-material/ReceiptLong";
 import "./SideNav.css";
 
 const SideNav = () => {
@@ -44,7 +44,10 @@ const SideNav = () => {
   return (
     <>
       <div className="menu-icon" onClick={toggleSidebar}>
-        {isSidebarOpen ? <MenuIcon /> : <MenuIcon fontSize="large"/>}
+        {isSidebarOpen ? <MenuIcon /> : <MenuIcon fontSize="large" />}
+        {window.innerWidth <= 749 && (
+          <div className="header__app-name">LegisLink</div>
+        )}
       </div>
       <header class="header">
         <div className="header__username">{user.displayName}</div>
@@ -53,7 +56,7 @@ const SideNav = () => {
       <aside class={`sidenav ${isSidebarOpen ? "active" : ""}`}>
         <div class="sidenav__close-icon" onClick={toggleSidebar}>
           {isSidebarOpen ? (
-            <CloseIcon fontSize="large"/>
+            <CloseIcon fontSize="large" />
           ) : (
             <i class="fas fa-times sidenav__brand-close"></i>
           )}
@@ -64,41 +67,43 @@ const SideNav = () => {
         <ul class="sidenav__list" onClick={closeSidebar}>
           <li className="sidenav__list-item">
             <Link to={`/dashboard`}>
-              <HomeIcon fontSize="large"/>
+              <HomeIcon fontSize="large" />
               <span className="nav-text">Dashboard</span>
             </Link>
           </li>
           <li className="sidenav__list-item">
             <Link>
-              <WhereToVoteIcon fontSize="large"/>
+              <WhereToVoteIcon fontSize="large" />
               <span className="nav-text">Polls</span>
             </Link>
           </li>
           <li className="sidenav__list-item">
             <Link to={`/bills`}>
-              <ReceiptLongIcon fontSize="large"/>
+              <ReceiptLongIcon fontSize="large" />
               <span className="nav-text">Bills</span>
             </Link>
           </li>
           <li className="sidenav__list-item">
             <Link to={`/representatives`}>
-              <PersonIcon fontSize="large"/>
+              <PersonIcon fontSize="large" />
               <span className="nav-text">Representatives</span>
             </Link>
           </li>
           <li className="sidenav__list-item">
             <Link to={`/settings`}>
-              <SettingsIcon fontSize="large"/>
+              <SettingsIcon fontSize="large" />
               <span className="nav-text">Settings</span>
             </Link>
           </li>
           <li className="sidenav__list-item">
-            <LanguageIcon fontSize="large"/>
+            <LanguageIcon fontSize="large" />
             <span className="nav-text">Language</span>
           </li>
           <li className="sidenav__list-item">
-            <LogoutIcon fontSize="large"/>
-            <span onClick={handleLogout} className="nav-text">Logout</span>
+            <LogoutIcon fontSize="large" />
+            <span onClick={handleLogout} className="nav-text">
+              Logout
+            </span>
           </li>
         </ul>
       </aside>
