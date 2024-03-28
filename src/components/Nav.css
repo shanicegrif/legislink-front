@@ -1,0 +1,90 @@
+.menu-icon {
+  position: absolute; /* Needs to stay visible for all mobile scrolling */
+  display: flex;
+  top: 5px;
+  left: 10px;
+  align-items: center;
+  justify-content: center;
+  border-radius: 50%;
+  z-index: 1;
+  cursor: pointer;
+  padding: 12px;
+}
+
+.home-nav {
+  grid-area: home-nav;
+  display: flex;
+  flex-direction: column;
+  height: 100%;
+  width: 240px;
+  position: fixed;
+  overflow-y: auto;
+  transform: translateX(-245px);
+  transition: all .6s ease-in-out;
+  box-shadow: 0 2px 2px 0 rgba(0, 0, 0, 0.16), 0 0 0 1px rgba(0, 0, 0, 0.08);
+  z-index: 1000;
+  background-color: #394263;
+}
+
+.home-nav.active {
+  transform: translateX(0);
+}
+
+.brand-logo {
+  margin-top: 30px;
+  display: flex;
+  align-items: center; /* Align items vertically */
+}
+
+.brand-logo img {
+  width: auto; /* Allow the width to adjust based on the image's aspect ratio */
+  max-height: 50px; /* Set a maximum height to prevent stretching */
+  border-radius: 50%; /* Ensure the image is circular */
+  object-fit: cover; /* Ensure the image covers the entire container */
+  margin: 0; /* Remove margins */
+}
+
+.nav-title {
+  font-size: 25px;
+  color: white;
+  margin-top: 40px;
+  margin-right: -60px;
+  margin-left: 10px;
+}
+
+.nav__close-icon {
+  position: absolute;
+  visibility: visible;
+  top: 8px;
+  right: 12px;
+  cursor: pointer;
+  font-size: 20px;
+  color: #ddd;
+}
+
+.nav__list {
+  padding: 0;
+  margin-top: 85px;
+  list-style-type: none;
+}
+
+.nav__list a {
+  text-decoration: none;
+  color: white;
+}
+
+.nav__list-item {
+  padding: 20px 20px 20px 40px;
+  color: #ddd;
+}
+
+.nav__list-item:hover {
+  background-color: rgba(255, 255, 255, 0.2);
+  cursor: pointer;
+}
+
+@media (min-width: 749px) {
+  .home-nav {
+    transform: translateX(0);
+  }
+}

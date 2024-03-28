@@ -1,16 +1,17 @@
-import { Link, useNavigate } from 'react-router-dom';
+import React from 'react';
 import { useAuth } from "../hooks/useAuth";
-import NavBar from './NavBar';
-import SidePanel from './SidePanel';
+import Nav from "./Nav";
+import SideNav from './SideNav';
 
-export default function DynamicNav(){
-    const nav = useNavigate();
+const DynamicNav = () => {
     const auth = useAuth();
 
-    return(
-        <div>
-            {!auth ? (<NavBar />) : null}
-            {auth ? (<SidePanel />) : null}
-        </div>
-    )
+    return (
+        <>
+            {!auth ? (<Nav />) : null}
+            {auth ? (<SideNav />) : null}
+        </>
+    );
 }
+
+export default DynamicNav;
