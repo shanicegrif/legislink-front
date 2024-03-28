@@ -20,7 +20,7 @@ function App() {
         <AuthProvider>
           <main className="grid-container">
             <DynamicNav />
-            <div className="content">
+            <div className="container">
               <Routes>
                 <Route path="/" element={<Home />} />
                 <Route path="/about" element={<About />} />
