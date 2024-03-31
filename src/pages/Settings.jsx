@@ -56,7 +56,7 @@ const Settings = () => {
   return (
     <div className="settings-wrapper">
       <div className="settings-container">
-        <h2 className="settings-heading">Account Information</h2>
+        <h2 className="settings-heading"> Welcome to your Account</h2>
         <div className="account-info">
           {user.displayName && (
             <p>
@@ -72,7 +72,7 @@ const Settings = () => {
             <strong>Home Address:</strong> {`${userInfo.street}, ${userInfo.city}, ${userInfo.state}, ${userInfo.zip}`}
           </p>
         </div>
-        <h2 className="settings-heading">Areas of Interest for Bills</h2>
+        <h2 className="settings-heading">My Areas of Interest</h2>
         <div className="interests-container">
           <div className="add-interest-container">
             <TextField

@@ -51,7 +51,7 @@ const AddressForm = ({ onSubmit }) => {
 
     return (
         <div>
-            <h2 className="settings-heading">Add or Update Home Address</h2>
+            <h2 className="settings-heading">Address</h2>
             <form onSubmit={handleSubmit}>
                 <Stack direction="column" spacing={2}>
                     <TextField

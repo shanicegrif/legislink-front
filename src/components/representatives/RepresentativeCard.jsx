@@ -5,18 +5,19 @@ import CardMedia from "@mui/material/CardMedia";
 import Button from "@mui/material/Button";
 import Typography from "@mui/material/Typography";
 import { Link } from "react-router-dom";
+import "./RepSenCard.css"
 
 export default function RepresentativeCard({ representative }) {
-  
   return (
-    <div className="col-lg-3 col-md-4 col-sm-6 mb-4 d-flex">
-      <Card sx={{ maxWidth: 145, display: 'flex', flexDirection: 'column' }}>
+    <div className='card-item'>
+      <Card sx={{ maxWidth: 200, minWidth: 200, display: 'flex', flexDirection: 'column', }}>
         <CardMedia
-          sx={{ height: 160 }}
+          sx={{ width: 200, height: 200 }}
           image={`https://www.congress.gov/img/member/${representative.id.toLowerCase()}_200.jpg`}
           title="senate image"
         />
-        <CardContent style={{ flex: '1' }}>
+        <div className="card-content">
+        <CardContent  style={{ flex: '1' }}>
           <Typography gutterBottom variant="h5" component="div">
             {representative.first_name} {representative.last_name}
           </Typography>
@@ -24,6 +25,7 @@ export default function RepresentativeCard({ representative }) {
           <Typography variant="body2">District: {representative.district}</Typography>
           <Typography variant="body2">Office: {representative.office}</Typography>
         </CardContent>
+        </div>
         <CardActions>
           <Button size="small"><Link to={`/representatives/${representative.id}`} state={{representative:representative}}>Learn More</Link></Button>
         </CardActions>

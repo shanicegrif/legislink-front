@@ -16,7 +16,7 @@ const user = useAuth();
   console.log(user);
   return (
     <div className="signin-container">
-      <section className="container">
+      <section className="section-container">
         <div className="image-section">
           <div className="image-wrapper">
             <img src="./mesh-gradient.png" alt="" />
