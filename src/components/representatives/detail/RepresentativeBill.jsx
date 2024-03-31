@@ -1,5 +1,5 @@
+import React, { useState, useEffect } from "react";
 import axios from "axios";
-import { useLayoutEffect, useState } from "react";
 import { useParams } from "react-router-dom";
 import Box from "@mui/material/Box";
 import InputLabel from "@mui/material/InputLabel";
@@ -9,15 +9,20 @@ import Select from "@mui/material/Select";
 import Card from "@mui/material/Card";
 import CardContent from "@mui/material/CardContent";
 import Typography from "@mui/material/Typography";
+import Loading from "../../messages/Loading";
+import BillError from "../../messages/BillError"; // Import your BillError component here
 
 const propublicaAPIKey = import.meta.env.VITE_BASE_PROPUBLICA_KEY;
 
 export default function RepresntativeBill() {
   const [billType, setBillType] = useState("introduced");
   const [bills, setBills] = useState([]);
+  const [loading, setLoading] = useState(true);
+  const [error, setError] = useState(null);
   const { bioguideID } = useParams();
 
-  useLayoutEffect(() => {
+  useEffect(() => {
+    setLoading(true);
     axios
       .get(
         `https://api.propublica.org/congress/v1/members/${bioguideID}/bills/${billType}.json`,
@@ -27,11 +32,23 @@ export default function RepresntativeBill() {
           },
         }
       )
-      .then((res) =>
-        setBills(
-          res.data.results[0].bills.filter((elem) => elem.congress == "118")
-        )
-      );
+      .then((res) => {
+        const fetchedBills = res.data.results[0].bills.filter(
+          (elem) => elem.congress == "118"
+        );
+        setBills(fetchedBills);
+        setLoading(false);
+        if (fetchedBills.length === 0) {
+          setError("No bills found for the selected type.");
+        } else {
+          setError(null);
+        }
+      })
+      .catch((error) => {
+        console.error("Error fetching bills:", error);
+        setLoading(false);
+        setError("An error occurred while fetching bills.");
+      });
   }, [bioguideID, billType]);
 
   function billTypeOnChangeHandler(event) {
@@ -59,31 +76,37 @@ export default function RepresntativeBill() {
           </Select>
         </FormControl>
       </Box>
-      <div
-        style={{
-          display: "grid",
-          gridTemplateColumns: "repeat(auto-fit, minmax(300px, 1fr))",
-          gap: "20px",
-        }}
-      >
-        {bills.map((bill) => (
-          <Card key={bill.bill_id}>
-            <CardContent>
-              <Typography
-                sx={{ fontSize: 14 }}
-                color="text.secondary"
-                gutterBottom
-              >
-                {bill.bill_id}
-              </Typography>
-              <Typography variant="body2">{bill.title}</Typography>
-              <Typography variant="body2" color="text.secondary">
-                {bill.summary}
-              </Typography>
-            </CardContent>
-          </Card>
-        ))}
-      </div>
+      {loading ? (
+        <Loading />
+      ) : error ? (
+        <BillError />
+      ) : (
+        <div
+          style={{
+            display: "grid",
+            gridTemplateColumns: "repeat(auto-fit, minmax(300px, 1fr))",
+            gap: "20px",
+          }}
+        >
+          {bills.map((bill) => (
+            <Card key={bill.bill_id}>
+              <CardContent>
+                <Typography
+                  sx={{ fontSize: 14 }}
+                  color="text.secondary"
+                  gutterBottom
+                >
+                  {bill.bill_id}
+                </Typography>
+                <Typography variant="body2">{bill.title}</Typography>
+                <Typography variant="body2" color="text.secondary">
+                  {bill.summary}
+                </Typography>
+              </CardContent>
+            </Card>
+          ))}
+        </div>
+      )}
     </div>
   );
 }

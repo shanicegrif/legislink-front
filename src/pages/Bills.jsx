@@ -1,8 +1,8 @@
 import React, { useEffect, useState } from "react";
 import TextField from "@mui/material/TextField";
 import Button from "@mui/material/Button";
-import Tabs from "@mui/material/Tabs";
-import Tab from "@mui/material/Tab";
+import Select from "@mui/material/Select"; // Import Select component
+import MenuItem from "@mui/material/MenuItem"; // Import MenuItem component
 import Box from "@mui/material/Box";
 import { fetchForBills } from "../api/axios";
 import BillsCard from "../components/bills/BillsCard";
@@ -12,7 +12,7 @@ import Loading from "../components/messages/Loading";
 export default function Bills() {
   const [bills, setBills] = useState([]);
   const [keyword, setKeyword] = useState("");
-  const [activeTab, setActiveTab] = useState("introduced_date");
+  const [selectedOption, setSelectedOption] = useState("introduced_date"); // State to store selected option
   const [loading, setLoading] = useState(false);
   const [error, setError] = useState(null);
 
@@ -37,13 +37,13 @@ export default function Bills() {
     fetchBillsByKeyword();
   };
 
-  const handleTabChange = (event, newTab) => {
-    setActiveTab(newTab);
+  const handleOptionChange = (event) => {
+    setSelectedOption(event.target.value);
   };
 
   useEffect(() => {
     fetchBillsByKeyword();
-  }, [activeTab]);
+  }, [selectedOption]); // Trigger fetch when selected option changes
 
   return (
     <div className="bill-container">
@@ -71,21 +71,23 @@ export default function Bills() {
           Search
         </Button>
       </Box>
-      <Tabs
-        value={activeTab}
-        onChange={handleTabChange}
-        variant="scrollable"
-        scrollButtons="auto"
-        indicatorColor="primary"
-        textColor="primary"
-      >
-        <Tab label="Introduced" value="introduced_date" />
-        <Tab label="Updated" value="updated" />
-        <Tab label="Active" value="active" />
-        <Tab label="Passed" value="passed" />
-        <Tab label="Enacted" value="enacted" />
-        <Tab label="Vetoed" value="vetoed" />
-      </Tabs>
+      <Box sx={{ display: "flex", justifyContent: "center", marginBottom: "20px" }}>
+        <Select
+          value={selectedOption}
+          onChange={handleOptionChange}
+          variant="outlined"
+          sx={{
+            width: "200px", // Adjust the width as needed
+          }}
+        >
+          <MenuItem value="introduced_date">Introduced</MenuItem>
+          <MenuItem value="updated">Updated</MenuItem>
+          <MenuItem value="active">Active</MenuItem>
+          <MenuItem value="passed">Passed</MenuItem>
+          <MenuItem value="enacted">Enacted</MenuItem>
+          <MenuItem value="vetoed">Vetoed</MenuItem>
+        </Select>
+      </Box>
       {loading && <Loading />}
       {error && <Error message={error.message} />}
       <Box display="flex" flexWrap="wrap" justifyContent="space-around">
