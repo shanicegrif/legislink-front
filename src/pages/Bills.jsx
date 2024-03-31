@@ -1,8 +1,8 @@
 import React, { useEffect, useState } from "react";
 import TextField from "@mui/material/TextField";
 import Button from "@mui/material/Button";
-import Select from "@mui/material/Select"; // Import Select component
-import MenuItem from "@mui/material/MenuItem"; // Import MenuItem component
+import Select from "@mui/material/Select";
+import MenuItem from "@mui/material/MenuItem";
 import Box from "@mui/material/Box";
 import { fetchForBills } from "../api/axios";
 import BillsCard from "../components/bills/BillsCard";
@@ -12,7 +12,7 @@ import Loading from "../components/messages/Loading";
 export default function Bills() {
   const [bills, setBills] = useState([]);
   const [keyword, setKeyword] = useState("");
-  const [selectedOption, setSelectedOption] = useState("introduced_date"); // State to store selected option
+  const [selectedOption, setSelectedOption] = useState("introduced_date");
   const [loading, setLoading] = useState(false);
   const [error, setError] = useState(null);
 
@@ -22,8 +22,7 @@ export default function Bills() {
     try {
       const res = await fetchForBills(keyword);
       if (res.data && res.data.results && res.data.results.length > 0) {
-        let fetchedBills = res.data.results[0].bills;
-        setBills(fetchedBills);
+        setBills(res.data.results[0].bills);
       } else {
         setBills([]);
       }
@@ -43,7 +42,7 @@ export default function Bills() {
 
   useEffect(() => {
     fetchBillsByKeyword();
-  }, [selectedOption]); // Trigger fetch when selected option changes
+  }, [selectedOption]);
 
   return (
     <div className="bill-container">

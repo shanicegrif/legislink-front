@@ -34,7 +34,6 @@ function App() {
                 <Route path="/settings" element={<Settings />} />
                 <Route path="/help-center" element={<HelpCenter/>} />
                 <Route path="*" element={<FoF />} />
-                {/* PUBLIC ROUTE FOR LOGIN */}
                 {/* ROUTE TO USER PROFILE ROUTE WITH WILDCARD MATCHER */}
               </Routes>
             </div>

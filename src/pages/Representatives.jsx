@@ -7,6 +7,7 @@ import SenateCard from "../components/representatives/SenateCard.jsx";
 import Loading from "../components/messages/Loading.jsx";
 import Error from "../components/messages/Error.jsx";
 import "bootstrap/dist/css/bootstrap.min.css";
+import "../components/representatives/RepSenCard.css"
 
 const serverURL = import.meta.env.VITE_BASE_URL;
 
@@ -57,15 +58,15 @@ export default function Representatives() {
   }
 
   return (
-    <div className="container mt-4">
-      <h2> New York House of Representatives</h2>
-      <div className="row">
+    <div className="representatives-container">
+      <h2>New York House of Representatives</h2>
+      <div className="rep-container">
         {houseMembers.map((representative) => (
           <RepresentativeCard key={representative.id} representative={representative} />
         ))}
       </div>
       <h2>New York Senate</h2>
-      <div className="row">
+      <div className="rep-container">
         {senatesNY.map((representative) => (
           <SenateCard key={representative.id} representative={representative} />
         ))}

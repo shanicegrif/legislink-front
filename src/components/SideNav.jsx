@@ -50,7 +50,7 @@ const SideNav = () => {
         )}
       </div>
       <header class="header">
-        <div className="header__username">{user.displayName}</div>
+        <div className="header__username">Hi, {user.displayName}</div>
         <img src={user.photoURL} alt="user-image" />
       </header>
       <aside class={`sidenav ${isSidebarOpen ? "active" : ""}`}>
