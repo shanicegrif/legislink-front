@@ -1,5 +1,5 @@
 import { useAuth } from "../hooks/useAuth";
-import { useState } from "react";
+import { useLayoutEffect, useState } from "react";
 import Chip from "@mui/material/Chip";
 import Stack from "@mui/material/Stack";
 import TextField from "@mui/material/TextField";
@@ -7,9 +7,9 @@ import Button from "@mui/material/Button";
 import AddressForm from "../Components/AddressForm";
 import Loading from "../components/messages/Loading";
 import "../components/Settings.css";
+
 import axios from "axios";
 const serverURL = import.meta.env.VITE_BASE_URL;
-
 
 const Settings = () => {
   const user = useAuth();
@@ -27,6 +27,10 @@ const Settings = () => {
   ]);
 
   const [newInterest, setNewInterest] = useState("");
+
+  useLayoutEffect(() => {
+    axios.get(`${serverURL}/users/${user.uid}`).then(res => setUserInfo({street:res.data.data.payload.user_street, city:res.data.data.payload.user_city, state:res.data.data.payload.user_state, zip:res.data.data.payload.user_zip}))
+  },[])
 
   const handleAddInterest = () => {
     if (newInterest.trim() !== "") {
@@ -65,7 +69,7 @@ const Settings = () => {
             </p>
           )}
           <p>
-            <strong>Home Address:</strong> {userInfo.address}
+            <strong>Home Address:</strong> {`${userInfo.street}, ${userInfo.city}, ${userInfo.state}, ${userInfo.zip}`}
           </p>
         </div>
         <h2 className="settings-heading">Areas of Interest for Bills</h2>
