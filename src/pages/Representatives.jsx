@@ -1,54 +1,54 @@
-import axios from "axios"; // Import axios
+import axios from "axios";
 import { useLayoutEffect, useState } from "react";
-import { fetchForHouse } from "../api/axios";
+import { fetchForHouse, fetchForSenate } from "../api/axios";
 import { useLocation } from "react-router-dom";
 import RepresentativeCard from "../components/representatives/RepresentativeCard";
+import SenateCard from "../components/representatives/SenateCard.jsx";
 import Loading from "../components/messages/Loading.jsx";
 import Error from "../components/messages/Error.jsx";
 import "bootstrap/dist/css/bootstrap.min.css";
 
 const serverURL = import.meta.env.VITE_BASE_URL;
 
-export default function Representatives() {
-  const [representativesNY, setRepresentativesNY] = useState([]);
+function useFetchData(fetchFunction, setError) {
   const [loading, setLoading] = useState(true);
-  const [error, setError] = useState(null);
-  let location = useLocation();
+  const [data, setData] = useState([]);
 
   useLayoutEffect(() => {
-    setLoading(true); // Set loading state to true when starting data fetching
-    fetchForHouse()
+    setLoading(true);
+    fetchFunction()
       .then((res) => {
         if (res.status !== 200) {
-          axios.get(`${serverURL}/representatives`).then((res) => {
-            setRepresentativesNY(res.data.data.payload);
-            setLoading(false); // Update loading state after data fetching is complete
-          }).catch((error) => {
-            setError(error);
-            setLoading(false); // Update loading state even if there's an error
-          });
+          axios.get(`${serverURL}/${fetchFunction === fetchForHouse ? 'representatives' : 'senates'}`)
+            .then((res) => {
+              setData(res.data.data.payload);
+              setLoading(false);
+            })
+            .catch((error) => {
+              setError(error);
+              setLoading(false);
+            });
         } else {
-          console.log(
-            res.data.results[0].members.filter(
-              (member) => member.state === "NY"
-            )
-          );
-          setRepresentativesNY(
-            res.data.results[0].members.filter(
-              (member) => member.state === "NY"
-            )
-          );
-          setLoading(false); // Update loading state after data fetching is complete
+          setData(res.data.results[0].members.filter((member) => member.state === "NY"));
+          setLoading(false);
         }
       })
       .catch((error) => {
         setError(error);
-        setLoading(false); // Update loading state even if there's an error
+        setLoading(false);
       });
-  }, [location]);
-  
+  }, [fetchFunction]);
 
-  if (loading) {
+  return { loading, data };
+}
+
+export default function Representatives() {
+  const [error, setError] = useState(null);
+  const { loading: loadingHouse, data: houseMembers } = useFetchData(fetchForHouse, setError);
+  const { loading: loadingSenate, data: senatesNY } = useFetchData(fetchForSenate, setError);
+  const location = useLocation();
+
+  if (loadingHouse || loadingSenate) {
     return <Loading />;
   }
 
@@ -58,9 +58,16 @@ export default function Representatives() {
 
   return (
     <div className="container mt-4">
+      <h2> New York House of Representatives</h2>
       <div className="row">
-      {representativesNY.map((representative) => (
+        {houseMembers.map((representative) => (
           <RepresentativeCard key={representative.id} representative={representative} />
+        ))}
+      </div>
+      <h2>New York Senate</h2>
+      <div className="row">
+        {senatesNY.map((representative) => (
+          <SenateCard key={representative.id} representative={representative} />
         ))}
       </div>
     </div>
