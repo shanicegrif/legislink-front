@@ -90,16 +90,26 @@ const Settings = () => {
               Add
             </Button>
           </div>
-          <Stack direction="row" spacing={1}>
-            {interests.map((interest, index) => (
-              <Chip
-                key={index}
-                label={interest}
-                variant="outlined"
-                onDelete={() => handleDelete(interest)}
-              />
-            ))}
-          </Stack>
+          <div className="interests">
+            <Stack
+              direction="row"
+              spacing={1}
+              sx={{
+                flexWrap: "wrap", // Ensure items wrap when needed
+                justifyContent: "center", // Center items horizontally
+              }}
+            >
+              {interests.map((interest, index) => (
+                <Chip
+                  key={index}
+                  label={interest}
+                  variant="outlined"
+                  onDelete={() => handleDelete(interest)}
+                  style={{margin: "5px"}}
+                />
+              ))}
+            </Stack>
+          </div>
         </div>
         <AddressForm onSubmit={handleAddressSubmit} />
       </div>
