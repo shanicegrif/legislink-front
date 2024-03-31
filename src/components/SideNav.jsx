@@ -10,7 +10,7 @@ import SettingsIcon from "@mui/icons-material/Settings";
 import LogoutIcon from "@mui/icons-material/Logout";
 import WhereToVoteIcon from "@mui/icons-material/WhereToVote";
 import HomeIcon from "@mui/icons-material/Home";
-import LanguageIcon from "@mui/icons-material/Language";
+import HelpIcon from "@mui/icons-material/Help";
 import PersonIcon from "@mui/icons-material/Person";
 import ReceiptLongIcon from "@mui/icons-material/ReceiptLong";
 import "./SideNav.css";
@@ -96,8 +96,10 @@ const SideNav = () => {
             </Link>
           </li>
           <li className="sidenav__list-item">
-            <LanguageIcon fontSize="large" />
-            <span className="nav-text">Language</span>
+            <Link to={`/help-center`}>
+              <HelpIcon fontSize="large" />
+              <span className="nav-text">Help Center</span>
+            </Link>
           </li>
           <li className="sidenav__list-item">
             <LogoutIcon fontSize="large" />

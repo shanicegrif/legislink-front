@@ -11,7 +11,7 @@ import Footer from "./components/Footer";
 import Settings from "./pages/Settings";
 import About from "./pages/About.jsx";
 import RepresentativeDetail from "./pages/RepresentativeDetail.jsx";
-
+import HelpCenter from "./pages/HelpCenter.jsx";
 
 function App() {
   return (
@@ -30,6 +30,7 @@ function App() {
                 <Route path="/representatives" element={<Representatives />} />
                 <Route path="/representatives/:bioguideID" element={<RepresentativeDetail />} />
                 <Route path="/settings" element={<Settings />} />
+                <Route path="/help-center" element={<HelpCenter/>} />
                 <Route path="*" element={<FoF />} />
                 {/* PUBLIC ROUTE FOR LOGIN */}
                 {/* ROUTE TO USER PROFILE ROUTE WITH WILDCARD MATCHER */}

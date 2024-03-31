@@ -1,0 +1,22 @@
+/* FoF.css */
+
+.fof-container {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100vh;
+  }
+  
+  .fof-alert {
+    width: 400px;
+    text-align: center;
+  }
+  
+  .fof-heading {
+    margin-bottom: 20px;
+  }
+  
+  .fof-text {
+    margin-bottom: 0;
+  }
+  
