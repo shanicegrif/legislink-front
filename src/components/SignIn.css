@@ -1,0 +1,64 @@
+.signin-container {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    min-height: 100vh;
+    background-color: #f5f5f5;
+  }
+  
+  .container {
+    max-width: 800px;
+    width: 100%;
+  }
+  
+  .paper {
+    padding: 2rem;
+  }
+  
+  .imageSection {
+    display: flex;
+    align-items: center;
+    margin-bottom: 2rem;
+  }
+  
+  .contentContainer {
+    margin-left: 2rem;
+  }
+  
+  .formSection {
+    display: flex;
+    align-items: center;
+  }
+  
+  .formWrapper {
+    width: 100%;
+    max-width: 400px;
+    margin: 0 auto;
+  }
+  
+  .rememberForgot {
+    display: flex;
+    align-items: center;
+    margin-bottom: 1rem;
+  }
+  
+  .loginBtn {
+    width: 100%;
+    margin-bottom: 1rem;
+  }
+  
+  .googleSignin {
+    width: 100%;
+    display: flex;
+    align-items: center;
+    background-color: #fff;
+    border: 1px solid #ccc;
+    padding: 0.5rem;
+    border-radius: 8px;
+    cursor: pointer;
+  }
+  
+  .googleSignin img {
+    margin-right: 0.5rem;
+  }
+  

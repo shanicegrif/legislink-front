@@ -1,4 +1,4 @@
-.login-container {
+.home-container {
     display: flex;
     justify-content: center;
     align-items: center;
@@ -6,7 +6,7 @@
     width: 100%; /* Adjust the width as needed */
   }
   
-  .login-content {
+  .home-content {
     text-align: center;
     flex-grow: 1; /* Allow the content to grow to fill available space */
   }
@@ -37,13 +37,13 @@
     margin-right: auto;
   }
   
-  .login-img {
+  .home-img {
     width: 350px;
     margin: 20px auto; /* Center the image horizontally */
     margin-left: 20px;
   }
   
-  .login-card {
+  .home-card {
     width: 575px;
     margin: 40px auto 0; /* Center the card and add top margin */
     border-radius: 5px;

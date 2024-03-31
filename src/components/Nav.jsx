@@ -39,6 +39,9 @@ const Nav = () => {
           <li className="nav__list-item">
             <Link to={`/about`}>About</Link>
           </li>
+          <li className="nav__list-item">
+            <Link to={`/sign-in`}>Sign In</Link>
+          </li>
         </ul>
       </aside>
     </div>

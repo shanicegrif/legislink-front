@@ -12,6 +12,7 @@ import Settings from "./pages/Settings";
 import About from "./pages/About.jsx";
 import RepresentativeDetail from "./pages/RepresentativeDetail.jsx";
 import HelpCenter from "./pages/HelpCenter.jsx";
+import SignIn from "./pages/SignIn.jsx";
 
 function App() {
   return (
@@ -24,6 +25,7 @@ function App() {
               <Routes>
                 <Route path="/" element={<Home />} />
                 <Route path="/about" element={<About />} />
+                <Route path="/sign-in" element={<SignIn/>} />
                 <Route path="/dashboard" element={<TestLobby />} />
                 {/* {<Route path='/polls' />} */}
                 <Route path="/bills" element={<Bills />} />
