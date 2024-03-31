@@ -34,9 +34,14 @@ const AddressForm = ({ onSubmit }) => {
     const handleSubmit = (event) => {
         event.preventDefault();
         // Concatenate the address fields to form the complete address
-        const fullAddress = `${address}, ${city}, ${state}, ${zip}`;
+        //const fullAddress = `${address}, ${city}, ${state}, ${zip}`;
         // Call the onSubmit function passed from the parent component
-        onSubmit(fullAddress);
+        onSubmit({
+            street: address,
+            city: city,
+            state: state,
+            zip: zip
+        });
         // Clear the form fields after submission
         setAddress('');
         setCity('');

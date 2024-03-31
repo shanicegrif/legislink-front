@@ -7,11 +7,17 @@ import Button from "@mui/material/Button";
 import AddressForm from "../Components/AddressForm";
 import Loading from "../components/messages/Loading";
 import "../components/Settings.css";
+import axios from "axios";
+const serverURL = import.meta.env.VITE_BASE_URL;
+
 
 const Settings = () => {
   const user = useAuth();
   const [userInfo, setUserInfo] = useState({
-    address: "123 Main St, City, State, Zip",
+    street: "",
+    city: "", 
+    state: "",
+    zip:""
   });
 
   const [interests, setInterests] = useState([
@@ -34,7 +40,8 @@ const Settings = () => {
   };
 
   const handleAddressSubmit = (submittedAddress) => {
-    setUserInfo({ ...userInfo, address: submittedAddress });
+    setUserInfo({ ...userInfo, ...submittedAddress });
+    axios.put(`${serverURL}/users/${user.uid}`, { ...userInfo });
   };
 
   // Check if user is not null before accessing properties
