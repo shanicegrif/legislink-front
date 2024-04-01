@@ -36,8 +36,10 @@ const Settings = () => {
 
   const handleAddInterest = () => {
     if (newInterest.trim() !== "") {
-      setInterests([...interests, newInterest.trim()]);
-      axios.post(`${serverURL}/users_interests/${user.uid}`, {newInterest:newInterest});
+      if(!interests.find((elem) => elem.toLowerCase() == newInterest.trim().toLowerCase())){
+        setInterests([...interests, newInterest.trim()]);
+        axios.post(`${serverURL}/users_interests/${user.uid}`, {newInterest:newInterest});
+      }
       setNewInterest("");
     }
   };
