@@ -1,7 +1,7 @@
 import axios from "axios";
 const serverURL = import.meta.env.VITE_BASE_URL;
 const propublicaAPIKey = import.meta.env.VITE_BASE_PROPUBLICA_KEY;
-
+const civicAPIKey = import.meta.env.VITE_BASE_CIVIC_KEY;
 /**
  * ToDo : need to check routers.
  */
@@ -65,3 +65,16 @@ export async function fetchForSenate(){
         "X-API-Key": `${propublicaAPIKey}`,
     }});
 };
+
+
+export async function fetchVoterInfo(address, electionId, apiKey) {
+    try {
+        
+        const url = `https://www.googleapis.com/civicinfo/v2/voterinfo?key=${apiKey}&address=${encodeURIComponent(address)}&electionId=${electionId}`;
+
+        return await axios.get(url);
+    } catch (error) {
+        console.error('Error fetching voter information:', error);
+        throw error;
+    }
+}
