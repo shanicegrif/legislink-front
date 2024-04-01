@@ -2,10 +2,9 @@
     display: grid;
     grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
     gap: 20px;
+    && .card-content {
+        height: 190px; /* Adjust the height as needed */
+        margin-top: -10px;
+        margin-bottom: -20px;
+    }
 }
-
-.card-content {
-    height: 195px; /* Adjust the height as needed */
-    /* Remove display and justify-content properties */
-    margin-top: -10px;
-  }
