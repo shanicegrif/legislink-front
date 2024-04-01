@@ -20,27 +20,32 @@ const Settings = () => {
     zip:""
   });
 
-  const [interests, setInterests] = useState([
-    "Healthcare",
+  /* 
+  "Healthcare",
     "Environment",
     "Education",
-  ]);
+  */
+  const [interests, setInterests] = useState([]);
 
   const [newInterest, setNewInterest] = useState("");
 
   useLayoutEffect(() => {
-    axios.get(`${serverURL}/users/${user.uid}`).then(res => setUserInfo({street:res.data.data.payload.user_street, city:res.data.data.payload.user_city, state:res.data.data.payload.user_state, zip:res.data.data.payload.user_zip}))
-  },[])
+    axios.get(`${serverURL}/users/${user.uid}`).then(res => setUserInfo({street:res.data.data.payload.user_street, city:res.data.data.payload.user_city, state:res.data.data.payload.user_state, zip:res.data.data.payload.user_zip}));
+    axios.get(`${serverURL}/users_interests/${user.uid}`).then(res => res.data.data.payload.forEach(element => setInterests([...interests, element.users_interests_keywords])));
+  },[]);
 
   const handleAddInterest = () => {
     if (newInterest.trim() !== "") {
       setInterests([...interests, newInterest.trim()]);
+      axios.post(`${serverURL}/users_interests/${user.uid}`, {newInterest:newInterest});
       setNewInterest("");
     }
   };
 
   const handleDelete = (interestToDelete) => {
+    axios.delete(`${serverURL}/users_interests/${user.uid}/${interestToDelete}`);
     setInterests(interests.filter((interest) => interest !== interestToDelete));
+
   };
 
   const handleAddressSubmit = (submittedAddress) => {
