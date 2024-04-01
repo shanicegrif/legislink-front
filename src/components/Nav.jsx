@@ -25,7 +25,7 @@ const Nav = () => {
         {isSidebarOpen ? (
             <CloseIcon fontSize="large"/>
           ) : (
-            <i class="fas fa-times sidenav__brand-close"></i>
+            <i className="fas fa-times sidenav__brand-close"></i>
           )}
         </div>
         <div className="home-brand-logo">
