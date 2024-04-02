@@ -78,6 +78,15 @@
   .sidenav__list-item.active {
     background-color: rgba(255, 255, 255, 0.1); /* Change the background color of the active link */
   }
+
+  .sidenav__list-item.active .nav-text {
+    color: #fff; /* Change the text color of the active link */
+  }
+  
+  .sidenav__list-item.active .nav-icon {
+    transform: rotate(180deg); /* Rotate the icon 180 degrees */
+  }
+  
   
   .sidenav__close-icon {
     position: absolute;
