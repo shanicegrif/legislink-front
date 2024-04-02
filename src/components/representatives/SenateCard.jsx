@@ -26,10 +26,10 @@ const SenateCard = ({ representative }) => {
           flexDirection: "row",
           boxShadow:
             representative.party === "R"
-              ? "2px 2px 2px 2px red"
+              ? "4px 4px 12px red"
               : representative.party === "D"
-              ? "2px 2px 2px 2px #2366c8"
-              : "2px 2px 2px 2px grey",
+              ? "4px 4px 12px #2366c8"
+              : "4px 4px 12px grey",
         }}
       >
         <CardMedia
