@@ -1,54 +1,79 @@
 import { useNavigate } from "react-router-dom";
+import { useState, useEffect } from "react";
 import { useLayoutEffect } from "react";
 import { useAuth } from "../hooks/useAuth";
-import "../components/TestLobby.css"
+import Loading from "../components/messages/Loading.jsx";
+import "../components/TestLobby.css";
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+import { faThumbsUp, faThumbsDown } from "@fortawesome/free-solid-svg-icons";
 
 export default function TestLobby() {
-  const auth = useAuth();
+  const user = useAuth();
   const nav = useNavigate();
+  const districtMember = {
+    name: "John Doe",
+    party: "Democratic",
+    district: "1",
+  };
+
+  // Placeholder data for bills
+  const bills = [
+    { id: 1, title: "Bill 1", summary: "Summary of Bill 1", status: "Pending" },
+    {
+      id: 2,
+      title: "Bill 2",
+      summary: "Summary of Bill 2",
+      status: "Approved",
+    },
+    {
+      id: 3,
+      title: "Bill 3",
+      summary: "Summary of Bill 3",
+      status: "Rejected",
+    },
+    { id: 4, title: "Bill 4", summary: "Summary of Bill 4", status: "Pending" },
+  ];
 
   useLayoutEffect(() => {
-    if (!auth) {
+    if (!user) {
       console.log("User is not authenticated. Redirecting to login page.");
       nav("/");
     } else {
       console.log("User is authenticated. Entering the lobby.");
     }
-  }, [auth, nav]);
+  }, [user, nav]);
 
   return (
-    <>
-      <main>
-        <div className="main-header">
-          <div className="main-header__heading">Hello User</div>
-          <div className="main-header__updates">Recent Items</div>
+    <div className="dashboard">
+      <header className="dashboard-header">
+        <h1>Welcome to Your Personal Dashboard</h1>
+        <div className="district-member-info">
+          <h2>District Member</h2>
+          <p>Name: {districtMember.name}</p>
+          <p>Party: {districtMember.party}</p>
+          <p>District: {districtMember.district}</p>
         </div>
+      </header>
 
-        <div className="main-overview">
-          {auth ? (
-            <>
-              <div className="overviewcard">
-                <div className="overviewcard__icon">Overview</div>
-                <div className="overviewcard__info">Card</div>
+      <section className="bills-section">
+        <h2>Current Bills</h2>
+        <div className="bill-cards">
+          {bills.map((bill) => (
+            <div
+              key={bill.id}
+              className={`bill-card ${bill.status.toLowerCase()}`}
+            >
+              <h3>{bill.title}</h3>
+              <p>{bill.summary}</p>
+              <p>Status: {bill.status}</p>
+              <div className="icon-container">
+                <FontAwesomeIcon icon={faThumbsUp} className="thumbs-up" />
+                <FontAwesomeIcon icon={faThumbsDown} className="thumbs-down" />
               </div>
-              <div className="overviewcard">
-                <div className="overviewcard__icon">Overview</div>
-                <div className="overviewcard__info">Card</div>
-              </div>
-              <div className="overviewcard">
-                <div className="overviewcard__icon">Overview</div>
-                <div className="overviewcard__info">Card</div>
-              </div>
-              <div className="overviewcard">
-                <div className="overviewcard__icon">Overview</div>
-                <div className="overviewcard__info">Card</div>
-              </div>
-            </>
-          ) : (
-            <div>Loading...</div>
-          )}
+            </div>
+          ))}
         </div>
-      </main>
-    </>
+      </section>
+    </div>
   );
 }
