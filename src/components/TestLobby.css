@@ -1,31 +1,66 @@
-.main-header {
-  display: flex;
-  justify-content: space-between;
-  margin: 20px;
+.dashboard {
+  font-family: Arial, sans-serif;
+  max-width: 800px;
+  margin: 0 auto;
   padding: 20px;
-  height: 150px;
-  background-color: #e3e4e6;
-  color: slategray;
 }
 
-.main-overview {
+.dashboard-header {
+  background-color: #f0f0f0;
+  padding: 20px;
+  border-radius: 5px;
+  margin-bottom: 20px;
+}
+
+.district-member-info h2 {
+  margin-top: 0;
+}
+
+.bill-cards {
   display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(265px, 1fr));
-  grid-auto-rows: 94px;
+  grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
   grid-gap: 20px;
-  margin: 20px;
 }
 
-.overviewcard {
-  display: flex;
-  align-items: center;
-  justify-content: space-between;
+.bill-card {
+  background-color: #fff;
   padding: 20px;
-  background-color: #81b29a;
+  border-radius: 5px;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
 }
 
-.main-cards {
-  column-count: 2;
-  column-gap: 20px;
-  margin: 20px;
+.bill-card h3 {
+  margin-top: 0;
+  margin-bottom: 10px;
+}
+
+.bill-card p {
+  margin-bottom: 10px;
+}
+
+.bill-card p:last-child {
+  margin-bottom: 0;
+}
+
+.bill-card.pending {
+  border-left: 5px solid #f39c12; /* Orange */
+}
+
+.bill-card.approved {
+  border-left: 5px solid #2ecc71; /* Green */
+}
+
+.bill-card.rejected {
+  border-left: 5px solid #e74c3c; /* Red */
+}
+
+.icon-container {
+  display: flex;
+  justify-content: flex-end;
+}
+
+.icon-container .fa-thumbs-up,
+.icon-container .fa-thumbs-down {
+  margin-left: 10px;
+  color: #888;
 }
