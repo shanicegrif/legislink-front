@@ -15,17 +15,18 @@ const cardStyle = {
 };
 
 export default function BillsCard({ bill }) {
-  const [ billSummary, setBillSummary ] = useState("");
-
-  useEffect(() => {
-    axios.get(`https://api.congress.gov/v3/bill/118/${bill.bill_type}/${bill.bill_slug.match(/\d+/)}/summaries?&api_key=${congressApi}&format=json`).then(res => setBillSummary(res.data.summaries[0].text));
-  },[bill])
-
   return (
     <Card sx={cardStyle}>
       <CardContent>
         <Typography variant="h6" component="div">
           {bill.short_title}
+          <br/> 
+          <br/>
+          <br/>
+          <br/>
+          <br/>
+        {majorAction}
+
         </Typography>
         <Typography variant="body2" color="text.secondary">
           {bill.title} {bill.state}
