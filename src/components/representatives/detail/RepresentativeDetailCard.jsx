@@ -1,27 +1,63 @@
-import axios from "axios";
-import { useLayoutEffect } from "react";
 import { useLocation, useParams } from "react-router-dom";
-import "./RepDetailCard.css"
+import Card from "@mui/material/Card";
+import CardContent from "@mui/material/CardContent";
+import CardMedia from "@mui/material/CardMedia";
+import Typography from "@mui/material/Typography";
+import "./RepDetailCard.css";
+import styled from "styled-components";
 
-export default function RepresentativeDetailCard({representative}){
-    const { bioguideID } = useParams();    
+const CustomTypography = styled.div`
+  font-family: "Libre Baskerville", serif;
+  font-weight: bold;
+  font-size: 22px;
+`;
 
-    return (
-        <div className="card">
+export default function RepresentativeDetailCard({ representative }) {
+  return (
+    <div className="detail-rep-card">
+      <div className="card-item">
+        <Card
+          sx={{
+            minWidth: 350,
+            maxWidth: 250,
+            display: "flex",
+            flexDirection: "row",
+          }}
+        >
+          <CardMedia
+            sx={{ width: 250, height: 200, maxWidth: 150 }}
+            image={`https://www.congress.gov/img/member/${representative.id.toLowerCase()}_200.jpg`}
+            title="senate image"
+          />
           <div className="card-content">
-            <div className="card-img">
-              <img src={`https://www.congress.gov/img/member/${representative.id.toLowerCase()}_200.jpg`} className="card-img-top" />
-            </div>
-            <div className="card-body">
-              <h5 className="card-title">
-                {representative.short_title} {representative.first_name}{" "}
-                {representative.last_name} {representative.suffix}
-              </h5>
-              <p className="card-text">District: {representative.district}</p>
-              <p className="card-text">Homepage: {representative.url}</p>
-              <p className="card-text">Phone: {representative.phone}</p>
-            </div>
+            <CardContent
+              sx={{
+                display: "flex",
+                flexDirection: "column",
+                minHeight: 150,
+                padding: 1, // Remove default padding
+                paddingLeft: "10px",
+              }}
+            >
+              <CustomTypography>
+                {representative.first_name} {representative.last_name}
+              </CustomTypography>
+              <Typography variant="body2" style={{ marginBottom: "8px" }}>
+                Party: {representative.party}
+              </Typography>
+              <Typography variant="body2" style={{ marginBottom: "8px" }}>
+                State: {representative.state}
+              </Typography>
+              <Typography variant="body2" style={{ marginBottom: "8px" }}>
+                Homepage: {representative.url}
+              </Typography>
+              <Typography variant="body2">
+                Phone: {representative.phone}
+              </Typography>
+            </CardContent>
           </div>
-        </div>
-      );
+        </Card>
+      </div>
+    </div>
+  );
 }

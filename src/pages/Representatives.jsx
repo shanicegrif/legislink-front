@@ -60,13 +60,13 @@ export default function Representatives() {
   return (
     <div className="representatives-container">
       <h2>New York House of Representatives</h2>
-      <div className="rep-container">
+      <div className="rep-container" style={{marginTop: '10px', marginBottom: '20px'}}>
         {houseMembers.map((representative) => (
           <RepresentativeCard key={representative.id} representative={representative} />
         ))}
       </div>
       <h2>New York Senate</h2>
-      <div className="rep-container">
+      <div className="rep-container" style={{marginTop: '15px', marginBottom: '10px'}}>
         {senatesNY.map((representative) => (
           <SenateCard key={representative.id} representative={representative} />
         ))}

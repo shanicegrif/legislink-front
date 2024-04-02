@@ -4,7 +4,7 @@ import { useAuth } from "../hooks/useAuth";
 import { logOut } from "../services/firebase";
 import brandLogo from "../assets/brand-logo.png";
 import { Link } from "react-router-dom";
-//import CloseIcon from "@mui/icons-material/Close";
+import CloseIcon from "@mui/icons-material/Close";
 import MenuIcon from "@mui/icons-material/Menu";
 import SettingsIcon from "@mui/icons-material/Settings";
 import LogoutIcon from "@mui/icons-material/Logout";

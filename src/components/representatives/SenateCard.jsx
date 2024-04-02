@@ -6,29 +6,51 @@ import CardContent from "@mui/material/CardContent";
 import CardMedia from "@mui/material/CardMedia";
 import Button from "@mui/material/Button";
 import Typography from "@mui/material/Typography";
+import styled from "styled-components";
 import "./RepSenCard.css";
+
+const CustomTypography = styled.div`
+  font-family: "Libre Baskerville", serif;
+  font-weight: bold;
+  font-size: 22px;
+`;
 
 const SenateCard = ({ representative }) => {
   return (
     <div className="card-item">
       <Card
         sx={{
-          maxWidth: 200,
-          minWidth: 200,
+          minWidth: 350,
+          maxWidth: 250,
           display: "flex",
-          flexDirection: "column",
+          flexDirection: "row",
+          boxShadow:
+            representative.party === "R"
+              ? "2px 2px 2px 2px red"
+              : representative.party === "D"
+              ? "2px 2px 2px 2px #2366c8"
+              : "2px 2px 2px 2px grey",
         }}
       >
         <CardMedia
-          sx={{ width: 200, height: 190 }}
+          sx={{ width: 250, height: 200, maxWidth: 150 }}
           image={`https://www.congress.gov/img/member/${representative.id.toLowerCase()}_200.jpg`}
           title="senate image"
         />
         <div className="card-content">
-          <CardContent style={{ flex: "1" }}>
-            <Typography gutterBottom variant="h5" component="div">
+        <CardContent
+            sx={{
+              display: "flex",
+              flexDirection: "column",
+              justifyContent: "space-evenly",
+              minHeight: 150,
+              padding: 1, // Remove default padding
+              paddingLeft: "10px",
+            }}
+          >
+            <CustomTypography>
               {representative.first_name} {representative.last_name}
-            </Typography>
+            </CustomTypography>
             <Typography variant="body2">
               Party: {representative.party}
             </Typography>
@@ -36,7 +58,6 @@ const SenateCard = ({ representative }) => {
               State: {representative.state}
             </Typography>
           </CardContent>
-        </div>
         <CardActions>
           <Button size="small">
             <Link
@@ -47,6 +68,7 @@ const SenateCard = ({ representative }) => {
             </Link>
           </Button>
         </CardActions>
+        </div>
       </Card>
     </div>
   );
