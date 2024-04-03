@@ -14,6 +14,7 @@ const user = useAuth();
     }
   }, [user, navigate]);
   console.log(user);
+
   return (
     <div className="signin-container">
       <section className="section-container">
