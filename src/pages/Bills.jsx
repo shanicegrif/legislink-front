@@ -5,7 +5,7 @@ import Select from "@mui/material/Select";
 import MenuItem from "@mui/material/MenuItem";
 import Box from "@mui/material/Box";
 import { fetchForBills } from "../api/axios";
-import BillsCard from "../components/bills/BillsCard";
+import BillsCard from "../components/bills/billsCard";
 import Error from "../components/messages/Error";
 import Loading from "../components/messages/Loading";
 
