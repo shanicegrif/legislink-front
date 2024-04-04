@@ -26,7 +26,7 @@ const Education = () => {
                 two-year terms. The Speaker of the House, elected by the majority party, presides over the chamber. The House
                 is responsible for proposing and passing federal legislation, as well as initiating revenue bills.
             </Typography>
-            <Typography variant="h4" className="education-subheading" sx={{paddingTop: "20px", paddingBottom: "10px"}}>How Congress Operates</Typography>
+            <Typography variant="h4" className="education-subheading" sx={{paddingTop: "20px", paddingBottom: "5px"}}>How Congress Operates</Typography>
             <Typography variant="body1" className="education-text">
                 Congress operates through a process of introducing, debating, amending, and voting on bills. Both chambers must
                 pass identical versions of a bill before it can be sent to the President for approval or veto. Committees and
