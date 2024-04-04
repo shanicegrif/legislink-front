@@ -4,7 +4,7 @@ import Chip from "@mui/material/Chip";
 import Stack from "@mui/material/Stack";
 import TextField from "@mui/material/TextField";
 import Button from "@mui/material/Button";
-import AddressForm from "../Components/AddressForm";
+import AddressForm from "../components/AddressForm";
 import Loading from "../components/messages/Loading";
 import "../components/Settings.css";
 
