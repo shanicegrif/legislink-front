@@ -4,4 +4,24 @@
   max-width: 800px;
   margin: 0 auto;
   padding: 20px;
+  && h2 {
+    font-family: "Crimson Text", serif;
+    font-weight: 400;
+    font-style: normal;
+    font-size: 50px;
+    margin-bottom: 15px;
+  }
+  && h4 {
+    font-family: "Crimson Text", serif;
+    font-weight: 400;
+    font-style: normal;
+    font-size: 35px;
+    margin-bottom: 15px;
+  }
+  && .education-text {
+    font-family: "Playfair Display", serif;
+    font-optical-sizing: auto;
+    font-style: normal;
+    font-size: 20px;
+  }
 }

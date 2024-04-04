@@ -4,6 +4,8 @@ import {
   signInWithPopup,
   getAuth,
   signOut,
+  setPersistence,
+  browserSessionPersistence
 } from "firebase/auth";
 
 const firebaseConfig = {
@@ -19,6 +21,9 @@ const firebaseConfig = {
 export const app = initializeApp(firebaseConfig);
 
 export const auth = getAuth(app);
+
+// Set persistence
+setPersistence(auth, browserSessionPersistence);
 
 auth.useDeviceLanguage();
 
