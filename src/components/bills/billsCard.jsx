@@ -6,7 +6,7 @@ import Typography from "@mui/material/Typography";
 import List from "@mui/material/List";
 import ListItem from "@mui/material/ListItem";
 import ListItemText from "@mui/material/ListItemText";
-import techImg from "/Users/shanicegriffin/Desktop/Pursuit/capstone/legislink-front/src/assets/tech.png";
+import techImg from "/src/assets/tech.png";
 import styled from "styled-components";
 const congressApi = import.meta.env.VITE_BASE_CONGRESS_API_KEY;
 
