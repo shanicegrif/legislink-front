@@ -18,8 +18,8 @@ export default function RepresentativeDetailCard({ representative }) {
       <div className="card-item">
         <Card
           sx={{
-            minWidth: 350,
-            maxWidth: 250,
+            minWidth: 375,
+            maxWidth: "90%", // Set maximum width to 90% of the container
             display: "flex",
             flexDirection: "row",
           }}
@@ -37,6 +37,7 @@ export default function RepresentativeDetailCard({ representative }) {
                 minHeight: 150,
                 padding: 1, // Remove default padding
                 paddingLeft: "10px",
+                width: "100%", // Allow content to stretch to full width
               }}
             >
               <CustomTypography>
