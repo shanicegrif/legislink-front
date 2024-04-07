@@ -7,7 +7,6 @@ import Home from "./pages/Home";
 import DynamicNav from "./components/DynamicNav";
 import Bills from "./pages/Bills";
 import Representatives from "./pages/Representatives";
-import Footer from "./components/Footer";
 import Settings from "./pages/Settings";
 import About from "./pages/About.jsx";
 import RepresentativeDetail from "./pages/RepresentativeDetail.jsx";
@@ -37,7 +36,6 @@ function App() {
                 {/* ROUTE TO USER PROFILE ROUTE WITH WILDCARD MATCHER */}
               </Routes>
             </div>
-            <Footer />
           </main>
         </AuthProvider>
       </Router>

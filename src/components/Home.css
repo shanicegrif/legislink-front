@@ -1,59 +1,33 @@
 .home-container {
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    height: 900px;
-    width: 100%; /* Adjust the width as needed */
-  }
-  
-  .home-content {
-    text-align: center;
-    flex-grow: 1; /* Allow the content to grow to fill available space */
-  }
-  
-  .gsi-material-button {
-    background-color: #fff;
-    color: #000;
-    border: 2px solid transparent;
-    border-radius: 20px;
-    font-size: 16px;
-    padding: 15px 35px;
-    cursor: pointer;
-    transition: all 0.3s ease;
-    margin-left: 5px;
-    margin-right: 5px;
-  }
-  
-  .gsi-material-button-contents {
-    display: flex;
-    flex-direction: row;
-  }
-  
-  .carousel-container {
-    /* Add a fixed height and width to the carousel container */
-    height: 520px; /* Adjust the height as needed */
-    width: 550px; /* Adjust the width as needed */;
-    margin-left: auto;
-    margin-right: auto;
-  }
-  
-  .home-img {
-    width: 350px;
-    margin: 20px auto; /* Center the image horizontally */
-    margin-left: 20px;
-  }
-  
-  .home-card {
-    width: 575px;
-    margin: 40px auto 0; /* Center the card and add top margin */
-    border-radius: 5px;
-    background-color: rgb(200, 196, 196);
-    padding: 24px;
-    box-sizing: border-box;
-    position: absolute;
-    bottom: 50px; /* Adjust this value to position the card near the bottom */
-    left: 50%;
-    transform: translateX(-50%);
-    z-index: 999; /* Set a lower z-index value */
-  }
-  
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.home-content {
+  text-align: center;
+  max-width: 800px; /* Limit the maximum width of the content */
+  margin: 0 auto; /* Center the content horizontally */
+}
+
+.carousel-container {
+  height: 300px; /* Adjust the height of the carousel container */
+  width: 100%; /* Set the width to 100% */
+  max-width: 600px; /* Limit the maximum width */
+  margin: 0 auto 260px; /* Center the container horizontally and add bottom margin */
+}
+
+.home-img {
+  width: 100%; /* Make the image responsive */
+  max-width: 400px; /* Limit the maximum width */
+  margin-bottom: 20px; /* Add bottom margin */
+}
+
+.home-card {
+  width: 100%; /* Make the card responsive */
+  max-width: 800px; /* Limit the maximum width */
+  margin: 20px auto; /* Center the card horizontally and add margin */
+  padding: 24px;
+  border-radius: 5px;
+  background-color: rgb(200, 196, 196);
+}
