@@ -46,7 +46,7 @@ export default function TestLobby() {
   return (
     <div className="dashboard">
       <header className="dashboard-header">
-        <h1>Welcome to Your Personal Dashboard</h1>
+        <h1>Welcome to Your Dashboard</h1>
         <div className="district-member-info">
           <h2>District Member</h2>
           <p>Name: {districtMember.name}</p>

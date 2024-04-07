@@ -9,7 +9,7 @@ import MenuIcon from "@mui/icons-material/Menu";
 import SettingsIcon from "@mui/icons-material/Settings";
 import LogoutIcon from "@mui/icons-material/Logout";
 import WhereToVoteIcon from "@mui/icons-material/WhereToVote";
-import HomeIcon from "@mui/icons-material/Home";
+import DashboardIcon from '@mui/icons-material/Dashboard';
 import HelpIcon from "@mui/icons-material/Help";
 import PersonIcon from "@mui/icons-material/Person";
 import ReceiptLongIcon from "@mui/icons-material/ReceiptLong";
@@ -66,42 +66,66 @@ const SideNav = () => {
           <img src={brandLogo} alt="brand logo" />
         </div>
         <ul class="sidenav__list" onClick={closeSidebar}>
-          <li className={`sidenav__list-item ${location.pathname === "/dashboard" ? "active" : ""}`}>
-            <Link to={`/dashboard`}>
-              <HomeIcon fontSize="large" />
+          <Link to={`/dashboard`}>
+            <li
+              className={`sidenav__list-item ${
+                location.pathname === "/dashboard" ? "active" : ""
+              }`}
+            >
+              <DashboardIcon fontSize="large" />
               <span className="nav-text">Dashboard</span>
-            </Link>
-          </li>
-          <li className={`sidenav__list-item ${location.pathname === "/polls" ? "active" : ""}`}>
-            <Link to={`/polls`}>
+            </li>
+          </Link>
+          <Link to={`/polls`}>
+            <li
+              className={`sidenav__list-item ${
+                location.pathname === "/polls" ? "active" : ""
+              }`}
+            >
               <WhereToVoteIcon fontSize="large" />
               <span className="nav-text">Polls</span>
-            </Link>
-          </li>
-          <li className={`sidenav__list-item ${location.pathname === "/bills" ? "active" : ""}`}>
-            <Link to={`/bills`}>
+            </li>
+          </Link>
+          <Link to={`/bills`}>
+            <li
+              className={`sidenav__list-item ${
+                location.pathname === "/bills" ? "active" : ""
+              }`}
+            >
               <ReceiptLongIcon fontSize="large" />
               <span className="nav-text">Bills</span>
-            </Link>
-          </li>
-          <li className={`sidenav__list-item ${location.pathname === "/representatives" ? "active" : ""}`}>
-            <Link to={`/representatives`}>
+            </li>
+          </Link>
+          <Link to={`/representatives`}>
+            <li
+              className={`sidenav__list-item ${
+                location.pathname === "/representatives" ? "active" : ""
+              }`}
+            >
               <PersonIcon fontSize="large" />
               <span className="nav-text">Representatives</span>
-            </Link>
-          </li>
-          <li className={`sidenav__list-item ${location.pathname === "/settings" ? "active" : ""}`}>
-            <Link to={`/settings`}>
+            </li>
+          </Link>
+          <Link to={`/settings`}>
+            <li
+              className={`sidenav__list-item ${
+                location.pathname === "/settings" ? "active" : ""
+              }`}
+            >
               <SettingsIcon fontSize="large" />
               <span className="nav-text">Settings</span>
-            </Link>
-          </li>
-          <li className={`sidenav__list-item ${location.pathname === "/help-center" ? "active" : ""}`}>
-            <Link to={`/help-center`}>
+            </li>
+          </Link>
+          <Link to={`/help-center`}>
+            <li
+              className={`sidenav__list-item ${
+                location.pathname === "/help-center" ? "active" : ""
+              }`}
+            >
               <HelpIcon fontSize="large" />
               <span className="nav-text">Help Center</span>
-            </Link>
-          </li>
+            </li>
+          </Link>
           <li className="sidenav__list-item">
             <LogoutIcon fontSize="large" />
             <span onClick={handleLogout} className="nav-text">

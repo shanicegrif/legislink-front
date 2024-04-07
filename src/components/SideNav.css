@@ -112,14 +112,6 @@
     cursor: pointer;
   }
 
-  .footer {
-    grid-area: footer;
-    display: flex;
-    align-items: center;
-    justify-content: space-evenly;
-    padding: 0 16px;
-    background-color: #f4f1de;;
-  }
 
   @media only screen and (min-width: 46.875em) {
     /* Show the sidenav */

@@ -3,7 +3,7 @@ import "../components/Home.css";
 
 export default function Home() {
   return (
-    <div className="home-container">
+    <main className="home-container">
       <div className="home-content">
         <div className="carousel-container">
           <TopCarousel />
@@ -23,6 +23,6 @@ export default function Home() {
           </p>
         </section>
       </div>
-    </div>
+    </main>
   );
 }
