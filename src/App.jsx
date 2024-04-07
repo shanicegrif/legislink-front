@@ -28,6 +28,7 @@ function App() {
                 <Route path="/dashboard" element={<TestLobby />} />
                 {/* {<Route path='/polls' />} */}
                 <Route path="/bills" element={<Bills />} />
+                {/* <Route path="/bills/:bill_id" element={<BillDetail />} /> */}
                 <Route path="/representatives" element={<Representatives />} />
                 <Route path="/representatives/:bioguideID" element={<RepresentativeDetail />} />
                 <Route path="/settings" element={<Settings />} />

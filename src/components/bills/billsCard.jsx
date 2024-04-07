@@ -1,39 +1,60 @@
-import React, { useEffect, useState } from 'react';
-import Card from '@mui/material/Card';
-import CardContent from '@mui/material/CardContent';
-import CardHeader from '@mui/material/CardHeader';
-import Typography from '@mui/material/Typography';
-import List from '@mui/material/List';
-import ListItem from '@mui/material/ListItem';
-import ListItemText from '@mui/material/ListItemText';
-import axios from 'axios';
+import React, { useEffect, useState } from "react";
+import Card from "@mui/material/Card";
+import CardMedia from "@mui/material/CardMedia";
+import CardContent from "@mui/material/CardContent";
+import Typography from "@mui/material/Typography";
+import List from "@mui/material/List";
+import ListItem from "@mui/material/ListItem";
+import ListItemText from "@mui/material/ListItemText";
+import techImg from "/Users/shanicegriffin/Desktop/Pursuit/capstone/legislink-front/src/assets/tech.png";
+import styled from "styled-components";
 const congressApi = import.meta.env.VITE_BASE_CONGRESS_API_KEY;
 
-const cardStyle = {
-  width: 400, // Set a fixed width for the card
-  margin: '10px', // Add margin for spacing between cards
-};
+const CustomTypography = styled.div`
+  font-family: "Merriweather", serif;
+  font-weight: 300;
+  font-style: italic;
+  font-size: 13px;
+`;
+
+const CustomTypographyTwo = styled.div`
+  font-family: "Merriweather", serif;
+  font-weight: 400;
+  font-style: normal;
+  font-size: 15px;
+`;
+
+const ListWrapper = styled.div`
+  margin-top: auto; // Align the list items to the bottom of the card
+`;
 
 export default function BillsCard({ bill }) {
-  let majorAction = bill.latest_major_action.split("Committee on").pop()
+  let majorAction = bill.latest_major_action.split("Committee on").pop();
+  console.log(bill);
   return (
-    <Card sx={cardStyle}>
+    <Card
+      sx={{
+        width: 350,
+        margin: "10px",
+        display: "flex",
+        flexDirection: "column",
+      }}
+    >
+      <CardMedia
+        sx={{ height: 175, maxWidth: 350 }}
+        image={techImg}
+        title="bill category image"
+      />
       <CardContent>
-        <Typography variant="h6" component="div">
+        <CustomTypography variant="body2">
+          Subject: {majorAction}
+        </CustomTypography>
+        <br />
+        <CustomTypographyTwo variant="h6" component="div">
           {bill.short_title}
-          <br/> 
-          <br/>
-          <br/>
-          <br/>
-          <br/>
-        {majorAction}
-
-        </Typography>
-        <Typography variant="body2" color="text.secondary">
-          {bill.title} {bill.state}
-        </Typography>
+        </CustomTypographyTwo>
       </CardContent>
-      <List>
+      <ListWrapper>
         <ListItem>
           {/* <ListItemText primary={`Summary: ${billSummary ? billSummary : "A legislative analyst in the Congressional Research Service will begin analyzing this legislation after text becomes available."}`} /> */}
         </ListItem>
@@ -43,7 +64,7 @@ export default function BillsCard({ bill }) {
         {/* <ListItem>
           <ListItemText primary={`Bill Sponsor: ${bill.sponsor_name} State: ${bill.sponsor_state} Party: ${bill.sponsor_party}`} />
         </ListItem> */}
-      </List>
+      </ListWrapper>
     </Card>
   );
 }

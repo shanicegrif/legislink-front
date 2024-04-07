@@ -55,47 +55,55 @@ export default function Bills() {
 
   return (
     <div className="bill-container">
-      <Box mt={4} mb={2} sx={{ display: "flex", justifyContent: "center" }}>
-        <TextField
-          label="Enter keyword for filtering"
-          variant="outlined"
-          value={keyword}
-          onChange={(e) => setKeyword(e.target.value)}
+      <div className="form-fields">
+        <Box mt={4} mb={2} sx={{ display: "flex", justifyContent: "center" }}>
+          <TextField
+            label="Enter keyword for filtering"
+            variant="outlined"
+            value={keyword}
+            onChange={(e) => setKeyword(e.target.value)}
+            sx={{
+              width: "250px", // Adjust the width as needed
+              marginBottom: "20px",
+              marginRight: "10px",
+            }}
+          />
+          <Button
+            variant="contained"
+            onClick={handleSearch}
+            sx={{
+              marginTop: "8px", // Adjust the top margin as needed
+              width: "100px", // Set fixed width for the button
+              height: "40px", // Set fixed height for the button
+            }}
+          >
+            Search
+          </Button>
+        </Box>
+        <Box
           sx={{
-            width: "250px", // Adjust the width as needed
+            display: "flex",
+            justifyContent: "center",
             marginBottom: "20px",
-            marginRight: "10px",
-          }}
-        />
-        <Button
-          variant="contained"
-          onClick={handleSearch}
-          sx={{
-            marginTop: "8px", // Adjust the top margin as needed
-            width: "100px", // Set fixed width for the button
-            height: "40px", // Set fixed height for the button
           }}
         >
-          Search
-        </Button>
-      </Box>
-      <Box sx={{ display: "flex", justifyContent: "center", marginBottom: "20px" }}>
-        <Select
-          value={selectedOption}
-          onChange={handleOptionChange}
-          variant="outlined"
-          sx={{
-            width: "200px", // Adjust the width as needed
-          }}
-        >
-          <MenuItem value="introduced_date">Introduced</MenuItem>
-          <MenuItem value="updated">Updated</MenuItem>
-          <MenuItem value="active">Active</MenuItem>
-          <MenuItem value="passed">Passed</MenuItem>
-          <MenuItem value="enacted">Enacted</MenuItem>
-          <MenuItem value="vetoed">Vetoed</MenuItem>
-        </Select>
-      </Box>
+          <Select
+            value={selectedOption}
+            onChange={handleOptionChange}
+            variant="outlined"
+            sx={{
+              width: "200px", // Adjust the width as needed
+            }}
+          >
+            <MenuItem value="introduced_date">Introduced</MenuItem>
+            <MenuItem value="updated">Updated</MenuItem>
+            <MenuItem value="active">Active</MenuItem>
+            <MenuItem value="passed">Passed</MenuItem>
+            <MenuItem value="enacted">Enacted</MenuItem>
+            <MenuItem value="vetoed">Vetoed</MenuItem>
+          </Select>
+        </Box>
+      </div>
       {loading && <Loading />}
       {error && <Error message={error.message} />}
       <Box display="flex" flexWrap="wrap" justifyContent="space-around">
@@ -104,8 +112,14 @@ export default function Bills() {
         ))}
       </Box>
       {/* page button */}
-      <Button size="small" onClick={handlePagePrev} > prev</Button>
-      <Button size="small" onClick={handlePageNext} > next</Button>
+      <Button size="small" onClick={handlePagePrev}>
+        {" "}
+        prev
+      </Button>
+      <Button size="small" onClick={handlePageNext}>
+        {" "}
+        next
+      </Button>
     </div>
   );
 }
