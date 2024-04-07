@@ -48,13 +48,13 @@ export async function fetchForHouse(){
     }});
 };
 
-export async function fetchForBills(query = ""){
+export async function fetchForBills(query = "", offset = "0"){
     if(query){
-        return await axios.get(`https://api.propublica.org/congress/v1/bills/search.json?query="${query}"` , {headers: {
+        return await axios.get(`https://api.propublica.org/congress/v1/bills/search.json?query="${query}"&offset=${offset}` , {headers: {
             "X-API-Key": `${propublicaAPIKey}`,
         }});
     } else {
-        return await axios.get(`https://api.propublica.org/congress/v1/bills/search.json` , {headers: {
+        return await axios.get(`https://api.propublica.org/congress/v1/bills/search.json?&offset=${offset}` , {headers: {
             "X-API-Key": `${propublicaAPIKey}`,
         }});
     }

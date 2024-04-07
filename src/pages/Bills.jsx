@@ -15,12 +15,13 @@ export default function Bills() {
   const [selectedOption, setSelectedOption] = useState("introduced_date");
   const [loading, setLoading] = useState(false);
   const [error, setError] = useState(null);
+  const [pageNumber, setPageNumber] = useState(0);
 
   const fetchBillsByKeyword = async () => {
     setLoading(true);
     setError(null);
     try {
-      const res = await fetchForBills(keyword);
+      const res = await fetchForBills(keyword, pageNumber.toString());
       if (res.data && res.data.results && res.data.results.length > 0) {
         setBills(res.data.results[0].bills);
       } else {
@@ -40,9 +41,17 @@ export default function Bills() {
     setSelectedOption(event.target.value);
   };
 
+  const handlePagePrev = () => {
+    pageNumber > 0 ? setPageNumber(pageNumber - 20) : setPageNumber(0);
+  };
+
+  const handlePageNext = () => {
+    setPageNumber(pageNumber + 20);
+  };
+
   useEffect(() => {
     fetchBillsByKeyword();
-  }, [selectedOption]);
+  }, [selectedOption, pageNumber]);
 
   return (
     <div className="bill-container">
@@ -94,6 +103,9 @@ export default function Bills() {
           <BillsCard key={bill.id} bill={bill} />
         ))}
       </Box>
+      {/* page button */}
+      <Button size="small" onClick={handlePagePrev} > prev</Button>
+      <Button size="small" onClick={handlePageNext} > next</Button>
     </div>
   );
 }

@@ -13,7 +13,7 @@ const user = useAuth();
       navigate("/dashboard");
     }
   }, [user, navigate]);
-  console.log(user);
+  console.log(user, 'this is the user');
 
   return (
     <div className="signin-container">
