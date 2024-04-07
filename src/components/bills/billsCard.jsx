@@ -15,6 +15,7 @@ const cardStyle = {
 };
 
 export default function BillsCard({ bill }) {
+  let majorAction = bill.latest_major_action.split("Committee on").pop()
   return (
     <Card sx={cardStyle}>
       <CardContent>
@@ -34,7 +35,7 @@ export default function BillsCard({ bill }) {
       </CardContent>
       <List>
         <ListItem>
-          <ListItemText primary={`Summary: ${billSummary ? billSummary : "A legislative analyst in the Congressional Research Service will begin analyzing this legislation after text becomes available."}`} />
+          {/* <ListItemText primary={`Summary: ${billSummary ? billSummary : "A legislative analyst in the Congressional Research Service will begin analyzing this legislation after text becomes available."}`} /> */}
         </ListItem>
         <ListItem>
           <ListItemText primary={`Date: ${bill.latest_major_action_date}`} />
