@@ -76,6 +76,7 @@ export default function RepresntativeBill() {
           </Select>
         </FormControl>
       </Box>
+      <h3>Bills Sponsored By: {bills[0].sponsor_name}</h3>
       {loading ? (
         <Loading />
       ) : error ? (

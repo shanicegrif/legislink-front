@@ -1,33 +1,82 @@
 .home-container {
+  width: 100vw; /* Change width to 100vw to cover the entire viewport width */
+  margin-left: -10px;
+}
+
+.home-content-top {
+  margin-top: -30px;
+  padding-top: 50px;
+  padding-left: 40px;
+  padding-bottom: 30px;
+  width: 100%; /* Set width to 100% */
+  background-color: #b9c4e3;
+  margin-right: 10px;
   display: flex;
-  justify-content: center;
-  align-items: center;
+  && .content-top-text {
+    width: 320px;
+    margin-right: 270px;
+  }
 }
 
-.home-content {
-  text-align: center;
-  max-width: 800px; /* Limit the maximum width of the content */
-  margin: 0 auto; /* Center the content horizontally */
+/* Remove unnecessary styles */
+.content-top-image img {
+  height: 200px;
 }
 
-.carousel-container {
-  height: 300px; /* Adjust the height of the carousel container */
-  width: 100%; /* Set the width to 100% */
-  max-width: 600px; /* Limit the maximum width */
-  margin: 0 auto 260px; /* Center the container horizontally and add bottom margin */
+.home-content-middle {
+  padding-left: 40px;
+  padding-top: 20px;
+  padding-bottom: 20px;
+  background-color: white;
+  && .middle-cards {
+    display: flex;
+    justify-content: space-evenly;
+    && img {
+      margin-top: -10px;
+      border-radius: 15px;
+      height: 300px;
+    }
+  }
 }
 
-.home-img {
-  width: 100%; /* Make the image responsive */
-  max-width: 400px; /* Limit the maximum width */
-  margin-bottom: 20px; /* Add bottom margin */
+.middle-cards {
+  padding-top: 15px;
+  padding-bottom: 15px;
+}
+
+.middle-card {
+  position: relative;
+}
+
+.middle-card .background {
+  border-radius: 15px;
+  padding-left: 15px;
+  padding-bottom: 15px;
+  width: 95%;
+  background-color: rgba(129, 178, 154, 0.8);
+}
+
+.middle-card-text {
+  position: absolute;
+  bottom: 15px;
+  left: 25px;
+  width: 80%;
+  padding: 10px;
+  background-color: white;
+}
+
+.home-content-bottom {
+  padding-top: 30px;
+  display: flex;
+  && h3 {
+    padding-top: 30px;
+    width: 350px;
+    margin: 20px auto; /* Center the card horizontally and add margin */
+  }
 }
 
 .home-card {
-  width: 100%; /* Make the card responsive */
+  width: 40%; /* Make the card responsive */
   max-width: 800px; /* Limit the maximum width */
   margin: 20px auto; /* Center the card horizontally and add margin */
-  padding: 24px;
-  border-radius: 5px;
-  background-color: rgb(200, 196, 196);
 }

@@ -1,19 +1,68 @@
-import TopCarousel from "../components/home/TopCarousel";
 import "../components/Home.css";
+import Button from "@mui/material/Button";
+import voters from "/src/assets/Voters.png";
+import newVoter from "/src/assets/new-voter.jpeg";
+import billsAffecting from "/src/assets/bills-affecting-community.jpeg";
+import supporBill from "/src/assets/support-of-bills.jpeg";
 
 export default function Home() {
   return (
     <main className="home-container">
       <div className="home-content">
-        <div className="carousel-container">
-          <TopCarousel />
-        </div>
-        <img
-          className="home-img"
-          src="https://media.istockphoto.com/id/1320062421/vector/cartoon-icon-cartoon-character-flat-vote-people-for-concept-design-poster-design.jpg?s=612x612&w=0&k=20&c=AASatZP46Igcf8NH4E6rmH3N6USU1whbq0GusGYN1gA="
-          alt="vote img"
-        />
-        <section>
+        <section className="home-content-top">
+          <div className="content-top-text">
+            <h3>Building the Political Power of New Voters</h3>
+            <p>
+              LegisLink empowers and informs people to become active
+              participants in our democracy by providing user-friendly,
+              reliable, and accessible information in one place - all for free!
+            </p>
+            <Button variant="contained" style={{ backgroundColor: '#f1916d' }}>Sign Up</Button>
+          </div>
+          <div className="content-top-image">
+            <img src={voters} alt="voters" />
+          </div>
+        </section>
+        <section className="home-content-middle">
+          <h3>How it works</h3>
+          <div className="middle-cards">
+            <div className="middle-card">
+              <div className="background">
+                <div className="image-container">
+                  <img src={newVoter} alt="new voter" />
+                </div>
+                <p className="middle-card-text">
+                  Stay up to date with voting information such as polling sites
+                  and more
+                </p>
+              </div>
+            </div>
+            <div className="middle-card">
+              <div className="background">
+                <div className="image-container">
+                  <img src={billsAffecting} alt="bills affecting community" />
+                </div>
+                <p className="middle-card-text">
+                  Find and keep up with bills affecting your community
+                </p>
+              </div>
+            </div>
+            <div className="middle-card">
+              <div className="background">
+                <div className="image-container">
+                  <img src={supporBill} alt="support of bills" />
+                </div>
+                <p className="middle-card-text">
+                  Let your representatives know what you support and don't
+                  support
+                </p>
+              </div>
+            </div>
+          </div>
+          <Button variant="contained" style={{ backgroundColor: '#f1916d' }}>Get Started</Button>
+        </section>
+        <section className="home-content-bottom">
+          <h3>We believe the future of our democracy is local.</h3>
           <p className="home-card">
             LegisLink is an innovative application designed to empower and
             inform new voters, facilitating their active participation in the
