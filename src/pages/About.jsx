@@ -4,7 +4,7 @@ import GitHubIcon from '@mui/icons-material/GitHub';
 
 const About = () => {
   return (
-    <Container maxWidth="md" className="About">
+    <Container className="About" style={{paddingLeft:'60px'}}>
       <div className="description" style={{marginBottom: '40px'}}>
         Welcome to <strong>LEGISLink!</strong>.
         This app is created by <strong>Genesis Lara</strong>,{" "}
