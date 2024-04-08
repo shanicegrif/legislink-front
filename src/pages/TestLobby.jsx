@@ -6,6 +6,7 @@ import Loading from "../components/messages/Loading.jsx";
 import "../components/TestLobby.css";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faThumbsUp, faThumbsDown } from "@fortawesome/free-solid-svg-icons";
+import MyDistrict from "../components/temp-MyDistrict.jsx";
 
 export default function TestLobby() {
   const user = useAuth();
@@ -57,6 +58,7 @@ export default function TestLobby() {
 
       <section className="bills-section">
         <h2>Current Bills</h2>
+        <MyDistrict />
         <div className="bill-cards">
           {bills.map((bill) => (
             <div

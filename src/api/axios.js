@@ -43,10 +43,17 @@ export async function deleteAccount(id){
 }
 
 export async function fetchForHouse(){
-    return await axios.get("https://api.propublica.org/congress/v1/117/house/members.json", {headers: {
+    return await axios.get("https://api.propublica.org/congress/v1/118/house/members.json", {headers: {
         "X-API-Key": `${propublicaAPIKey}`,
     }});
 };
+
+export async function fetchHouseNY(){
+    
+        return await axios.get(`https://api.propublica.org/congress/v1/members/house/NY/current.json`, {headers: {
+            "X-API-Key": `${propublicaAPIKey}`,
+        }});
+}
 
 export async function fetchForBills(query = "", offset = "0"){
     if(query){
@@ -61,7 +68,7 @@ export async function fetchForBills(query = "", offset = "0"){
 };
 
 export async function fetchForSenate(){
-    return await axios.get("https://api.propublica.org/congress/v1/116/senate/members.json", {headers: {
+    return await axios.get("https://api.propublica.org/congress/v1/118/senate/members.json", {headers: {
         "X-API-Key": `${propublicaAPIKey}`,
     }});
 };
