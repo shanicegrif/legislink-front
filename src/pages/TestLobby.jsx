@@ -6,7 +6,11 @@ import Loading from "../components/messages/Loading.jsx";
 import "../components/TestLobby.css";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faThumbsUp, faThumbsDown } from "@fortawesome/free-solid-svg-icons";
-import MyDistrict from "../components/temp-MyDistrict.jsx";
+import MyDistrict from "../components/MyDistrict.jsx";
+import TodayStatements from "../components/TodayStatements.jsx";
+import axios from "axios";
+
+const serverURL = import.meta.env.VITE_BASE_URL;
 
 export default function TestLobby() {
   const user = useAuth();
@@ -16,6 +20,11 @@ export default function TestLobby() {
     party: "Democratic",
     district: "1",
   };
+
+  const [preferrences, setPreferrences] = useState({
+    myDistrict : true,
+    statement : true,
+  })
 
   // Placeholder data for bills
   const bills = [
@@ -35,7 +44,7 @@ export default function TestLobby() {
     { id: 4, title: "Bill 4", summary: "Summary of Bill 4", status: "Pending" },
   ];
 
-  useLayoutEffect(() => {
+  useEffect(() => {
     if (!user) {
       console.log("User is not authenticated. Redirecting to login page.");
       nav("/");
@@ -43,6 +52,12 @@ export default function TestLobby() {
       console.log("User is authenticated. Entering the lobby.");
     }
   }, [user, nav]);
+
+  useEffect(() => {
+    if(user){
+      axios.get(`${serverURL}/preferrences/${user.uid}`).then((res) => setPreferrences({myDistrict:res.data.data.payload[0].preferrences_my_district, statement:res.data.data.payload[0].statement}));
+    }
+  },[user,nav])
 
   return (
     <div className="dashboard">
@@ -58,7 +73,10 @@ export default function TestLobby() {
 
       <section className="bills-section">
         <h2>Current Bills</h2>
+        {preferrences.myDistrict ? (<MyDistrict />):null}
         <MyDistrict />
+        {preferrences.statement ?(<TodayStatements />):null}
+        <TodayStatements />
         <div className="bill-cards">
           {bills.map((bill) => (
             <div
