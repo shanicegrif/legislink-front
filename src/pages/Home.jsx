@@ -1,4 +1,5 @@
 import "../components/Home.css";
+import { Link } from "react-router-dom";
 import Button from "@mui/material/Button";
 import voters from "/src/assets/Voters.png";
 import newVoter from "/src/assets/new-voter.jpeg";
@@ -17,7 +18,11 @@ export default function Home() {
               participants in our democracy by providing user-friendly,
               reliable, and accessible information in one place - all for free!
             </p>
-            <Button variant="contained" style={{ backgroundColor: '#f1916d' }}>Sign Up</Button>
+            <Link to="/sign-in">
+            <Button variant="contained" style={{ backgroundColor: "#f1916d" }}>
+              Sign up 
+            </Button>
+          </Link>
           </div>
           <div className="content-top-image">
             <img src={voters} alt="voters" />
@@ -59,11 +64,15 @@ export default function Home() {
               </div>
             </div>
           </div>
-          <Button variant="contained" style={{ backgroundColor: '#f1916d' }}>Get Started</Button>
+          <Link to="/sign-in">
+            <Button variant="contained" style={{ backgroundColor: "#f1916d" }}>
+              Get Started
+            </Button>
+          </Link>
         </section>
         <section className="home-content-bottom">
           <h3>We believe the future of our democracy is local.</h3>
-          <p className="home-card">
+          <p className="content-bottom-text">
             LegisLink is an innovative application designed to empower and
             inform new voters, facilitating their active participation in the
             democratic process. This app aims to bridge the information gap that
