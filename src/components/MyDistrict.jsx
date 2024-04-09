@@ -81,7 +81,7 @@ export default function MyDistrict() {
   }, [user]);
 
   return (
-    <div>
+    <div className="district-member-info">
       {representative ? (
         <Box sx={{ minWidth: 200 }}>
           <Card variant="outlined">
@@ -103,6 +103,9 @@ export default function MyDistrict() {
                   image={`https://www.congress.gov/img/member/${representative.at(-1).id?.toLowerCase()}_200.jpg`}
                   alt="Portrait"
                 />
+                <Typography variant="h5" component="div">
+                  Party: {representative.at(-1).party}
+                </Typography>
               </CardContent>
               <CardActions>
                 <Link
