@@ -30,19 +30,19 @@ const ListWrapper = styled.div`
 export default function BillsCard({ bill }) {
   let majorAction = bill.latest_major_action.split("Committee on").pop();
 
-  console.log(majorAction)
+  console.log(majorAction);
 
   const foundActionImage = (majorAction) => {
     if (majorAction) {
+      const lowerMajorAction = majorAction.toLowerCase();
       for (const key of Object.keys(billImage)) {
-        if (majorAction.toLowerCase().includes(key)) {
+        if (lowerMajorAction.includes(key.replace("_", " "))) {
           return billImage[key];
         }
       }
     }
     return billImage.unknown;
-  }; 
-  
+  };
 
   return (
     <Card
