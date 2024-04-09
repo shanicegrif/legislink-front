@@ -1,12 +1,11 @@
 import React, { useEffect, useState } from "react";
+import billImage from "../../assets/billImage";
 import Card from "@mui/material/Card";
 import CardMedia from "@mui/material/CardMedia";
 import CardContent from "@mui/material/CardContent";
 import Typography from "@mui/material/Typography";
-import List from "@mui/material/List";
 import ListItem from "@mui/material/ListItem";
 import ListItemText from "@mui/material/ListItemText";
-import techImg from "/src/assets/tech.png";
 import styled from "styled-components";
 const congressApi = import.meta.env.VITE_BASE_CONGRESS_API_KEY;
 
@@ -30,7 +29,21 @@ const ListWrapper = styled.div`
 
 export default function BillsCard({ bill }) {
   let majorAction = bill.latest_major_action.split("Committee on").pop();
-  console.log(bill);
+
+  console.log(majorAction)
+
+  const foundActionImage = (majorAction) => {
+    if (majorAction) {
+      for (const key of Object.keys(billImage)) {
+        if (majorAction.toLowerCase().includes(key)) {
+          return billImage[key];
+        }
+      }
+    }
+    return billImage.unknown;
+  }; 
+  
+
   return (
     <Card
       sx={{
@@ -42,7 +55,7 @@ export default function BillsCard({ bill }) {
     >
       <CardMedia
         sx={{ height: 175, maxWidth: 350 }}
-        image={techImg}
+        image={foundActionImage(majorAction)}
         title="bill category image"
       />
       <CardContent>
