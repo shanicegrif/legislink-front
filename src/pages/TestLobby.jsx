@@ -21,7 +21,7 @@ export default function TestLobby() {
     district: "1",
   };
 
-  const [preferrences, setPreferrences] = useState({
+  const [preferences, setpreferences] = useState({
     myDistrict : true,
     statement : true,
   })
@@ -55,7 +55,7 @@ export default function TestLobby() {
 
   useEffect(() => {
     if(user){
-      axios.get(`${serverURL}/preferrences/${user.uid}`).then((res) => setPreferrences({myDistrict:res.data.data.payload[0].preferrence_my_district, statement:res.data.data.payload[0].preferrence_statement}));
+      axios.get(`${serverURL}/preferences/${user.uid}`).then((res) => setpreferences({myDistrict:res.data.data.payload[0].preference_my_district, statement:res.data.data.payload[0].preference_statement}));
     }
   },[user,nav])
 
@@ -73,8 +73,8 @@ export default function TestLobby() {
 
       <section className="bills-section">
         <h2>Current Bills</h2>
-        {preferrences.myDistrict ? (<MyDistrict />): null}
-        {preferrences.statement ?(<TodayStatements />):null}
+        {preferences.myDistrict ? (<MyDistrict />): null}
+        {preferences.statement ?(<TodayStatements />):null}
         <div className="bill-cards">
           {bills.map((bill) => (
             <div
