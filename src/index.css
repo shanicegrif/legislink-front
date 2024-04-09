@@ -4,11 +4,6 @@ body {
   padding: 0;
 }
 
-.container {
-  padding-top: 8rem;
-  width: 100vw;
-}
-
 .main-overview {
   display: grid;
   grid-template-columns: repeat(auto-fit, minmax(265px, 1fr));

@@ -12,7 +12,7 @@ const SampleNav = () => {
   return (
     <nav className="navbar navbar-expand-md fixed-top">
   <div className="home-brand-logo">
-    <h2 className="home-nav-title">LegisLink </h2>
+    <h5 className="home-nav-title">LegisLink </h5>
     <img src={brandImg} alt="brand imglogo" />
   </div>
 

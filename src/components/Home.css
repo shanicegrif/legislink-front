@@ -8,13 +8,17 @@
   padding-top: 50px;
   padding-left: 40px;
   padding-bottom: 30px;
-  width: 100%; /* Set width to 100% */
   background-color: #b9c4e3;
   margin-right: 10px;
   display: flex;
+  justify-content: space-evenly;
+  font-family: "Manrope", sans-serif;
+  font-optical-sizing: auto;
+  font-weight: 400;
+  font-style: normal;
   && .content-top-text {
-    width: 320px;
-    margin-right: 270px;
+    width: 350px;
+    margin-right: 170px;
   }
 }
 
@@ -28,6 +32,10 @@
   padding-top: 20px;
   padding-bottom: 20px;
   background-color: white;
+  font-family: "Manrope", sans-serif;
+  font-optical-sizing: auto;
+  font-weight: bold;
+  font-style: normal;
   && .middle-cards {
     display: flex;
     justify-content: space-evenly;
@@ -67,16 +75,26 @@
 
 .home-content-bottom {
   padding-top: 30px;
+  padding-bottom: 30px;
   display: flex;
+  justify-content: space-evenly;
   && h3 {
     padding-top: 30px;
-    width: 350px;
+    width: 320px;
     margin: 20px auto; /* Center the card horizontally and add margin */
+    font-family: "Baskervville", serif;
+    font-weight: 400;
+    font-style: normal;
+    font-size: 30px;
   }
 }
 
-.home-card {
-  width: 40%; /* Make the card responsive */
+.content-bottom-text {
+  width: 470px; /* Make the card responsive */
   max-width: 800px; /* Limit the maximum width */
   margin: 20px auto; /* Center the card horizontally and add margin */
+  font-family: "Manrope", sans-serif;
+  font-optical-sizing: auto;
+  font-weight: 400;
+  font-style: normal;
 }
