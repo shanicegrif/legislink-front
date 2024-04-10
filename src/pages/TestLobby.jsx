@@ -137,6 +137,7 @@ export default function TestLobby() {
         {preferences.statement ? <TodayStatements /> : null}
       </section>
       <section className="dash-statements">
+      <h2>Voted Bills in the House for Today</h2>
         <TodayVoteHouse />
       </section>
     </div>

@@ -63,8 +63,7 @@ export default function TodayVoteHouse(){
             </div>
     */
     return(
-        <div>
-            <h2>Voted Bills in the House for Today</h2>
+        <div style={{ overflow: "auto", maxHeight: "40vh" }}>
             {voteHouse.length > 0 ? (
             <TableContainer component={Paper}>
                 <Table sx={{ minWidth: 650 }} aria-label="Statements">

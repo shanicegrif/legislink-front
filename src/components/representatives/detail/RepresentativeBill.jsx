@@ -11,8 +11,9 @@ import CardContent from "@mui/material/CardContent";
 import Typography from "@mui/material/Typography";
 import Loading from "../../messages/Loading";
 import BillError from "../../messages/BillError"; // Import your BillError component here
-
+import RepBillCard from "../../bills/repBillCard";
 const propublicaAPIKey = import.meta.env.VITE_BASE_PROPUBLICA_KEY;
+
 
 export default function RepresntativeBill() {
   const [billType, setBillType] = useState("introduced");
@@ -76,7 +77,7 @@ export default function RepresntativeBill() {
           </Select>
         </FormControl>
       </Box>
-      <h3>Bills Sponsored By Rep.  </h3>
+      <h3>Bills Sponsored By Rep. </h3>
       {loading ? (
         <Loading />
       ) : error ? (
@@ -90,21 +91,7 @@ export default function RepresntativeBill() {
           }}
         >
           {bills.map((bill) => (
-            <Card key={bill.bill_id}>
-              <CardContent>
-                <Typography
-                  sx={{ fontSize: 14 }}
-                  color="text.secondary"
-                  gutterBottom
-                >
-                  {bill.bill_id}
-                </Typography>
-                <Typography variant="body2">{bill.title}</Typography>
-                <Typography variant="body2" color="text.secondary">
-                  {bill.summary}
-                </Typography>
-              </CardContent>
-            </Card>
+            <RepBillCard key={bill.bill_id} bill={bill}/>
           ))}
         </div>
       )}
