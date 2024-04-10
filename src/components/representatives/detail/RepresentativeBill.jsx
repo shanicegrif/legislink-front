@@ -6,9 +6,6 @@ import InputLabel from "@mui/material/InputLabel";
 import MenuItem from "@mui/material/MenuItem";
 import FormControl from "@mui/material/FormControl";
 import Select from "@mui/material/Select";
-import Card from "@mui/material/Card";
-import CardContent from "@mui/material/CardContent";
-import Typography from "@mui/material/Typography";
 import Loading from "../../messages/Loading";
 import BillError from "../../messages/BillError"; // Import your BillError component here
 import RepBillCard from "../../bills/repBillCard";
@@ -83,17 +80,11 @@ export default function RepresntativeBill() {
       ) : error ? (
         <BillError />
       ) : (
-        <div
-          style={{
-            display: "grid",
-            gridTemplateColumns: "repeat(auto-fit, minmax(300px, 1fr))",
-            gap: "20px",
-          }}
-        >
-          {bills.map((bill) => (
+        <Box display="flex" flexWrap="wrap" justifyContent="space-around">
+        {bills.map((bill) => (
             <RepBillCard key={bill.bill_id} bill={bill}/>
           ))}
-        </div>
+      </Box>
       )}
     </div>
   );
