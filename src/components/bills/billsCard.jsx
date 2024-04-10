@@ -30,7 +30,7 @@ const ListWrapper = styled.div`
 export default function BillsCard({ bill }) {
   let majorAction = bill.latest_major_action.split("Committee on").pop();
 
-  console.log(majorAction);
+  console.log(bill);
 
   const foundActionImage = (majorAction) => {
     if (majorAction) {

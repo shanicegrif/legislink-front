@@ -83,7 +83,8 @@ export default function MyDistrict() {
   return (
     <div className="district-member-info">
       {representative ? (
-        <Box sx={{ minWidth: 200 }}>
+        <Box sx={{ minWidth: 200,
+          maxWidth: 100 }}>
           <Card variant="outlined">
             <>
               <CardContent>
@@ -98,8 +99,7 @@ export default function MyDistrict() {
                   {representative.at(-1).title} {representative.at(-1)?.first_name} {representative.at(-1)?.last_name}
                 </Typography>
                 <CardMedia
-                  component="img"
-                  height="194"
+                  sx={{ width: 250, height: 200, maxWidth: 150 }}
                   image={`https://www.congress.gov/img/member/${representative.at(-1).id?.toLowerCase()}_200.jpg`}
                   alt="Portrait"
                 />
