@@ -10,6 +10,7 @@ import Link from "@mui/material/Link";
 import MyDistrict from "../components/MyDistrict.jsx";
 import TodayStatements from "../components/TodayStatements.jsx";
 import axios from "axios";
+import TodayVoteHouse from "../components/TodayVoteHouse.jsx";
 
 const serverURL = import.meta.env.VITE_BASE_URL;
 
@@ -134,6 +135,9 @@ export default function TestLobby() {
       <section className="dash-statements">
         <h2>Today's Statements</h2>
         {preferences.statement ? <TodayStatements /> : null}
+      </section>
+      <section className="dash-statements">
+        <TodayVoteHouse />
       </section>
     </div>
   );

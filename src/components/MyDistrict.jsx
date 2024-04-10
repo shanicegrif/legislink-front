@@ -93,7 +93,7 @@ export default function MyDistrict() {
                   color="text.secondary"
                   gutterBottom
                 >
-                  District {representative.district}
+                  District {representative.at(-1).district}
                 </Typography>
                 <Typography variant="h5" component="div">
                   {representative.at(-1).title} {representative.at(-1)?.first_name} {representative.at(-1)?.last_name}
