@@ -6,25 +6,28 @@ import Loading from "../components/messages/Loading.jsx";
 import "../components/TestLobby.css";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faThumbsUp, faThumbsDown } from "@fortawesome/free-solid-svg-icons";
+import Link from "@mui/material/Link";
 import MyDistrict from "../components/MyDistrict.jsx";
 import TodayStatements from "../components/TodayStatements.jsx";
 import axios from "axios";
 
 const serverURL = import.meta.env.VITE_BASE_URL;
 
+const cardStyle = {
+  display: "flex",
+  justifyContent: "space-between",
+  alignItems: "center" /* Optional: Align items vertically in the center */,
+  backgroundColor: "rgba(129, 178, 154, 0.8)",
+};
+
 export default function TestLobby() {
   const user = useAuth();
   const nav = useNavigate();
-  const districtMember = {
-    name: "John Doe",
-    party: "Democratic",
-    district: "1",
-  };
 
   const [preferences, setpreferences] = useState({
-    myDistrict : true,
-    statement : true,
-  })
+    myDistrict: true,
+    statement: true,
+  });
 
   // Placeholder data for bills
   const bills = [
@@ -54,27 +57,63 @@ export default function TestLobby() {
   }, [user, nav]);
 
   useEffect(() => {
-    if(user){
-      axios.get(`${serverURL}/preferences/${user.uid}`).then((res) => setpreferences({myDistrict:res.data.data.payload[0].preference_my_district, statement:res.data.data.payload[0].preference_statement}));
+    if (user) {
+      axios.get(`${serverURL}/preferences/${user.uid}`).then((res) =>
+        setpreferences({
+          myDistrict: res.data.data.payload[0].preference_my_district,
+          statement: res.data.data.payload[0].preference_statement,
+        })
+      );
     }
-  },[user,nav])
+  }, [user, nav]);
 
   return (
     <div className="dashboard">
+      <h1>Welcome to Your Dashboard</h1>
       <header className="dashboard-header">
-        <h1>Welcome to Your Dashboard</h1>
-        <div className="district-member-info">
-          <h2>District Member</h2>
-          <p>Name: {districtMember.name}</p>
-          <p>Party: {districtMember.party}</p>
-          <p>District: {districtMember.district}</p>
+        <div className="dash-back">
+          <div className="district-member-info">
+            <h4>Your District Rep.</h4>
+            {preferences.myDistrict ? <MyDistrict /> : null}
+          </div>
+        </div>
+        <div className="dash-back">
+          <div className="help-links">
+            <h4>Helpful Info and Links</h4>
+            <ul>
+              <li>
+                <Link
+                  href="https://example.com"
+                  target="_blank"
+                  rel="noopener noreferrer"
+                >
+                  Ballotpedia
+                </Link>
+              </li>
+              <li>
+                <Link
+                  href="https://example.com"
+                  target="_blank"
+                  rel="noopener noreferrer"
+                >
+                  OpenCongress
+                </Link>
+              </li>
+              <li>
+                <Link
+                  href="https://example.com"
+                  target="_blank"
+                  rel="noopener noreferrer"
+                >
+                  Vote 411
+                </Link>
+              </li>
+            </ul>
+          </div>
         </div>
       </header>
-
       <section className="bills-section">
-        <h2>Current Bills</h2>
-        {preferences.myDistrict ? (<MyDistrict />): null}
-        {preferences.statement ?(<TodayStatements />):null}
+        <h2>Bills In Your District</h2>
         <div className="bill-cards">
           {bills.map((bill) => (
             <div
@@ -91,6 +130,10 @@ export default function TestLobby() {
             </div>
           ))}
         </div>
+      </section>
+      <section className="dash-statements">
+        <h2>Today's Statements</h2>
+        {preferences.statement ? <TodayStatements /> : null}
       </section>
     </div>
   );
