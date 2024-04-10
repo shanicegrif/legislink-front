@@ -8,7 +8,6 @@ import CloseIcon from "@mui/icons-material/Close";
 import MenuIcon from "@mui/icons-material/Menu";
 import SettingsIcon from "@mui/icons-material/Settings";
 import LogoutIcon from "@mui/icons-material/Logout";
-import WhereToVoteIcon from "@mui/icons-material/WhereToVote";
 import DashboardIcon from '@mui/icons-material/Dashboard';
 import HelpIcon from "@mui/icons-material/Help";
 import PersonIcon from "@mui/icons-material/Person";
@@ -74,16 +73,6 @@ const SideNav = () => {
             >
               <DashboardIcon fontSize="large" />
               <span className="nav-text">Dashboard</span>
-            </li>
-          </Link>
-          <Link to={`/polls`}>
-            <li
-              className={`sidenav__list-item ${
-                location.pathname === "/polls" ? "active" : ""
-              }`}
-            >
-              <WhereToVoteIcon fontSize="large" />
-              <span className="nav-text">Polls</span>
             </li>
           </Link>
           <Link to={`/bills`}>
