@@ -8,6 +8,8 @@ import { fetchForBills } from "../api/axios";
 import BillsCard from "../components/bills/billsCard";
 import Error from "../components/messages/Error";
 import Loading from "../components/messages/Loading";
+import BillSummaryPlaceholder from "../components/messages/SummaryMes";
+import SummaryCard from "../components/bills/SummaryCard";
 import "../components/bills/Bills.css";
 
 export default function Bills() {
@@ -128,12 +130,13 @@ export default function Bills() {
         </div>
         <div className="bill-summary-container">
           <h2>Bill Summary</h2>
-          {selectedBill && (
-            <>
-              <p>{selectedBill.title}</p>
-              {/* Display other details of the selected bill */}
-            </>
-          )}
+          {selectedBill ? (
+          <>
+            <SummaryCard selectedBill={selectedBill} />
+          </>
+        ) : (
+          <BillSummaryPlaceholder />
+        )}
         </div>
       </div>
     </div>
