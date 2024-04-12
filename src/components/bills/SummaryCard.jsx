@@ -1,3 +1,4 @@
+import { useState } from "react";
 import Card from "@mui/material/Card";
 import CardContent from "@mui/material/CardContent";
 import ListItem from "@mui/material/ListItem";
@@ -57,7 +58,15 @@ const ListWrapper = styled.div`
   margin-top: auto; // Align the list items to the bottom of the card
 `;
 
-export default function SummaryCard({ selectedBill }) {
+const EmailSentMessage = styled.div`
+  color: green;
+  display: flex;
+  justify-content: center; /* Center the content horizontally */
+  align-items: center; /* Center the content vertically */
+  margin-top: 10px; /* Add spacing from the top */
+`;
+
+export default function SummaryCard({ selectedBill, emailSent, setEmailSent }) {
   const user = useAuth();
   const resend = new Resend(resendKey);
 
@@ -78,7 +87,7 @@ export default function SummaryCard({ selectedBill }) {
         subject: `${selectedBill.short_title}`,
         html: htmlContent,
       });
-      console.log("Email sent successfully");
+      setEmailSent(true);
     } catch (error) {
       console.error("Error sending email:", error);
     }
@@ -93,10 +102,12 @@ export default function SummaryCard({ selectedBill }) {
         display: "flex",
         flexDirection: "column",
       }}
-      onClick={() => onClick(bill)} // Add onClick handler to the Card component
+      onClick={() => {
+        handleResetEmailSent(); // Reset emailSent state
+      }}
     >
       <CardContent>
-      <IconContainer>
+        <IconContainer>
           <Tooltip title="Click to email rep to express support">
             <ThumbsUpIcon icon={faThumbsUp} size="lg" onClick={sendEmail} />
           </Tooltip>
@@ -107,6 +118,9 @@ export default function SummaryCard({ selectedBill }) {
         <CustomTypographyTwo variant="h6" component="div">
           {selectedBill.short_title}
         </CustomTypographyTwo>
+        {emailSent && (
+          <EmailSentMessage>Email sent successfully!</EmailSentMessage>
+        )}
       </CardContent>
       <ListWrapper>
         <ListItem>
