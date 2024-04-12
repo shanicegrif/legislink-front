@@ -20,6 +20,7 @@ export default function Bills() {
   const [error, setError] = useState(null);
   const [pageNumber, setPageNumber] = useState(0);
   const [selectedBill, setSelectedBill] = useState(null);
+  const [emailSent, setEmailSent] = useState(false);
 
   const fetchBillsByKeyword = async () => {
     setLoading(true);
@@ -56,6 +57,7 @@ export default function Bills() {
   };
 
   const handleBillClick = (bill) => {
+    setEmailSent(false);
     setSelectedBill(bill);
   };
 
@@ -132,7 +134,8 @@ export default function Bills() {
           <h2>Bill Summary</h2>
           {selectedBill ? (
           <>
-            <SummaryCard selectedBill={selectedBill} />
+            <SummaryCard selectedBill={selectedBill} emailSent={emailSent}
+  setEmailSent={setEmailSent}/>
           </>
         ) : (
           <BillSummaryPlaceholder />
