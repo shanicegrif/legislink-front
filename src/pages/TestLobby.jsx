@@ -1,6 +1,5 @@
 import { useNavigate } from "react-router-dom";
 import { useState, useEffect } from "react";
-import { useLayoutEffect } from "react";
 import { useAuth } from "../hooks/useAuth";
 import Loading from "../components/messages/Loading.jsx";
 import "../components/TestLobby.css";
