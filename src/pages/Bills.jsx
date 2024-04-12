@@ -8,6 +8,7 @@ import { fetchForBills } from "../api/axios";
 import BillsCard from "../components/bills/billsCard";
 import Error from "../components/messages/Error";
 import Loading from "../components/messages/Loading";
+import "../components/bills/Bills.css";
 
 export default function Bills() {
   const [bills, setBills] = useState([]);
@@ -16,6 +17,7 @@ export default function Bills() {
   const [loading, setLoading] = useState(false);
   const [error, setError] = useState(null);
   const [pageNumber, setPageNumber] = useState(0);
+  const [selectedBill, setSelectedBill] = useState(null);
 
   const fetchBillsByKeyword = async () => {
     setLoading(true);
@@ -34,10 +36,12 @@ export default function Bills() {
   };
 
   const handleSearch = () => {
+    setSelectedOption("introduced_date");
     fetchBillsByKeyword();
   };
 
   const handleOptionChange = (event) => {
+    setKeyword("");
     setSelectedOption(event.target.value);
   };
 
@@ -49,6 +53,10 @@ export default function Bills() {
     setPageNumber(pageNumber + 20);
   };
 
+  const handleBillClick = (bill) => {
+    setSelectedBill(bill);
+  };
+
   useEffect(() => {
     fetchBillsByKeyword();
   }, [selectedOption, pageNumber]);
@@ -56,37 +64,7 @@ export default function Bills() {
   return (
     <div className="bill-container">
       <div className="form-fields">
-        <Box mt={4} mb={2} sx={{ display: "flex", justifyContent: "center" }}>
-          <TextField
-            label="Enter keyword for filtering"
-            variant="outlined"
-            value={keyword}
-            onChange={(e) => setKeyword(e.target.value)}
-            sx={{
-              width: "250px", // Adjust the width as needed
-              marginBottom: "20px",
-              marginRight: "10px",
-            }}
-          />
-          <Button
-            variant="contained"
-            onClick={handleSearch}
-            sx={{
-              marginTop: "8px", // Adjust the top margin as needed
-              width: "100px", // Set fixed width for the button
-              height: "40px", // Set fixed height for the button
-            }}
-          >
-            Search
-          </Button>
-        </Box>
-        <Box
-          sx={{
-            display: "flex",
-            justifyContent: "center",
-            marginBottom: "20px",
-          }}
-        >
+        <Box>
           <Select
             value={selectedOption}
             onChange={handleOptionChange}
@@ -103,23 +81,61 @@ export default function Bills() {
             <MenuItem value="vetoed">Vetoed</MenuItem>
           </Select>
         </Box>
+        <Box mt={4} mb={2}>
+          <TextField
+            label="Enter keyword for filtering"
+            variant="outlined"
+            value={keyword}
+            onChange={(e) => setKeyword(e.target.value)}
+            sx={{
+              width: "250px", // Adjust the width as needed
+              marginBottom: "15px",
+              marginRight: "10px",
+            }}
+          />
+          <Button
+            variant="contained"
+            onClick={handleSearch}
+            sx={{
+              marginTop: "8px", // Adjust the top margin as needed
+              width: "100px", // Set fixed width for the button
+              height: "40px", // Set fixed height for the button
+            }}
+          >
+            Search
+          </Button>
+        </Box>
       </div>
       {loading && <Loading />}
       {error && <Error message={error.message} />}
-      <Box display="flex" flexWrap="wrap" justifyContent="space-around">
-        {bills.map((bill) => (
-          <BillsCard key={bill.id} bill={bill} />
-        ))}
-      </Box>
-      {/* page button */}
-      <Button size="small" onClick={handlePagePrev}>
-        {" "}
-        prev
-      </Button>
-      <Button size="small" onClick={handlePageNext}>
-        {" "}
-        next
-      </Button>
+      <div className="bill-section">
+        <div className="bill-list">
+          <Box display="flex" flexWrap="wrap" justifyContent="space-around">
+            {bills.map((bill) => (
+              <BillsCard key={bill.id} bill={bill} onClick={() => handleBillClick(bill)} />
+            ))}
+          </Box>
+          <div className="bill-list-buttons">
+            <Button size="small" onClick={handlePagePrev}>
+              {" "}
+              prev
+            </Button>
+            <Button size="small" onClick={handlePageNext}>
+              {" "}
+              next
+            </Button>
+          </div>
+        </div>
+        <div className="bill-summary-container">
+          <h2>Bill Summary</h2>
+          {selectedBill && (
+            <>
+              <p>{selectedBill.title}</p>
+              {/* Display other details of the selected bill */}
+            </>
+          )}
+        </div>
+      </div>
     </div>
   );
 }

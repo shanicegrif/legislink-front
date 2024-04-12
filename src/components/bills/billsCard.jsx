@@ -27,7 +27,7 @@ const ListWrapper = styled.div`
   margin-top: auto; // Align the list items to the bottom of the card
 `;
 
-export default function BillsCard({ bill }) {
+export default function BillsCard({ bill, onClick }) {
   let majorAction = bill.latest_major_action.split("Committee on").pop();
 
   const foundActionImage = (majorAction) => {
@@ -50,6 +50,7 @@ export default function BillsCard({ bill }) {
         display: "flex",
         flexDirection: "column",
       }}
+      onClick={() => onClick(bill)} // Add onClick handler to the Card component
     >
       <CardMedia
         sx={{ height: 175, maxWidth: 350 }}
@@ -66,9 +67,6 @@ export default function BillsCard({ bill }) {
         </CustomTypographyTwo>
       </CardContent>
       <ListWrapper>
-        <ListItem>
-          {/* <ListItemText primary={`Summary: ${billSummary ? billSummary : "A legislative analyst in the Congressional Research Service will begin analyzing this legislation after text becomes available."}`} /> */}
-        </ListItem>
         <ListItem>
           <ListItemText primary={`Date: ${bill.latest_major_action_date}`} />
         </ListItem>
