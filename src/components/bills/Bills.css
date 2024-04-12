@@ -1,0 +1,38 @@
+.form-fields {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-evenly;
+  align-items: center;
+}
+
+.bill-section {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  grid-template-rows: 1fr;
+  grid-column-gap: 30px;
+}
+
+.bill-list {
+  max-height: 65vh;
+  overflow: auto;
+  && .bill-list-buttons {
+    display: flex;
+    justify-content: center;
+  }
+}
+
+.bill-summary-container {
+  && h2 {
+    text-align: center;
+  }
+}
+
+@media (max-width: 839px) {
+    .form-fields {
+        flex-direction: column; /* Change to column layout */
+        align-items: flex-start; /* Align items to the start */
+      }
+      .form-fields > * {
+        margin-left: 20px; /* Add margin between form fields */
+      }
+}

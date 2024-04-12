@@ -84,16 +84,16 @@ export default function TestLobby() {
             <ul>
               <li>
                 <Link
-                  href="https://example.com"
+                  href="https://www.govtrack.us/"
                   target="_blank"
                   rel="noopener noreferrer"
                 >
-                  Ballotpedia
+                  GovTrack.us
                 </Link>
               </li>
               <li>
                 <Link
-                  href="https://example.com"
+                  href="https://formspal.com/opencongress/"
                   target="_blank"
                   rel="noopener noreferrer"
                 >
@@ -102,7 +102,7 @@ export default function TestLobby() {
               </li>
               <li>
                 <Link
-                  href="https://example.com"
+                  href="https://www.vote411.org/"
                   target="_blank"
                   rel="noopener noreferrer"
                 >
