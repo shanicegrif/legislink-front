@@ -26,10 +26,10 @@ const ListWrapper = styled.div`
 `;
 
 const CustomListItemText = styled.div`
-    font-family: "Merriweather", serif;
-    font-weight: 400;
-    font-style: normal;
-    font-size: 13px;
+  font-family: "Merriweather", serif;
+  font-weight: 400;
+  font-style: normal;
+  font-size: 13px;
 `;
 
 export default function BillsCard({ bill, onClick }) {
@@ -46,6 +46,7 @@ export default function BillsCard({ bill, onClick }) {
     }
     return billImage.unknown;
   };
+  console.log(bill);
 
   return (
     <Card
@@ -63,6 +64,9 @@ export default function BillsCard({ bill, onClick }) {
         title="bill category image"
       />
       <CardContent>
+        <CustomTypography variant="h2" component="div">
+          <h2>{bill.bill_slug}</h2>
+        </CustomTypography>
         <CustomTypography variant="body2">
           Subject: {majorAction}
         </CustomTypography>
@@ -72,7 +76,7 @@ export default function BillsCard({ bill, onClick }) {
         </CustomTypographyTwo>
       </CardContent>
       <ListWrapper>
-        <ListItem >
+        <ListItem>
           <CustomListItemText>{`Date: ${bill.latest_major_action_date}`}</CustomListItemText>
         </ListItem>
       </ListWrapper>

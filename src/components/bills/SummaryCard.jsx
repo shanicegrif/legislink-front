@@ -13,31 +13,33 @@ import { useAuth } from "../../hooks/useAuth";
 const resendKey = import.meta.env.VITE_BASE_EMAIL;
 
 const ThumbsUpIcon = styled(FontAwesomeIcon)`
-  color: #aaa; /* Default color */
-  transition: color 0.3s ease; /* Smooth color transition */
+  color: green; /* Default color */
+  font-size: 25px;
+  transition: font-size 0.3s ease; /* Smooth size transition */
   cursor: pointer;
 
   /* Hover effect */
   &:hover {
-    color: green; /* Change color to green on hover */
+    font-size: 35px; /* Increase font size on hover */
   }
 `;
 
 const ThumbsDownIcon = styled(FontAwesomeIcon)`
-  color: #aaa; /* Default color */
-  transition: color 0.3s ease; /* Smooth color transition */
+  color: red; /* Default color */
+  font-size: 25px;
+  transition: font-size 0.3s ease; /* Smooth size transition */
   cursor: pointer;
 
   /* Hover effect */
   &:hover {
-    color: red; /* Change color to red on hover */
+    font-size: 35px; /* Increase font size on hover */
   }
 `;
 
 const IconContainer = styled.div`
   display: flex;
-  justify-content: flex-end; /* Align icons to the right */
-  gap: 10px; /* Add space between icons */
+  justify-content: flex-start; /* Align icons to the right */
+  gap: 15px; /* Add space between icons */
 `;
 
 const CustomTypography = styled.div`
@@ -112,6 +114,9 @@ export default function SummaryCard({ selectedBill, emailSent, setEmailSent }) {
         }}
       >
         <CardContent>
+          <CustomTypographyTwo variant="h6" component="div">
+            <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Nibh mauris cursus mattis molestie a. Diam in arcu cursus euismod quis viverra nibh cras. Aliquet nec ullamcorper sit amet risus nullam eget. Eu sem integer vitae justo eget magna.</p>
+          </CustomTypographyTwo>
           <IconContainer>
             <Tooltip title="Click to email rep to express support">
               <ThumbsUpIcon icon={faThumbsUp} size="lg" onClick={() => sendEmail(true)} />
@@ -120,9 +125,6 @@ export default function SummaryCard({ selectedBill, emailSent, setEmailSent }) {
               <ThumbsDownIcon icon={faThumbsDown} size="lg" onClick={() => sendEmail(false)} />
             </Tooltip>
           </IconContainer>
-          <CustomTypographyTwo variant="h6" component="div">
-            {selectedBill.short_title}
-          </CustomTypographyTwo>
           {emailSent && (
             <EmailSentMessage>Email sent successfully!</EmailSentMessage>
           )}
