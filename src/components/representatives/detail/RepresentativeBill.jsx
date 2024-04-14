@@ -54,6 +54,7 @@ export default function RepresntativeBill() {
   }, [bioguideID, billType]);
 
   function billTypeOnChangeHandler(event) {
+    setSelectedBill(null)
     setBillType(event.target.value);
   }
 
