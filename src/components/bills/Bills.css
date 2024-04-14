@@ -21,6 +21,13 @@
   }
 }
 
+.bill-date {
+  font-family: "Merriweather", serif;
+  font-weight: 400;
+  font-style: normal;
+  font-size: 15px;
+}
+
 .bill-summary-container {
   && h2 {
     text-align: center;

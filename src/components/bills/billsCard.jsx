@@ -25,6 +25,13 @@ const ListWrapper = styled.div`
   margin-top: auto; // Align the list items to the bottom of the card
 `;
 
+const CustomListItemText = styled.div`
+    font-family: "Merriweather", serif;
+    font-weight: 400;
+    font-style: normal;
+    font-size: 13px;
+`;
+
 export default function BillsCard({ bill, onClick }) {
   let majorAction = bill.latest_major_action.split("Committee on").pop();
 
@@ -65,8 +72,8 @@ export default function BillsCard({ bill, onClick }) {
         </CustomTypographyTwo>
       </CardContent>
       <ListWrapper>
-        <ListItem>
-          <ListItemText primary={`Date: ${bill.latest_major_action_date}`} />
+        <ListItem >
+          <CustomListItemText>{`Date: ${bill.latest_major_action_date}`}</CustomListItemText>
         </ListItem>
       </ListWrapper>
     </Card>

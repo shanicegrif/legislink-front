@@ -58,6 +58,13 @@ const ListWrapper = styled.div`
   margin-top: auto; // Align the list items to the bottom of the card
 `;
 
+const CustomListItemText = styled.div`
+    font-family: "Merriweather", serif;
+    font-weight: 400;
+    font-style: normal;
+    font-size: 14px;
+`;
+
 const EmailSentMessage = styled.div`
   color: green;
   display: flex;
@@ -67,68 +74,64 @@ const EmailSentMessage = styled.div`
 `;
 
 export default function SummaryCard({ selectedBill, emailSent, setEmailSent }) {
-  const user = useAuth();
-  const resend = new Resend(resendKey);
-
-  const sendEmail = () => {
-    const htmlContent = `
-      <p>Dear Legislators,</p>
-      <p>I am writing to express my strong support for the bill titled "<em>${selectedBill.short_title}</em>." This bill addresses an important issue that affects our community, and I believe it will have a positive impact if enacted into law.</p>
-      <p>As a constituent, I urge you to consider the merits of this bill and to vote in favor of it. It represents an opportunity to make meaningful progress on [insert relevant issue or topic].</p>
-      <p>Thank you for your attention to this matter.</p>
-      <p>Sincerely,</p>
-      <p>${user.displayName}</p>
-    `;
-
-    try {
-      resend.emails.send({
-        from: `${user.email}`,
-        to: "shanicegriffin@pursuit.org",
-        subject: `${selectedBill.short_title}`,
-        html: htmlContent,
-      });
-      setEmailSent(true);
-    } catch (error) {
-      console.error("Error sending email:", error);
-    }
-  };
-
-  return (
-    <Card
-      sx={{
-        width: 430,
-        height: 300,
-        margin: "10px",
-        display: "flex",
-        flexDirection: "column",
-      }}
-      onClick={() => {
-        handleResetEmailSent(); // Reset emailSent state
-      }}
-    >
-      <CardContent>
-        <IconContainer>
-          <Tooltip title="Click to email rep to express support">
-            <ThumbsUpIcon icon={faThumbsUp} size="lg" onClick={sendEmail} />
-          </Tooltip>
-          <Tooltip title="Click to email rep to express opposition">
-            <ThumbsDownIcon icon={faThumbsDown} size="lg" onClick={sendEmail} />
-          </Tooltip>
-        </IconContainer>
-        <CustomTypographyTwo variant="h6" component="div">
-          {selectedBill.short_title}
-        </CustomTypographyTwo>
-        {emailSent && (
-          <EmailSentMessage>Email sent successfully!</EmailSentMessage>
-        )}
-      </CardContent>
-      <ListWrapper>
-        <ListItem>
-          <ListItemText
-            primary={`Bill Sponsor: ${selectedBill.sponsor_name} State: ${selectedBill.sponsor_state} Party: ${selectedBill.sponsor_party}`}
-          />
-        </ListItem>
-      </ListWrapper>
-    </Card>
+    const user = useAuth();
+    const resend = new Resend(resendKey);
+  
+    const sendEmail = (isSupportive) => {
+      const htmlContent = `
+        <p>Dear Legislators,</p>
+        <p>I am writing to express my ${isSupportive ? "strong support" : "opposition"} for the bill titled "<em>${selectedBill.short_title}</em>." This bill addresses an important issue that affects our community, and I believe it will ${isSupportive ? "have a positive impact" : "have negative consequences"} if enacted into law.</p>
+        <p>As a constituent, I urge you to consider the merits of this bill and to ${isSupportive ? "vote in favor of" : "oppose"} it. It represents an opportunity to make meaningful progress on [insert relevant issue or topic].</p>
+        <p>Thank you for your attention to this matter.</p>
+        <p>Sincerely,</p>
+        <p>${user.displayName}</p>
+      `;
+    
+      try {
+        resend.emails.send({
+          from: `${user.email}`,
+          to: "shanicegriffin@pursuit.org",
+          subject: `${selectedBill.short_title}`,
+          html: htmlContent,
+        });
+        setEmailSent(true);
+        console.log("Email sent successfully");
+      } catch (error) {
+        console.error("Error sending email:", error);
+      }
+    };  
+  
+    return (
+      <Card
+        sx={{
+          width: 430,
+          height: 300,
+          margin: "10px",
+          display: "flex",
+          flexDirection: "column",
+        }}
+      >
+        <CardContent>
+          <IconContainer>
+            <Tooltip title="Click to email rep to express support">
+              <ThumbsUpIcon icon={faThumbsUp} size="lg" onClick={() => sendEmail(true)} />
+            </Tooltip>
+            <Tooltip title="Click to email rep to express opposition">
+              <ThumbsDownIcon icon={faThumbsDown} size="lg" onClick={() => sendEmail(false)} />
+            </Tooltip>
+          </IconContainer>
+          <CustomTypographyTwo variant="h6" component="div">
+            {selectedBill.short_title}
+          </CustomTypographyTwo>
+          {emailSent && (
+            <EmailSentMessage>Email sent successfully!</EmailSentMessage>
+          )}
+        </CardContent>
+        <ListWrapper>
+          <ListItem>
+            <CustomListItemText>{`Bill Sponsor: ${selectedBill.sponsor_name} (${selectedBill.sponsor_party}) State: ${selectedBill.sponsor_state}`}</CustomListItemText>
+          </ListItem>
+        </ListWrapper>
+      </Card>
   );
 }
