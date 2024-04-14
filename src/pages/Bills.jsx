@@ -40,10 +40,12 @@ export default function Bills() {
 
   const handleSearch = () => {
     setSelectedOption("introduced_date");
+    setSelectedBill(null)
     fetchBillsByKeyword();
   };
 
   const handleOptionChange = (event) => {
+    setSelectedBill(null)
     setKeyword("");
     setSelectedOption(event.target.value);
   };

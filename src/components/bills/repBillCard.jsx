@@ -5,6 +5,7 @@ import CardContent from "@mui/material/CardContent";
 import ListItem from "@mui/material/ListItem";
 import ListItemText from "@mui/material/ListItemText";
 import styled from "styled-components";
+import iconImage from "../Icons";
 
 const CustomTypography = styled.div`
   font-family: "Merriweather", serif;
@@ -25,10 +26,10 @@ const ListWrapper = styled.div`
 `;
 
 const CustomListItemText = styled.div`
-    font-family: "Merriweather", serif;
-    font-weight: 400;
-    font-style: normal;
-    font-size: 13px;
+  font-family: "Merriweather", serif;
+  font-weight: 400;
+  font-style: normal;
+  font-size: 13px;
 `;
 
 const RepBillCard = ({ bill, onClick }) => {
@@ -46,6 +47,26 @@ const RepBillCard = ({ bill, onClick }) => {
     return billImage.unknown;
   };
 
+  const foundActionIcon = (majorAction) => {
+    if (majorAction) {
+      const words = majorAction.split(/\s+/);
+      const icons = words.map((word) => {
+        const lowerWord = word.toLowerCase();
+        for (const key of Object.keys(iconImage)) {
+          if (lowerWord.includes(key.replace("_", " "))) {
+            return iconImage[key];
+          }
+        }
+      });
+      const filteredIcons = icons.filter((icon) => icon !== undefined);
+      return filteredIcons.length ? filteredIcons : [iconImage.unknown]; // Return unknown icon if no matches
+    }
+    return [iconImage.unknown]; // Return unknown icon if majorAction is falsy
+  };
+
+  const icons = foundActionIcon(majorAction);
+
+  console.log(bill)
   return (
     <Card
       sx={{
@@ -71,8 +92,15 @@ const RepBillCard = ({ bill, onClick }) => {
         </CustomTypographyTwo>
       </CardContent>
       <ListWrapper>
+        <div style={{ display: "flex", marginRight: "300px" }}>
+          {" "}
+          {/* Use flexbox to display icons in a row */}
+          {icons.map((Icon, index) => (
+            <ListItem key={index}>{Icon}</ListItem>
+          ))}
+        </div>
         <ListItem>
-        <CustomListItemText>{`Date: ${bill.latest_major_action_date}`}</CustomListItemText>
+          <CustomListItemText>{`Date: ${bill.latest_major_action_date}`}</CustomListItemText>
         </ListItem>
       </ListWrapper>
     </Card>
