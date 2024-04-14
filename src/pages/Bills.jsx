@@ -116,7 +116,11 @@ export default function Bills() {
         <div className="bill-list">
           <Box display="flex" flexWrap="wrap" justifyContent="space-around">
             {bills.map((bill) => (
-              <BillsCard key={bill.id} bill={bill} onClick={() => handleBillClick(bill)} />
+              <BillsCard
+                key={bill.id}
+                bill={bill}
+                onClick={() => handleBillClick(bill)}
+              />
             ))}
           </Box>
           <div className="bill-list-buttons">
@@ -133,13 +137,16 @@ export default function Bills() {
         <div className="bill-summary-container">
           <h2>Bill Summary</h2>
           {selectedBill ? (
-          <>
-            <SummaryCard selectedBill={selectedBill} emailSent={emailSent}
-  setEmailSent={setEmailSent}/>
-          </>
-        ) : (
-          <BillSummaryPlaceholder />
-        )}
+            <>
+              <SummaryCard
+                selectedBill={selectedBill}
+                emailSent={emailSent}
+                setEmailSent={setEmailSent}
+              />
+            </>
+          ) : (
+            <BillSummaryPlaceholder />
+          )}
         </div>
       </div>
     </div>

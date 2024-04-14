@@ -9,14 +9,18 @@ import Select from "@mui/material/Select";
 import Loading from "../../messages/Loading";
 import BillError from "../../messages/BillError"; // Import your BillError component here
 import RepBillCard from "../../bills/repBillCard";
+import BillSummaryPlaceholder from "../../messages/SummaryMes";
+import SummaryCard from "../../bills/SummaryCard"
+import "../../bills/Bills.css";
 const propublicaAPIKey = import.meta.env.VITE_BASE_PROPUBLICA_KEY;
-
 
 export default function RepresntativeBill() {
   const [billType, setBillType] = useState("introduced");
   const [bills, setBills] = useState([]);
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState(null);
+  const [selectedBill, setSelectedBill] = useState(null);
+  const [emailSent, setEmailSent] = useState(false);
   const { bioguideID } = useParams();
 
   useEffect(() => {
@@ -53,6 +57,11 @@ export default function RepresntativeBill() {
     setBillType(event.target.value);
   }
 
+  const handleBillClick = (bill) => {
+    setEmailSent(false);
+    setSelectedBill(bill);
+  };
+
   return (
     <div>
       <Box sx={{ width: 200 }} style={{ marginBottom: "20px" }}>
@@ -75,17 +84,39 @@ export default function RepresntativeBill() {
         </FormControl>
       </Box>
       <h3>Bills Sponsored By Rep. </h3>
-      {loading ? (
-        <Loading />
-      ) : error ? (
-        <BillError />
-      ) : (
-        <Box display="flex" flexWrap="wrap" justifyContent="space-around">
-        {bills.map((bill) => (
-            <RepBillCard key={bill.bill_id} bill={bill}/>
-          ))}
-      </Box>
-      )}
+      <div className="bill-section">
+        <div className="bill-list">
+          {loading ? (
+            <Loading />
+          ) : error ? (
+            <BillError />
+          ) : (
+            <Box display="flex" flexWrap="wrap" justifyContent="space-around">
+              {bills.map((bill) => (
+                <RepBillCard
+                  key={bill.bill_id}
+                  bill={bill}
+                  onClick={() => handleBillClick(bill)}
+                />
+              ))}
+            </Box>
+          )}
+        </div>
+        <div className="bill-summary-container">
+          <h2>Bill Summary</h2>
+          {selectedBill ? (
+            <>
+              <SummaryCard
+                selectedBill={selectedBill}
+                emailSent={emailSent}
+                setEmailSent={setEmailSent}
+              />
+            </>
+          ) : (
+            <BillSummaryPlaceholder />
+          )}
+        </div>
+      </div>
     </div>
   );
 }

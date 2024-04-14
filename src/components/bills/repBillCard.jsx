@@ -24,7 +24,7 @@ const ListWrapper = styled.div`
   margin-top: auto; // Align the list items to the bottom of the card
 `;
 
-const RepBillCard = ({ bill }) => {
+const RepBillCard = ({ bill, onClick }) => {
   let majorAction = bill.latest_major_action.split("Committee on").pop();
 
   const foundActionImage = (majorAction) => {
@@ -47,6 +47,7 @@ const RepBillCard = ({ bill }) => {
         display: "flex",
         flexDirection: "column",
       }}
+      onClick={() => onClick(bill)}
     >
       <CardMedia
         sx={{ height: 175, maxWidth: 350 }}
