@@ -10,6 +10,7 @@ import Tooltip from "@mui/material/Tooltip";
 import { Resend } from "resend";
 import { useAuth } from "../../hooks/useAuth";
 
+const serverURL = import.meta.env.VITE_BASE_URL;
 const resendKey = import.meta.env.VITE_BASE_EMAIL;
 
 const ThumbsUpIcon = styled(FontAwesomeIcon)`
@@ -77,8 +78,12 @@ const EmailSentMessage = styled.div`
 
 export default function SummaryCard({ selectedBill, emailSent, setEmailSent }) {
     const user = useAuth();
-    const resend = new Resend(resendKey);
+    //const resend = new Resend(resendKey);
   
+    async function fetchEmailToBack(body){
+      return await axios.post(`${serverURL}/email`, body)
+    }
+
     const sendEmail = (isSupportive) => {
       const htmlContent = `
         <p>Dear Legislators,</p>
@@ -88,16 +93,23 @@ export default function SummaryCard({ selectedBill, emailSent, setEmailSent }) {
         <p>Sincerely,</p>
         <p>${user.displayName}</p>
       `;
-    
+      
       try {
+        /*
         resend.emails.send({
           from: `${user.email}`,
           to: "shanicegriffin@pursuit.org",
           subject: `${selectedBill.short_title}`,
           html: htmlContent,
         });
-        setEmailSent(true);
-        console.log("Email sent successfully");
+        */
+        fetchEmailToBack({displayName:user.displayName, email:user.email, htmlContent:htmlContent, subject:selectedBill.short_title}).then(res => {
+          if(res.status == 200){
+            setEmailSent(true);
+            console.log("Email sent successfully");
+          }
+        }).catch(err => console.log(err));
+        
       } catch (error) {
         console.error("Error sending email:", error);
       }
