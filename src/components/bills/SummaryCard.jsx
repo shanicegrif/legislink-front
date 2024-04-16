@@ -9,6 +9,7 @@ import styled from "styled-components";
 import Tooltip from "@mui/material/Tooltip";
 import { Resend } from "resend";
 import { useAuth } from "../../hooks/useAuth";
+import axios from "axios";
 
 const serverURL = import.meta.env.VITE_BASE_URL;
 const resendKey = import.meta.env.VITE_BASE_EMAIL;
