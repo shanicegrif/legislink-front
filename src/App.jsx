@@ -26,15 +26,12 @@ function App() {
                 <Route path="/about" element={<About />} />
                 <Route path="/sign-in" element={<SignIn/>} />
                 <Route path="/dashboard" element={<TestLobby />} />
-                {/* {<Route path='/polls' />} */}
                 <Route path="/bills" element={<Bills />} />
-                {/* <Route path="/bills/:bill_id" element={<BillDetail />} /> */}
                 <Route path="/representatives" element={<Representatives />} />
                 <Route path="/representatives/:bioguideID" element={<RepresentativeDetail />} />
                 <Route path="/settings" element={<Settings />} />
                 <Route path="/help-center" element={<HelpCenter/>} />
                 <Route path="*" element={<FoF />} />
-                {/* ROUTE TO USER PROFILE ROUTE WITH WILDCARD MATCHER */}
               </Routes>
             </div>
           </main>

@@ -33,8 +33,27 @@ const CustomListItemText = styled.div`
   font-size: 13px;
 `;
 
+const getStatusColor = (status) => {
+  switch (status) {
+    case "introduced_date":
+      return "yellow"; // Yellow color for bills with introduced status
+    case "passed":
+      return "green"; // Green color for bills with passed status
+    case "vetoed":
+      return "red"; // Red color for bills with vetoed status
+    default:
+      return "white"; // Default color
+  }
+};
+
 export default function BillsCard({ bill, onClick }) {
   let majorAction = bill.latest_major_action.split("Committee on").pop();
+  const maxTextLength = 50;
+
+  const truncatedMajorAction =
+    majorAction && majorAction.length > maxTextLength
+      ? majorAction.slice(0, maxTextLength) + "..."
+      : majorAction;
 
   const foundActionImage = (majorAction) => {
     if (majorAction) {
@@ -66,6 +85,7 @@ export default function BillsCard({ bill, onClick }) {
   };
   
   const icons = foundActionIcon(majorAction);
+  const statusColor = getStatusColor(bill.status);
 
   return (
     <Card
@@ -74,6 +94,7 @@ export default function BillsCard({ bill, onClick }) {
         margin: "10px",
         display: "flex",
         flexDirection: "column",
+        backgroundColor: statusColor, // Apply background color based on bill status
       }}
       onClick={() => onClick(bill)} // Add onClick handler to the Card component
     >
@@ -83,11 +104,8 @@ export default function BillsCard({ bill, onClick }) {
         title="bill category image"
       />
       <CardContent>
-        <CustomTypography variant="h2" component="div">
-          <h2>{bill.bill_slug}</h2>
-        </CustomTypography>
         <CustomTypography variant="body2">
-          Subject: {majorAction}
+          Subject: {truncatedMajorAction}
         </CustomTypography>
         <br />
         <CustomTypographyTwo variant="h6" component="div">

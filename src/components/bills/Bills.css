@@ -28,10 +28,22 @@
   font-size: 15px;
 }
 
+h3 {
+  font-family: "Merriweather", serif;
+  font-weight: 400;
+  font-style: normal;
+  font-size: 15px;
+}
+
 .bill-summary-container {
   && h2 {
     text-align: center;
   }
+}
+
+.summary-card {
+  display: flex;
+  justify-content: center;
 }
 
 @media (max-width: 839px) {
