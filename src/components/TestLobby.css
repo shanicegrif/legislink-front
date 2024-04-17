@@ -46,6 +46,13 @@ h1, h2, h4 {
   box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
 }
 
+.help-links {
+  font-size: 20px;
+  && ul {
+    list-style-type: none;
+  }
+}
+
 .bill-card h3 {
   margin-top: 0;
   margin-bottom: 10px;

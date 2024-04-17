@@ -106,13 +106,13 @@ export default function RepresntativeBill() {
         <div className="bill-summary-container">
           <h2>Bill Summary</h2>
           {selectedBill ? (
-            <>
+            <div className="summary-card">
               <SummaryCard
                 selectedBill={selectedBill}
                 emailSent={emailSent}
                 setEmailSent={setEmailSent}
               />
-            </>
+            </div>
           ) : (
             <BillSummaryPlaceholder />
           )}
