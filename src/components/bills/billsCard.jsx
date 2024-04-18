@@ -5,6 +5,8 @@ import CardContent from "@mui/material/CardContent";
 import Typography from "@mui/material/Typography";
 import ListItem from "@mui/material/ListItem";
 import ListItemText from "@mui/material/ListItemText";
+import Tooltip from "@mui/material/Tooltip";
+import IconButton from "@mui/material/IconButton";
 import styled from "styled-components";
 import iconImage from "../Icons";
 
@@ -23,7 +25,9 @@ const CustomTypographyTwo = styled.div`
 `;
 
 const ListWrapper = styled.div`
-  margin-top: auto; // Align the list items to the bottom of the card
+  margin-top: 20px; // Align the list items to the bottom of the card
+  margin-bottom: -25px;
+  margin-left: -20px;
 `;
 
 const CustomListItemText = styled.div`
@@ -32,19 +36,6 @@ const CustomListItemText = styled.div`
   font-style: normal;
   font-size: 13px;
 `;
-
-const getStatusColor = (status) => {
-  switch (status) {
-    case "introduced_date":
-      return "yellow"; // Yellow color for bills with introduced status
-    case "passed":
-      return "green"; // Green color for bills with passed status
-    case "vetoed":
-      return "red"; // Red color for bills with vetoed status
-    default:
-      return "white"; // Default color
-  }
-};
 
 export default function BillsCard({ bill, onClick }) {
   let majorAction = bill.latest_major_action.split("Committee on").pop();
@@ -74,18 +65,31 @@ export default function BillsCard({ bill, onClick }) {
         const lowerWord = word.toLowerCase();
         for (const key of Object.keys(iconImage)) {
           if (lowerWord.includes(key.replace("_", " "))) {
-            return iconImage[key];
+            return { name: key, icon: iconImage[key] };
           }
         }
       });
       const filteredIcons = icons.filter((icon) => icon !== undefined);
-      return filteredIcons.length ? filteredIcons : [iconImage.unknown]; // Return unknown icon if no matches
+      return filteredIcons.length
+        ? filteredIcons
+        : [{ name: "unknown", icon: iconImage.unknown }]; // Return unknown icon if no matches
     }
-    return [iconImage.unknown]; // Return unknown icon if majorAction is falsy
+    return [{ name: "unknown", icon: iconImage.unknown }]; // Return unknown icon if majorAction is falsy
   };
-  
   const icons = foundActionIcon(majorAction);
-  const statusColor = getStatusColor(bill.status);
+
+  const getStatusColor = (bill) => {
+    if (bill.vetoed) {
+      return "red";
+    } else if (bill.passed) {
+      return "green";
+    } else if (bill.introduced_date) {
+      return "orange";
+    } else {
+      return "white"; // Default color
+    }
+  };
+  const statusColor = getStatusColor(bill);
 
   return (
     <Card
@@ -94,7 +98,6 @@ export default function BillsCard({ bill, onClick }) {
         margin: "10px",
         display: "flex",
         flexDirection: "column",
-        backgroundColor: statusColor, // Apply background color based on bill status
       }}
       onClick={() => onClick(bill)} // Add onClick handler to the Card component
     >
@@ -103,7 +106,7 @@ export default function BillsCard({ bill, onClick }) {
         image={foundActionImage(majorAction)}
         title="bill category image"
       />
-      <CardContent>
+      <CardContent sx={{ borderLeft: `5px solid ${statusColor}` }}>
         <CustomTypography variant="body2">
           Subject: {truncatedMajorAction}
         </CustomTypography>
@@ -111,19 +114,22 @@ export default function BillsCard({ bill, onClick }) {
         <CustomTypographyTwo variant="h6" component="div">
           {bill.short_title}
         </CustomTypographyTwo>
+        <ListWrapper>
+          <div style={{ display: "flex", marginRight: "290px" }}>
+            {" "}
+            {icons.map((icon, index) => (
+              <ListItem key={index}>
+                <Tooltip title={icon.name} arrow>
+                  <IconButton>{icon.icon}</IconButton>
+                </Tooltip>
+              </ListItem>
+            ))}
+          </div>
+          <ListItem>
+            <CustomListItemText>{`Date: ${bill.latest_major_action_date}`}</CustomListItemText>
+          </ListItem>
+        </ListWrapper>
       </CardContent>
-      <ListWrapper>
-        <div style={{ display: "flex", marginRight: "300px" }}>
-          {" "}
-          {/* Use flexbox to display icons in a row */}
-          {icons.map((Icon, index) => (
-            <ListItem key={index}>{Icon}</ListItem>
-          ))}
-        </div>
-        <ListItem>
-          <CustomListItemText>{`Date: ${bill.latest_major_action_date}`}</CustomListItemText>
-        </ListItem>
-      </ListWrapper>
     </Card>
   );
 }
