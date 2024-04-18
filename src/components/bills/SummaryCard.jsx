@@ -1,4 +1,4 @@
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import Card from "@mui/material/Card";
 import CardContent from "@mui/material/CardContent";
 import ListItem from "@mui/material/ListItem";
@@ -11,6 +11,7 @@ import { Resend } from "resend";
 import { useAuth } from "../../hooks/useAuth";
 import axios from "axios";
 
+const congressApi = import.meta.env.VITE_BASE_CONGRESS_API_KEY;
 const serverURL = import.meta.env.VITE_BASE_URL;
 const resendKey = import.meta.env.VITE_BASE_EMAIL;
 
@@ -80,10 +81,14 @@ const EmailSentMessage = styled.div`
 export default function SummaryCard({ selectedBill, emailSent, setEmailSent }) {
     const user = useAuth();
     //const resend = new Resend(resendKey);
-  
+    const [ billSummary, setBillSummary ] = useState("");
     async function fetchEmailToBack(body){
       return await axios.post(`${serverURL}/email`, body)
     }
+
+    useEffect(() => {
+      axios.get(`https://api.congress.gov/v3/bill/118/${selectedBill.bill_type}/${selectedBill.bill_slug.match(/\d+/)}/summaries?&api_key=${congressApi}&format=json`).then(res => setBillSummary(res.data.summaries[0].text));
+    },[selectedBill])
 
     const sendEmail = (isSupportive) => {
       const htmlContent = `
@@ -128,7 +133,7 @@ export default function SummaryCard({ selectedBill, emailSent, setEmailSent }) {
       >
         <CardContent>
           <CustomTypographyTwo variant="h6" component="div">
-            <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Nibh mauris cursus mattis molestie a. Diam in arcu cursus euismod quis viverra nibh cras. Aliquet nec ullamcorper sit amet risus nullam eget. Eu sem integer vitae justo eget magna.</p>
+            <p>{`Summary: ${billSummary ? billSummary : "A legislative analyst in the Congressional Research Service will begin analyzing this legislation after text becomes available."}`}</p>
           </CustomTypographyTwo>
           <IconContainer>
             <Tooltip title="Click to email rep to express support">
