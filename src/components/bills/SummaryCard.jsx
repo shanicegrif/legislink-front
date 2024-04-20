@@ -87,7 +87,8 @@ export default function SummaryCard({ selectedBill, emailSent, setEmailSent }) {
     }
 
     useEffect(() => {
-      axios.get(`https://api.congress.gov/v3/bill/118/${selectedBill.bill_type}/${selectedBill.bill_slug.match(/\d+/)}/summaries?&api_key=${congressApi}&format=json`).then(res => setBillSummary(res.data.summaries[0].text));
+      console.log(selectedBill)
+      axios.get(`https://api.congress.gov/v3/bill/118/${selectedBill.bill_type}/${selectedBill.bill_slug ? selectedBill.bill_slug.match(/\d+/) : selectedBill.bill_id.match(/\d+/)}/summaries?&api_key=${congressApi}&format=json`).then(res => setBillSummary(res.data.summaries[0].text));
     },[selectedBill])
 
     const sendEmail = (isSupportive) => {
