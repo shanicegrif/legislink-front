@@ -80,7 +80,6 @@ const EmailSentMessage = styled.div`
 
 export default function SummaryCard({ selectedBill, emailSent, setEmailSent }) {
     const user = useAuth();
-    //const resend = new Resend(resendKey);
     const [ billSummary, setBillSummary ] = useState("");
     async function fetchEmailToBack(body){
       return await axios.post(`${serverURL}/email`, body)
@@ -102,14 +101,6 @@ export default function SummaryCard({ selectedBill, emailSent, setEmailSent }) {
       `;
       
       try {
-        /*
-        resend.emails.send({
-          from: `${user.email}`,
-          to: "shanicegriffin@pursuit.org",
-          subject: `${selectedBill.short_title}`,
-          html: htmlContent,
-        });
-        */
         fetchEmailToBack({displayName:user.displayName, email:user.email, htmlContent:htmlContent, subject:selectedBill.short_title}).then(res => {
           if(res.status == 200){
             setEmailSent(true);
@@ -126,7 +117,8 @@ export default function SummaryCard({ selectedBill, emailSent, setEmailSent }) {
       <Card
         sx={{
           width: 430,
-          height: 300,
+          maxHeight: 410,
+          overflow: "auto",
           margin: "10px",
           display: "flex",
           flexDirection: "column",

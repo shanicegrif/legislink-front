@@ -4,6 +4,8 @@ import Button from "@mui/material/Button";
 import Select from "@mui/material/Select";
 import MenuItem from "@mui/material/MenuItem";
 import Box from "@mui/material/Box";
+import InputLabel from '@mui/material/InputLabel';
+import FormControl from '@mui/material/FormControl';
 import { fetchForBills } from "../api/axios";
 import BillsCard from "../components/bills/billsCard";
 import Error from "../components/messages/Error";
@@ -15,7 +17,7 @@ import "../components/bills/Bills.css";
 export default function Bills() {
   const [bills, setBills] = useState([]);
   const [keyword, setKeyword] = useState("");
-  const [selectedOption, setSelectedOption] = useState("introduced_date");
+  const [selectedOption, setSelectedOption] = useState("");
   const [loading, setLoading] = useState(false);
   const [error, setError] = useState(null);
   const [pageNumber, setPageNumber] = useState(0);
@@ -39,7 +41,7 @@ export default function Bills() {
   };
 
   const handleSearch = () => {
-    setSelectedOption("introduced_date");
+    setSelectedOption("");
     setSelectedBill(null)
     fetchBillsByKeyword();
   };
@@ -70,23 +72,22 @@ export default function Bills() {
   return (
     <div className="bill-container">
       <div className="form-fields">
-        <Box>
-          <Select
-            value={selectedOption}
-            onChange={handleOptionChange}
-            variant="outlined"
-            sx={{
-              width: "200px", // Adjust the width as needed
-            }}
-          >
-            <MenuItem value="introduced_date">Introduced</MenuItem>
-            <MenuItem value="updated">Updated</MenuItem>
-            <MenuItem value="active">Active</MenuItem>
-            <MenuItem value="passed">Passed</MenuItem>
-            <MenuItem value="enacted">Enacted</MenuItem>
-            <MenuItem value="vetoed">Vetoed</MenuItem>
-          </Select>
-        </Box>
+      <Box>
+      <FormControl variant="outlined" sx={{ width: '200px' }}>
+        <InputLabel id="select-label">Select an option</InputLabel>
+        <Select
+          labelId="select-label"
+          value={selectedOption}
+          onChange={handleOptionChange}
+          label="Select an option"
+        >
+          <MenuItem value="">None</MenuItem> {/* Add a default empty option */}
+          <MenuItem value="introduced_date">Introduced</MenuItem>
+          <MenuItem value="passed">Passed</MenuItem>
+          <MenuItem value="vetoed">Vetoed</MenuItem>
+        </Select>
+      </FormControl>
+    </Box>
         <Box mt={4} mb={2}>
           <TextField
             label="Enter keyword for filtering"

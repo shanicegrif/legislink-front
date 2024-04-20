@@ -91,6 +91,20 @@ export default function BillsCard({ bill, onClick }) {
   };
   const statusColor = getStatusColor(bill);
 
+  const getStatusText = (bill) => {
+    if (bill.vetoed) {
+      return <span style={{ color: "red" }}>Rejected</span>;
+    } else if (bill.passed) {
+      return <span style={{ color: "green" }}>Approved</span>;
+    } else if (bill.introduced_date) {
+      return <span style={{ color: "orange" }}>Pending</span>;
+    } else {
+      return <span style={{ color: "black" }}>Unknown</span>;
+    }
+  };
+
+  const statusText = getStatusText(bill);
+  console.log(bill)
   return (
     <Card
       sx={{
@@ -125,6 +139,9 @@ export default function BillsCard({ bill, onClick }) {
               </ListItem>
             ))}
           </div>
+          <ListItem>
+            <CustomListItemText>Status: {statusText}</CustomListItemText>
+          </ListItem>
           <ListItem>
             <CustomListItemText>{`Date: ${bill.latest_major_action_date}`}</CustomListItemText>
           </ListItem>
