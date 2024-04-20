@@ -108,6 +108,24 @@ export default function TestLobby() {
                   Vote 411
                 </Link>
               </li>
+              <li>
+                <Link
+                  href="https://ballotpedia.org/Main_Page"
+                  target="_blank"
+                  rel="noopener noreferrer"
+                >
+                  Ballotpedia
+                </Link>
+              </li>
+              <li>
+                <Link
+                  href="https://www.congress.gov/"
+                  target="_blank"
+                  rel="noopener noreferrer"
+                >
+                  Congress.gov
+                </Link>
+              </li>
             </ul>
           </div>
         </div>
