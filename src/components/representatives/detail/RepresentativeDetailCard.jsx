@@ -12,6 +12,11 @@ const CustomTypography = styled.div`
   font-size: 22px;
 `;
 
+const CustomTypographyTwo = styled.div`
+  font-family: "Libre Baskerville", serif;
+  font-size: 16px;
+`;
+
 export default function RepresentativeDetailCard({ representative }) {
   return (
     <div className="detail-rep-card">
@@ -43,18 +48,18 @@ export default function RepresentativeDetailCard({ representative }) {
               <CustomTypography>
                 {representative.first_name} {representative.last_name}
               </CustomTypography>
-              <Typography variant="body2" style={{ marginBottom: "8px" }}>
+              <CustomTypographyTwo variant="body2" style={{ marginBottom: "8px" }}>
                 Party: {representative.party}
-              </Typography>
-              <Typography variant="body2" style={{ marginBottom: "8px" }}>
+              </CustomTypographyTwo>
+              <CustomTypographyTwo variant="body2" style={{ marginBottom: "8px" }}>
                 State: {representative.state}
-              </Typography>
-              <Typography variant="body2" style={{ marginBottom: "8px" }}>
+              </CustomTypographyTwo>
+              <CustomTypographyTwo variant="body2" style={{ marginBottom: "8px" }}>
                 Homepage: {representative.url}
-              </Typography>
-              <Typography variant="body2">
+              </CustomTypographyTwo>
+              <CustomTypographyTwo variant="body2">
                 Phone: {representative.phone}
-              </Typography>
+              </CustomTypographyTwo>
             </CardContent>
           </div>
         </Card>
