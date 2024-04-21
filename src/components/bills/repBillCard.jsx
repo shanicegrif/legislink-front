@@ -36,6 +36,12 @@ const CustomListItemText = styled.div`
   font-size: 13px;
 `;
 
+const IconContainer = styled.div`
+  display: flex;
+  flex-wrap: wrap; /* Allow icons to wrap to the next line */
+  gap: 10px; /* Add space between icons */
+`;
+
 const RepBillCard = ({ bill, onClick }) => {
   let majorAction = bill.latest_major_action.split("Committee on").pop();
   const maxTextLength = 50;
@@ -63,7 +69,8 @@ const RepBillCard = ({ bill, onClick }) => {
       const icons = words.map((word) => {
         const lowerWord = word.toLowerCase();
         for (const key of Object.keys(iconImage)) {
-          if (lowerWord.includes(key.replace("_", " "))) {
+          const modifiedKey = key.replace("_", " ");
+          if (lowerWord.includes(modifiedKey)) {
             return { name: key, icon: iconImage[key] };
           }
         }
@@ -90,6 +97,19 @@ const RepBillCard = ({ bill, onClick }) => {
   };
   const statusColor = getStatusColor(bill);
 
+  const getStatusText = (bill) => {
+    if (bill.vetoed) {
+      return <span style={{ color: "red" }}>Rejected</span>;
+    } else if (bill.passed) {
+      return <span style={{ color: "green" }}>Approved</span>;
+    } else if (bill.introduced_date) {
+      return <span style={{ color: "orange" }}>Pending</span>;
+    } else {
+      return <span style={{ color: "black" }}>Unknown</span>;
+    }
+  };
+  const statusText = getStatusText(bill);
+
   return (
     <Card
       sx={{
@@ -114,16 +134,16 @@ const RepBillCard = ({ bill, onClick }) => {
           {bill.short_title}
         </CustomTypographyTwo>
         <ListWrapper>
-          <div style={{ display: "flex", marginRight: "290px" }}>
-            {" "}
+        <IconContainer>
             {icons.map((icon, index) => (
-              <ListItem key={index}>
-                <Tooltip title={icon.name} arrow>
-                  <IconButton>{icon.icon}</IconButton>
-                </Tooltip>
-              </ListItem>
+              <Tooltip key={index} title={icon.name} arrow>
+                <IconButton>{icon.icon}</IconButton>
+              </Tooltip>
             ))}
-          </div>
+          </IconContainer>
+          <ListItem>
+            <CustomListItemText>Status: {statusText}</CustomListItemText>
+          </ListItem>
           <ListItem>
             <CustomListItemText>{`Date: ${bill.latest_major_action_date}`}</CustomListItemText>
           </ListItem>

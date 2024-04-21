@@ -1,6 +1,6 @@
 import React from 'react';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
-import { faRuler, faScaleBalanced, faUserTie } from '@fortawesome/free-solid-svg-icons';
+import { faRuler, faScaleBalanced, faUserTie, faTruckFast, faBuildingFlag, faHandshake } from '@fortawesome/free-solid-svg-icons';
 import SchoolIcon from '@mui/icons-material/School';
 import EnergySavingsLeafIcon from '@mui/icons-material/EnergySavingsLeaf';
 import StoreIcon from '@mui/icons-material/Store';
@@ -24,6 +24,7 @@ import LocationCityIcon from '@mui/icons-material/LocationCity';
 import RocketIcon from '@mui/icons-material/Rocket';
 import MemoryIcon from '@mui/icons-material/Memory';
 import QuestionMarkIcon from '@mui/icons-material/QuestionMark';
+import AodIcon from '@mui/icons-material/Aod';
 
 
 const iconImage = {
@@ -34,7 +35,7 @@ const iconImage = {
     housing: <HouseIcon fontSize="large"/>,
     urban: <LocationCityIcon fontSize="large"/>,
     tech: <MemoryIcon fontSize="large"/>,
-    agricultural: <AgricultureIcon fontSize="large"/>,
+    agriculture: <AgricultureIcon fontSize="large"/>,
     environment: <ForestIcon fontSize="large"/>,
     health: <LocalHospitalIcon fontSize="large"/>,
     natural: <NatureIcon fontSize="large"/>,
@@ -53,6 +54,10 @@ const iconImage = {
     energy: <EnergySavingsLeafIcon fontSize="large"/>,
     education: <SchoolIcon fontSize="large"/>,
     space: <RocketIcon fontSize="large"/>,
+    oversight: <FontAwesomeIcon icon={faTruckFast} fontSize="30px"/>,
+    relations: <FontAwesomeIcon icon={faBuildingFlag} fontSize="30px"/>,
+    affairs: <FontAwesomeIcon icon={faHandshake} fontSize="30px"/>,
+    ways: <AodIcon fontSize="large"/>,
 }
 
 export default iconImage;
