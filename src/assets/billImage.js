@@ -24,6 +24,9 @@ import financial from "./financial.png"
 import armed from "./armed.png"
 import energy from "./energy.png"
 import education from "./education.png"
+import oversight from "./oversight.jpeg"
+import ways from "./ways.jpeg"
+
 
 const billImage = {
     unknown: unknown,
@@ -51,7 +54,9 @@ const billImage = {
     financial: financial,
     armed: armed,
     energy: energy,
-    education: education
+    education: education,
+    ways: ways,
+    oversight: oversight,
 };
 
 export default billImage;
