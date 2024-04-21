@@ -1,10 +1,11 @@
 import { useNavigate } from "react-router-dom";
 import { useState, useEffect } from "react";
 import { useAuth } from "../hooks/useAuth";
-import Loading from "../components/messages/Loading.jsx";
 import "../components/TestLobby.css";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faThumbsUp, faThumbsDown } from "@fortawesome/free-solid-svg-icons";
+import styled from "styled-components";
+import Tooltip from "@mui/material/Tooltip";
 import Link from "@mui/material/Link";
 import MyDistrict from "../components/MyDistrict.jsx";
 import TodayStatements from "../components/TodayStatements.jsx";
@@ -13,12 +14,35 @@ import TodayVoteHouse from "../components/TodayVoteHouse.jsx";
 
 const serverURL = import.meta.env.VITE_BASE_URL;
 
-const cardStyle = {
-  display: "flex",
-  justifyContent: "space-between",
-  alignItems: "center" /* Optional: Align items vertically in the center */,
-  backgroundColor: "rgba(129, 178, 154, 0.8)",
-};
+const ThumbsUpIcon = styled(FontAwesomeIcon)`
+  color: green; /* Default color */
+  font-size: 25px;
+  transition: font-size 0.3s ease; /* Smooth size transition */
+  cursor: pointer;
+
+  /* Hover effect */
+  &:hover {
+    font-size: 35px; /* Increase font size on hover */
+  }
+`;
+
+const ThumbsDownIcon = styled(FontAwesomeIcon)`
+  color: red; /* Default color */
+  font-size: 25px;
+  transition: font-size 0.3s ease; /* Smooth size transition */
+  cursor: pointer;
+
+  /* Hover effect */
+  &:hover {
+    font-size: 35px; /* Increase font size on hover */
+  }
+`;
+
+const IconContainer = styled.div`
+  display: flex;
+  justify-content: flex-start; /* Align icons to the right */
+  gap: 15px; /* Add space between icons */
+`;
 
 export default function TestLobby() {
   const user = useAuth();
@@ -31,21 +55,47 @@ export default function TestLobby() {
 
   // Placeholder data for bills
   const bills = [
-    { id: 1, title: "Bill 1", summary: "Summary of Bill 1", status: "Pending" },
+    {
+      id: 1,
+      title: "Education Reform Act",
+      summary: "A bill to reform the education system nationwide.",
+      status: "Pending",
+    },
     {
       id: 2,
-      title: "Bill 2",
-      summary: "Summary of Bill 2",
+      title: "Clean Energy Initiative",
+      summary: "A bill to promote the use of clean energy sources.",
       status: "Approved",
     },
     {
       id: 3,
-      title: "Bill 3",
-      summary: "Summary of Bill 3",
+      title: "Healthcare Access Expansion",
+      summary:
+        "A bill to improve access to healthcare services for all citizens.",
       status: "Rejected",
     },
-    { id: 4, title: "Bill 4", summary: "Summary of Bill 4", status: "Pending" },
+    {
+      id: 4,
+      title: "Infrastructure Development Plan",
+      summary: "A bill to invest in infrastructure projects nationwide.",
+      status: "Pending",
+    },
   ];
+
+  const getStatusColor = (status) => {
+    switch (status) {
+      case "Pending":
+        return <span style={{ color: "orange" }}>Pending</span>;
+      case "Approved":
+        return <span style={{ color: "green" }}>Approved</span>;
+      case "Rejected":
+        return <span style={{ color: "red" }}>Rejected</span>;
+      default:
+        return "black";
+    }
+  };
+
+
 
   useEffect(() => {
     if (!user) {
@@ -140,11 +190,23 @@ export default function TestLobby() {
             >
               <h3>{bill.title}</h3>
               <p>{bill.summary}</p>
-              <p>Status: {bill.status}</p>
-              <div className="icon-container">
-                <FontAwesomeIcon icon={faThumbsUp} className="thumbs-up" />
-                <FontAwesomeIcon icon={faThumbsDown} className="thumbs-down" />
-              </div>
+              <p>Status: {getStatusColor(bill.status)}</p>
+              <IconContainer>
+                <Tooltip title="Click to email rep to express support">
+                  <ThumbsUpIcon
+                    icon={faThumbsUp}
+                    size="lg"
+                    onClick={() => sendEmail(true)}
+                  />
+                </Tooltip>
+                <Tooltip title="Click to email rep to express opposition">
+                  <ThumbsDownIcon
+                    icon={faThumbsDown}
+                    size="lg"
+                    onClick={() => sendEmail(false)}
+                  />
+                </Tooltip>
+              </IconContainer>
             </div>
           ))}
         </div>
@@ -154,7 +216,7 @@ export default function TestLobby() {
         {preferences.statement ? <TodayStatements /> : null}
       </section>
       <section className="dash-statements">
-      <h2>Voted Bills in the House for Today</h2>
+        <h2>Voted Bills in the House for Today</h2>
         <TodayVoteHouse />
       </section>
     </div>

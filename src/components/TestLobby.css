@@ -78,17 +78,6 @@ h1, h2, h4 {
   border-left: 5px solid #e74c3c; /* Red */
 }
 
-.icon-container {
-  display: flex;
-  justify-content: flex-end;
-}
-
-.icon-container .fa-thumbs-up,
-.icon-container .fa-thumbs-down {
-  margin-left: 10px;
-  color: #888;
-}
-
 .dash-statements {
   margin-bottom: 15px;
 }
