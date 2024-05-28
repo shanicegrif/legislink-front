@@ -1,4 +1,5 @@
 import { initializeApp } from "firebase/app";
+import { getAnalytics } from "firebase/analytics";
 import {
   GoogleAuthProvider,
   signInWithPopup,
@@ -9,13 +10,13 @@ import {
 } from "firebase/auth";
 
 const firebaseConfig = {
-  apiKey: "AIzaSyD0e-4wEphpGvxUimuU8REX-21Xa1J9Vmk",
-  authDomain: "legislink-ae81b.firebaseapp.com",
-  projectId: "legislink-ae81b",
-  storageBucket: "legislink-ae81b.appspot.com",
-  messagingSenderId: "830211220810",
-  appId: "1:830211220810:web:8cad661f8d5eecccd1cdb3",
-  measurementId: "G-N7BFXH3ZH1",
+  apiKey: "AIzaSyDmtc79-yAu12vu9DbCT8JermTEVtUK2PY",
+  authDomain: "legislink-416819.firebaseapp.com",
+  projectId: "legislink-416819",
+  storageBucket: "legislink-416819.appspot.com",
+  messagingSenderId: "210498605510",
+  appId: "1:210498605510:web:f0ae593c87119a02e4a2c7",
+  measurementId: "G-DDJKZYS2EW"
 };
 
 export const app = initializeApp(firebaseConfig);
