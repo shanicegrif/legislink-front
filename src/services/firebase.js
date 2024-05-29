@@ -1,5 +1,5 @@
 import { initializeApp } from "firebase/app";
-import { getAnalytics } from "firebase/analytics";
+const GOOGLEAPI = import.meta.env.VITE_BASE_GOOGLE;
 import {
   GoogleAuthProvider,
   signInWithPopup,
@@ -10,7 +10,7 @@ import {
 } from "firebase/auth";
 
 const firebaseConfig = {
-  apiKey: "AIzaSyDmtc79-yAu12vu9DbCT8JermTEVtUK2PY",
+  apiKey: `${GOOGLEAPI}`,
   authDomain: "legislink-416819.firebaseapp.com",
   projectId: "legislink-416819",
   storageBucket: "legislink-416819.appspot.com",
