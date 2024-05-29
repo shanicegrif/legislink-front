@@ -1,9 +1,8 @@
-import React from "react";
+import React, { useState } from "react";
 import { Link } from "react-router-dom";
 import Card from "@mui/material/Card";
 import CardActions from "@mui/material/CardActions";
 import CardContent from "@mui/material/CardContent";
-import CardMedia from "@mui/material/CardMedia";
 import Button from "@mui/material/Button";
 import Typography from "@mui/material/Typography";
 import styled from "styled-components";
@@ -15,15 +14,70 @@ const CustomTypography = styled.div`
   font-size: 22px;
 `;
 
+const StyledCard = styled(Card)`
+  position: relative;
+  width: 220px;
+  height: 300px;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  overflow: hidden;
+  border-radius: 10px;
+  transition: transform 0.6s, box-shadow 0.6s;
+
+  &:hover {
+    transform: perspective(800px) rotateY(15deg) rotateX(15deg);
+    .card-info {
+      transform: translateY(0);
+      opacity: 1;
+    }
+    .card-bg {
+      opacity: 0.3;
+    }
+  }
+`;
+
+const CardBackground = styled.div`
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background-repeat: no-repeat;
+  background-position: center;
+  background-size: cover;
+  transition: transform 0.6s, opacity 0.6s;
+  pointer-events: none;
+`;
+
+const CardInfo = styled.div`
+  padding: 20px;
+  position: absolute;
+  bottom: 0;
+  color: #000;
+  background: rgba(255, 255, 255, 0.9);
+  width: 100%;
+  transform: translateY(100%);
+  opacity: 0;
+  transition: transform 0.6s, opacity 0.6s;
+`;
+
 const SenateCard = ({ representative }) => {
+  const [mouseX, setMouseX] = useState(0);
+  const [mouseY, setMouseY] = useState(0);
+
+  const handleMouseMove = (e) => {
+    const rect = e.target.getBoundingClientRect();
+    setMouseX(e.clientX - rect.left - rect.width / 2);
+    setMouseY(e.clientY - rect.top - rect.height / 2);
+  };
+
   return (
     <div className="card-item">
-      <Card
+      <StyledCard
         sx={{
-          minWidth: 350,
-          maxWidth: 250,
-          display: "flex",
-          flexDirection: "row",
+          minWidth: 220,
+          maxWidth: 320,
           boxShadow:
             representative.party === "R"
               ? "4px 4px 12px red"
@@ -31,45 +85,44 @@ const SenateCard = ({ representative }) => {
               ? "4px 4px 12px #2366c8"
               : "4px 4px 12px grey",
         }}
+        onMouseMove={handleMouseMove}
       >
-        <CardMedia
-          sx={{ width: 250, height: 200, maxWidth: 150 }}
-          image={`https://www.congress.gov/img/member/${representative.id.toLowerCase()}_200.jpg`}
-          title="senate image"
+        <CardBackground
+          className="card-bg"
+          style={{
+            backgroundImage: `url(https://www.congress.gov/img/member/${representative.id.toLowerCase()}_200.jpg)`,
+            transform: `translateX(${mouseX / -40}px) translateY(${mouseY / -40}px)`,
+          }}
         />
-        <div className="card-content">
-        <CardContent
+        <CardInfo className="card-info">
+          <CardContent
             sx={{
               display: "flex",
               flexDirection: "column",
               justifyContent: "space-evenly",
               minHeight: 150,
-              padding: 1, // Remove default padding
+              padding: 1,
               paddingLeft: "10px",
             }}
           >
             <CustomTypography>
               {representative.first_name} {representative.last_name}
             </CustomTypography>
-            <Typography variant="body2">
-              Party: {representative.party}
-            </Typography>
-            <Typography variant="body2">
-              State: {representative.state}
-            </Typography>
+            <Typography variant="body2">Party: {representative.party}</Typography>
+            <Typography variant="body2">State: {representative.state}</Typography>
           </CardContent>
-        <CardActions>
-          <Button size="small">
-            <Link
-              to={`/representatives/${representative.id}`}
-              state={{ representative: representative }}
-            >
-              Learn More
-            </Link>
-          </Button>
-        </CardActions>
-        </div>
-      </Card>
+          <CardActions>
+            <Button size="small">
+              <Link
+                to={`/representatives/${representative.id}`}
+                state={{ representative: representative }}
+              >
+                Learn More
+              </Link>
+            </Button>
+          </CardActions>
+        </CardInfo>
+      </StyledCard>
     </div>
   );
 };
