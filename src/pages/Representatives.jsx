@@ -1,8 +1,8 @@
 import axios from "axios";
 import { useLayoutEffect, useState } from "react";
-import { fetchForHouse, fetchForSenate } from "../api/axios";
+import { fetchForHouse, fetchForSenate } from "../api/axios.js";
 import { useLocation } from "react-router-dom";
-import RepresentativeCard from "../components/representatives/RepresentativeCard";
+import RepresentativeCard from "../components/representatives/RepresentativeCard.jsx";
 import SenateCard from "../components/representatives/SenateCard.jsx";
 import Loading from "../components/messages/Loading.jsx";
 import Error from "../components/messages/Error.jsx";

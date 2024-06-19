@@ -12,20 +12,19 @@ export const AuthProvider = (props) => {
   const [user, setUser] = useState(null);
 
   useEffect(() => {
-    auth.onAuthStateChanged(async (user) => {
+    const unsubscribe = auth.onAuthStateChanged(async (user) => {
       if (user) {
         const { email, displayName, photoURL, uid } = user;
         setUser({ email, displayName, photoURL, uid });
 
-        /** send user info to our back-end */
-        postNewUser(user);
+        // Example: postNewUser(user); // Uncomment if needed
 
-        /** move to dashboard */
-        nav("/dashboard");
       } else {
         setUser(null);
       }
     });
+
+    return () => unsubscribe();
   }, []);
   
   return (

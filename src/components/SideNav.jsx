@@ -49,16 +49,16 @@ const SideNav = () => {
           <div className="header__app-name">LegisLink</div>
         )}
       </div>
-      <header class="header">
+      <header className="header">
         <div className="header__username">Hi, {user.displayName}</div>
         <img src={user.photoURL} alt="user-image" />
       </header>
-      <aside class={`sidenav ${isSidebarOpen ? "active" : ""}`}>
-        <div class="sidenav__close-icon" onClick={toggleSidebar}>
+      <aside className={`sidenav ${isSidebarOpen ? "active" : ""}`}>
+        <div className="sidenav__close-icon" onClick={toggleSidebar}>
           {isSidebarOpen ? (
             <CloseIcon fontSize="large" />
           ) : (
-            <i class="fas fa-times sidenav__brand-close"></i>
+            <i className="fas fa-times sidenav__brand-close"></i>
           )}
         </div>
         <div className="brand-logo">

@@ -1,9 +1,9 @@
 import { Link } from "react-router-dom";
 import { useState } from "react";
 import brandImg from "../assets/brand-img.png";
-import "./SampleNav.css";
+import "./HomeNav.css";
 
-const SampleNav = () => {
+const HomeNav = () => {
   const [sidebarOpen, setSidebarOpen] = useState(false);
   const toggleSidebar = () => {
     setSidebarOpen(!sidebarOpen);
@@ -45,4 +45,4 @@ const SampleNav = () => {
   );
 };
 
-export default SampleNav;
+export default HomeNav;

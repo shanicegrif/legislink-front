@@ -1,5 +1,5 @@
 import { useAuth } from "../hooks/useAuth";
-import { useLayoutEffect, useState } from "react";
+import { useLayoutEffect, useState, useEffect } from "react";
 import Chip from "@mui/material/Chip";
 import Stack from "@mui/material/Stack";
 import TextField from "@mui/material/TextField";
@@ -29,16 +29,31 @@ const Settings = () => {
 
   const [newInterest, setNewInterest] = useState("");
 
-  useLayoutEffect(() => {
-    axios.get(`${serverURL}/users/${user.uid}`).then(res => setUserInfo({street:res.data.data.payload.user_street, city:res.data.data.payload.user_city, state:res.data.data.payload.user_state, zip:res.data.data.payload.user_zip}));
-    axios.get(`${serverURL}/users_interests/${user.uid}`).then(res => res.data.data.payload.forEach(element => setInterests([...interests, element.users_interests_keywords])));
-  },[]);
+  useEffect(() => {
+    // Ensure user is defined before fetching data
+    if (user) {
+      axios.get(`${serverURL}/users/${user.uid}`).then(res =>
+        setUserInfo({
+          street: res.data.data.payload.user_street,
+          city: res.data.data.payload.user_city,
+          state: res.data.data.payload.user_state,
+          zip: res.data.data.payload.user_zip
+        })
+      );
+
+      axios.get(`${serverURL}/users_interests/${user.uid}`).then(res =>
+        res.data.data.payload.forEach(element =>
+          setInterests([...interests, element.users_interests_keywords])
+        )
+      );
+    }
+  }, [user]); // Include user as dependency to react to changes
 
   const handleAddInterest = () => {
     if (newInterest.trim() !== "") {
-      if(!interests.find((elem) => elem.toLowerCase() == newInterest.trim().toLowerCase())){
+      if (!interests.find(elem => elem.toLowerCase() === newInterest.trim().toLowerCase())) {
         setInterests([...interests, newInterest.trim()]);
-        axios.post(`${serverURL}/users_interests/${user.uid}`, {newInterest:newInterest});
+        axios.post(`${serverURL}/users_interests/${user.uid}`, { newInterest: newInterest });
       }
       setNewInterest("");
     }
@@ -46,8 +61,7 @@ const Settings = () => {
 
   const handleDelete = (interestToDelete) => {
     axios.delete(`${serverURL}/users_interests/${user.uid}/${interestToDelete}`);
-    setInterests(interests.filter((interest) => interest !== interestToDelete));
-
+    setInterests(interests.filter(interest => interest !== interestToDelete));
   };
 
   const handleAddressSubmit = (submittedAddress) => {
@@ -59,6 +73,7 @@ const Settings = () => {
   if (!user) {
     return <Loading />;
   }
+
 
   return (
     <div className="settings-wrapper">
