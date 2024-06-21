@@ -64,7 +64,7 @@ const SideNav = () => {
         <div className="brand-logo">
           <img src={brandLogo} alt="brand logo" />
         </div>
-        <ul class="sidenav__list" onClick={closeSidebar}>
+        <ul className="sidenav__list" onClick={closeSidebar}>
           <Link to={`/dashboard`}>
             <li
               className={`sidenav__list-item ${
