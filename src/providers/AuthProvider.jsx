@@ -3,12 +3,10 @@
 import { useEffect, useState, createContext } from "react";
 import { auth } from "../services/firebase";
 import { postNewUser } from "../api/axios";
-import { useNavigate } from "react-router-dom";
 
 export const AuthContext = createContext(null);
 
 export const AuthProvider = (props) => {
-  const nav = useNavigate();
   const [user, setUser] = useState(null);
 
   useEffect(() => {
