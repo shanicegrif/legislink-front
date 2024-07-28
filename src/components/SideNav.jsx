@@ -8,7 +8,7 @@ import CloseIcon from "@mui/icons-material/Close";
 import MenuIcon from "@mui/icons-material/Menu";
 import SettingsIcon from "@mui/icons-material/Settings";
 import LogoutIcon from "@mui/icons-material/Logout";
-import DashboardIcon from '@mui/icons-material/Dashboard';
+import DashboardIcon from "@mui/icons-material/Dashboard";
 import HelpIcon from "@mui/icons-material/Help";
 import PersonIcon from "@mui/icons-material/Person";
 import ReceiptLongIcon from "@mui/icons-material/ReceiptLong";
@@ -19,13 +19,6 @@ const SideNav = () => {
   const navigate = useNavigate();
   const user = useAuth();
   const location = useLocation();
-
-  useEffect(() => {
-    if (!user) {
-      alert("not logged in - redirecting");
-      navigate("/");
-    }
-  }, [user, navigate]);
 
   const handleLogout = () => {
     logOut().then(() => {

@@ -12,6 +12,7 @@ import About from "./pages/About.jsx";
 import RepresentativeDetail from "./pages/RepresentativeDetail.jsx";
 import HelpCenter from "./pages/HelpCenter.jsx";
 import SignIn from "./pages/SignIn.jsx";
+import ProtectedRoute from "./components/ProtectedRoute"; // import the ProtectedRoute component
 
 function App() {
   return (
@@ -24,13 +25,57 @@ function App() {
               <Routes>
                 <Route path="/" element={<Home />} />
                 <Route path="/about" element={<About />} />
-                <Route path="/sign-in" element={<SignIn/>} />
-                <Route path="/dashboard" element={<TestLobby />} />
-                <Route path="/bills" element={<Bills />} />
-                <Route path="/representatives" element={<Representatives />} />
-                <Route path="/representatives/:bioguideID" element={<RepresentativeDetail />} />
-                <Route path="/settings" element={<Settings />} />
-                <Route path="/help-center" element={<HelpCenter/>} />
+                <Route path="/sign-in" element={<SignIn />} />
+
+                {/* Protected Routes */}
+                <Route
+                  path="/dashboard"
+                  element={
+                    <ProtectedRoute>
+                      <TestLobby />
+                    </ProtectedRoute>
+                  }
+                />
+                <Route
+                  path="/bills"
+                  element={
+                    <ProtectedRoute>
+                      <Bills />
+                    </ProtectedRoute>
+                  }
+                />
+                <Route
+                  path="/representatives"
+                  element={
+                    <ProtectedRoute>
+                      <Representatives />
+                    </ProtectedRoute>
+                  }
+                />
+                <Route
+                  path="/representatives/:bioguideID"
+                  element={
+                    <ProtectedRoute>
+                      <RepresentativeDetail />
+                    </ProtectedRoute>
+                  }
+                />
+                <Route
+                  path="/settings"
+                  element={
+                    <ProtectedRoute>
+                      <Settings />
+                    </ProtectedRoute>
+                  }
+                />
+                <Route
+                  path="/help-center"
+                  element={
+                    <ProtectedRoute>
+                      <HelpCenter />
+                    </ProtectedRoute>
+                  }
+                />
                 <Route path="*" element={<FoF />} />
               </Routes>
             </div>
