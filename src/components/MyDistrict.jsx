@@ -13,7 +13,7 @@ import Typography from "@mui/material/Typography";
 /** etc */
 import { Link } from "react-router-dom";
 import axios from "axios";
-import { fetchHouseNY } from "../api/axios";
+// import { fetchHouseNY } from "../api/axios";
 import { useAuth } from "../hooks/useAuth";
 
 /** environmental variable */

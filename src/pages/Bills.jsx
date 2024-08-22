@@ -6,7 +6,7 @@ import MenuItem from "@mui/material/MenuItem";
 import Box from "@mui/material/Box";
 import InputLabel from '@mui/material/InputLabel';
 import FormControl from '@mui/material/FormControl';
-import { fetchForBills } from "../api/axios";
+// import { fetchForBills } from "../api/axios";
 import BillsCard from "../components/bills/billsCard";
 import Error from "../components/messages/Error";
 import Loading from "../components/messages/Loading";
@@ -24,21 +24,21 @@ export default function Bills() {
   const [selectedBill, setSelectedBill] = useState(null);
   const [emailSent, setEmailSent] = useState(false);
 
-  const fetchBillsByKeyword = async () => {
-    setLoading(true);
-    setError(null);
-    try {
-      const res = await fetchForBills(keyword, pageNumber.toString());
-      if (res.data && res.data.results && res.data.results.length > 0) {
-        setBills(res.data.results[0].bills);
-      } else {
-        setBills([]);
-      }
-    } catch (error) {
-      setError(error);
-    }
-    setLoading(false);
-  };
+  // const fetchBillsByKeyword = async () => {
+  //   setLoading(true);
+  //   setError(null);
+  //   try {
+  //     const res = await fetchForBills(keyword, pageNumber.toString());
+  //     if (res.data && res.data.results && res.data.results.length > 0) {
+  //       setBills(res.data.results[0].bills);
+  //     } else {
+  //       setBills([]);
+  //     }
+  //   } catch (error) {
+  //     setError(error);
+  //   }
+  //   setLoading(false);
+  // };
 
   const handleSearch = () => {
     setSelectedOption("");
@@ -65,9 +65,9 @@ export default function Bills() {
     setSelectedBill(bill);
   };
 
-  useEffect(() => {
-    fetchBillsByKeyword();
-  }, [selectedOption, pageNumber]);
+  // useEffect(() => {
+  //   fetchBillsByKeyword();
+  // }, [selectedOption, pageNumber]);
 
   return (
     <div className="bill-container">

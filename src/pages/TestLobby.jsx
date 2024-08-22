@@ -1,3 +1,4 @@
+import axios from "axios";
 import { useNavigate } from "react-router-dom";
 import { useState, useEffect } from "react";
 import { useAuth } from "../hooks/useAuth";
@@ -7,9 +8,8 @@ import { faThumbsUp, faThumbsDown } from "@fortawesome/free-solid-svg-icons";
 import styled from "styled-components";
 import Tooltip from "@mui/material/Tooltip";
 import Link from "@mui/material/Link";
-import MyDistrict from "../components/MyDistrict.jsx";
+// import MyDistrict from "../components/MyDistrict.jsx";
 import TodayStatements from "../components/TodayStatements.jsx";
-import axios from "axios";
 import TodayVoteHouse from "../components/TodayVoteHouse.jsx";
 
 const serverURL = import.meta.env.VITE_BASE_URL;
@@ -117,6 +117,17 @@ export default function TestLobby() {
     }
   }, [user, nav]);
 
+  useEffect(() => {
+    fetch("https://api.congress.gov/v3/congress?api_key=bMrPLpVNlE9mSnlpwb5b1wLfB6qPoSBL6YSs5AeW")
+      .then((res) => res.json())
+      .then((data) => {
+        console.log(data);
+      })
+      .catch((error) => {
+        console.error("Error fetching data:", error);
+      });
+  }, []);
+
   return (
     <div className="dashboard">
       <h1>Welcome to Your Dashboard</h1>
@@ -124,7 +135,7 @@ export default function TestLobby() {
         <div className="dash-back">
           <div className="district-member-info">
             <h4>Your District Rep.</h4>
-            {preferences.myDistrict ? <MyDistrict /> : null}
+            {/* {preferences.myDistrict ? <MyDistrict /> : null} */}
           </div>
         </div>
         <div className="dash-back">
