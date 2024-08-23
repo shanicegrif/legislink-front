@@ -89,10 +89,10 @@ export default function RepresentativeCard({ representative }) {
       >
         <CardBackground
           className="card-bg"
-          // style={{
-          //   backgroundImage: `url(https://www.congress.gov/img/member/${representative.id.toLowerCase()}_200.jpg)`,
-          //   transform: `translateX(${mouseX / -40}px) translateY(${mouseY / -40}px)`,
-          // }}
+          style={{
+            backgroundImage: `url(${representative.depiction.imageUrl})`,
+            transform: `translateX(${mouseX / -40}px) translateY(${mouseY / -40}px)`,
+          }}
         />
         <CardInfo className="card-info">
           <CardContent
