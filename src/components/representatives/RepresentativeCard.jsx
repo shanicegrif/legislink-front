@@ -79,9 +79,9 @@ export default function RepresentativeCard({ representative }) {
           minWidth: 220,
           maxWidth: 320,
           boxShadow:
-            representative.party === "R"
+            representative.partyName === "Republican"
               ? "4px 4px 12px red"
-              : representative.party === "D"
+              : representative.partyName === "Democratic"
               ? "4px 4px 12px #2366c8"
               : "4px 4px 12px grey",
         }}
