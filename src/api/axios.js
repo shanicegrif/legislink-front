@@ -1,7 +1,7 @@
 import axios from "axios";
 const serverURL = import.meta.env.VITE_BASE_URL;
 const congressApiKey = import.meta.env.VITE_BASE_CONGRESS_API_KEY;
-const baseUrl = `https://api.congress.gov/v3/member/congress/118/NY?format=json&api_key=${congressApiKey}`;
+const baseUrl = `https://api.congress.gov/v3/member/congress/118/NY?api_key=${congressApiKey}&format=json&limit=40`;
 const civicAPIKey = import.meta.env.VITE_BASE_CIVIC_KEY;
 /**
  * ToDo : need to check routers.

@@ -21,7 +21,7 @@ export default function Representatives() {
         console.log(members)
         const nyMembers = members.filter((member) => member.state === "New York");
         const house = nyMembers.filter((member) => member.terms.item[0].chamber.includes("House"));
-        const senate = nyMembers.filter((member) => member.terms.item[0].chamber.includes("Senate"));
+        const senate = nyMembers.filter((member) => !member.district);
 
         setHouseMembers(house);
         setSenateMembers(senate);

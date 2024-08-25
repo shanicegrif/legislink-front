@@ -79,20 +79,20 @@ const SenateCard = ({ representative }) => {
           minWidth: 220,
           maxWidth: 320,
           boxShadow:
-            representative.party === "R"
-              ? "4px 4px 12px red"
-              : representative.party === "D"
-              ? "4px 4px 12px #2366c8"
-              : "4px 4px 12px grey",
+          representative.partyName === "Republican"
+          ? "4px 4px 12px red"
+          : representative.partyName === "Democratic"
+          ? "4px 4px 12px #2366c8"
+          : "4px 4px 12px grey",
         }}
         onMouseMove={handleMouseMove}
       >
         <CardBackground
           className="card-bg"
-          // style={{
-          //   backgroundImage: `url(https://www.congress.gov/img/member/${representative.id.toLowerCase()}_200.jpg)`,
-          //   transform: `translateX(${mouseX / -40}px) translateY(${mouseY / -40}px)`,
-          // }}
+          style={{
+            backgroundImage: `url(${representative.depiction.imageUrl})`,
+            transform: `translateX(${mouseX / -40}px) translateY(${mouseY / -40}px)`,
+          }}
         />
         <CardInfo className="card-info">
           <CardContent
@@ -106,9 +106,9 @@ const SenateCard = ({ representative }) => {
             }}
           >
             <CustomTypography>
-              {representative.first_name} {representative.last_name}
+            {representative.name}
             </CustomTypography>
-            <Typography variant="body2">Party: {representative.party}</Typography>
+            <Typography variant="body2">Party: {representative.partyName}</Typography>
             <Typography variant="body2">State: {representative.state}</Typography>
           </CardContent>
           <CardActions>
