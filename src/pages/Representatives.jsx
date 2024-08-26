@@ -1,4 +1,4 @@
-import { useLayoutEffect, useState } from "react";
+import { useEffect, useState } from "react";
 import { getAllMembers } from "../api/axios.js";
 import RepresentativeCard from "../components/representatives/RepresentativeCard.jsx";
 import SenateCard from "../components/representatives/SenateCard.jsx";
@@ -13,14 +13,14 @@ export default function Representatives() {
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState(null);
 
-  useLayoutEffect(() => {
+  useEffect(() => {
     setLoading(true);
 
     getAllMembers()
       .then((members) => {
         console.log(members)
         const nyMembers = members.filter((member) => member.state === "New York");
-        const house = nyMembers.filter((member) => member.terms.item[0].chamber.includes("House"));
+        const house = nyMembers.filter((member) => member.district).sort((a,b) => a.district - b.district);
         const senate = nyMembers.filter((member) => !member.district);
 
         setHouseMembers(house);
