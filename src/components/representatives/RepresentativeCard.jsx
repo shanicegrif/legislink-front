@@ -91,7 +91,7 @@ export default function RepresentativeCard({ representative }) {
           className="card-bg"
           style={{
             backgroundImage: `url(${representative.depiction.imageUrl})`,
-            transform: `translateX(${mouseX / -40}px) translateY(${mouseY / -40}px)`,
+            transform: `translateX(${mouseX / -270}px) translateY(${mouseY / -270}px)`,
           }}
         />
         <CardInfo className="card-info">
