@@ -52,8 +52,9 @@ export default function Representatives() {
       <h2>New York House of Representatives</h2>
       <div className="rep-container" style={{ overflowY: 'auto', maxHeight: 'calc(100vh - 150px)', paddingTop: '8px', paddingBottom: '8px' }}>
         {houseMembers.map((representative) => (
-          <RepresentativeCard key={representative.
-            bioguideId} representative={representative} />
+          <RepresentativeCard 
+          key={representative.bioguideId}
+          representative={representative} />
         ))}
       </div>
     </div>

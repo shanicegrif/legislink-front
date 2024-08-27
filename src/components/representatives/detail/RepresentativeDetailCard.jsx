@@ -18,6 +18,7 @@ const CustomTypographyTwo = styled.div`
 `;
 
 export default function RepresentativeDetailCard({ representative }) {
+  console.log(representative)
   return (
     <div className="detail-rep-card">
       <div className="card-item">
@@ -31,7 +32,7 @@ export default function RepresentativeDetailCard({ representative }) {
         >
           <CardMedia
             sx={{ width: 250, height: 200, maxWidth: 150 }}
-            image={`https://www.congress.gov/img/member/${representative.id.toLowerCase()}_200.jpg`}
+            image={`${representative.depiction.imageUrl}`}
             title="senate image"
           />
           <div className="card-content">
@@ -46,20 +47,17 @@ export default function RepresentativeDetailCard({ representative }) {
               }}
             >
               <CustomTypography>
-                {representative.first_name} {representative.last_name}
+              {representative.name}
               </CustomTypography>
               <CustomTypographyTwo variant="body2" style={{ marginBottom: "8px" }}>
-                Party: {representative.party}
+                Party: {representative.partyName}
               </CustomTypographyTwo>
               <CustomTypographyTwo variant="body2" style={{ marginBottom: "8px" }}>
                 State: {representative.state}
               </CustomTypographyTwo>
-              <CustomTypographyTwo variant="body2" style={{ marginBottom: "8px" }}>
+              {/* <CustomTypographyTwo variant="body2" style={{ marginBottom: "8px" }}>
                 Homepage: {representative.url}
-              </CustomTypographyTwo>
-              <CustomTypographyTwo variant="body2">
-                Phone: {representative.phone}
-              </CustomTypographyTwo>
+              </CustomTypographyTwo> */}
             </CardContent>
           </div>
         </Card>

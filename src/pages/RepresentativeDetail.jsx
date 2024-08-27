@@ -1,15 +1,17 @@
 import { useLocation } from "react-router-dom";
-import RepresntativeBill from "../components/representatives/detail/RepresentativeBill";
+import RepresentativeBill from "../components/representatives/detail/RepresentativeBill";
 import RepresentativeDetailCard from "../components/representatives/detail/RepresentativeDetailCard";
 
-export default function RepresentativeDetail({location}){
+export default function RepresentativeDetail() {
     const { state } = useLocation();
-    const { representative } = state;
-    
-    return(
-        <div className="rep-detail-container">
-            <RepresentativeDetailCard representative={representative}/>
-            <RepresntativeBill />
-        </div>
-    )
+    const { representative } = state || {};  // Added safeguard
+    console.log("state", state);
+    console.log("rep", representative?.bioguideId);
+
+  return (
+    <div className="rep-detail-container">
+      <RepresentativeDetailCard representative={representative} />
+      <RepresentativeBill bioguideID={representative?.bioguideId} />
+    </div>
+  );
 }

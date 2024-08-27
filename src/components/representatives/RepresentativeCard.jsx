@@ -59,7 +59,7 @@ const CardInfo = styled.div`
   width: 100%;
   transform: translateY(100%);
   opacity: 0;
-  transition: transform 0.6s,;
+  transition: transform 0.6s;
 `;
 
 export default function RepresentativeCard({ representative }) {
@@ -91,7 +91,9 @@ export default function RepresentativeCard({ representative }) {
           className="card-bg"
           style={{
             backgroundImage: `url(${representative.depiction.imageUrl})`,
-            transform: `translateX(${mouseX / -270}px) translateY(${mouseY / -270}px)`,
+            transform: `translateX(${mouseX / -270}px) translateY(${
+              mouseY / -270
+            }px)`,
           }}
         />
         <CardInfo className="card-info">
@@ -105,16 +107,18 @@ export default function RepresentativeCard({ representative }) {
               paddingLeft: "10px",
             }}
           >
-            <CustomTypography>
-              {representative.name}
-            </CustomTypography>
-            <Typography variant="body2">Party: {representative.partyName}</Typography>
-            <Typography variant="body2">District: {representative.district}</Typography>
+            <CustomTypography>{representative.name}</CustomTypography>
+            <Typography variant="body2">
+              Party: {representative.partyName}
+            </Typography>
+            <Typography variant="body2">
+              District: {representative.district}
+            </Typography>
           </CardContent>
           <CardActions>
             <Button size="small">
               <Link
-                to={`/representatives/${representative.id}`}
+                to={`/representatives/${representative.bioguideId}`}
                 state={{ representative: representative }}
               >
                 Learn More
