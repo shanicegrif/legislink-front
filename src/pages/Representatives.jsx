@@ -46,7 +46,8 @@ export default function Representatives() {
       <h2>New York Senate</h2>
       <div className="rep-container">
         {senateMembers.map((representative) => (
-          <SenateCard key={representative.bioguideId} representative={representative} />
+          <SenateCard key={representative.bioguideId} 
+          representative={representative} />
         ))}
       </div>
       <h2>New York House of Representatives</h2>

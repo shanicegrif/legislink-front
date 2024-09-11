@@ -63,6 +63,7 @@ const CardInfo = styled.div`
 `;
 
 export default function RepresentativeCard({ representative }) {
+  const {bioguideId} = representative;
   const [mouseX, setMouseX] = useState(0);
   const [mouseY, setMouseY] = useState(0);
 
@@ -118,7 +119,7 @@ export default function RepresentativeCard({ representative }) {
           <CardActions>
             <Button size="small">
               <Link
-                to={`/representatives/${representative.bioguideId}`}
+                to={`/representatives/${bioguideId}`}
                 state={{ representative: representative }}
               >
                 Learn More

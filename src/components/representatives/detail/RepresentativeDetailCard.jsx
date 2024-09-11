@@ -1,10 +1,9 @@
-import { useLocation, useParams } from "react-router-dom";
 import Card from "@mui/material/Card";
 import CardContent from "@mui/material/CardContent";
 import CardMedia from "@mui/material/CardMedia";
 import Typography from "@mui/material/Typography";
-import "./RepDetailCard.css";
 import styled from "styled-components";
+import "./RepDetailCard.css";
 
 const CustomTypography = styled.div`
   font-family: "Libre Baskerville", serif;
@@ -18,7 +17,6 @@ const CustomTypographyTwo = styled.div`
 `;
 
 export default function RepresentativeDetailCard({ representative }) {
-  console.log(representative)
   return (
     <div className="detail-rep-card">
       <div className="card-item">
@@ -32,8 +30,8 @@ export default function RepresentativeDetailCard({ representative }) {
         >
           <CardMedia
             sx={{ width: 250, height: 200, maxWidth: 150 }}
-            image={`${representative.depiction.imageUrl}`}
-            title="senate image"
+            image={representative.depiction.imageUrl}
+            title="Representative image"
           />
           <div className="card-content">
             <CardContent
@@ -46,18 +44,13 @@ export default function RepresentativeDetailCard({ representative }) {
                 width: "100%", // Allow content to stretch to full width
               }}
             >
-              <CustomTypography>
-              {representative.name}
-              </CustomTypography>
+              <CustomTypography>{representative.name}</CustomTypography>
               <CustomTypographyTwo variant="body2" style={{ marginBottom: "8px" }}>
                 Party: {representative.partyName}
               </CustomTypographyTwo>
               <CustomTypographyTwo variant="body2" style={{ marginBottom: "8px" }}>
                 State: {representative.state}
               </CustomTypographyTwo>
-              {/* <CustomTypographyTwo variant="body2" style={{ marginBottom: "8px" }}>
-                Homepage: {representative.url}
-              </CustomTypographyTwo> */}
             </CardContent>
           </div>
         </Card>

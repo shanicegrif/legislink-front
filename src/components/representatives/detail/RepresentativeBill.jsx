@@ -20,22 +20,23 @@ export default function RepresentativeBill({ bioguideID }) {
 
   useEffect(() => {
     setLoading(true);
+  
     axios
       .get(
         `https://api.congress.gov/v3/member/${bioguideID}/sponsored-legislation?api_key=${congressKey}&format=json`
       )
       .then((res) => {
-        console.log("rep bills",res.data.sponsoredLegislation);
-        const fetchedBills = res.data.sponsoredLegislation.filter(
-          (elem) => elem.congress === "118"
-        );
-        setBills(fetchedBills);
-        setLoading(false);
+        console.log("rep bills", res.data.sponsoredLegislation);
+        const fetchedBills = res.data.sponsoredLegislation;
+  
         if (fetchedBills.length === 0) {
-          setError("No bills found for this representative.");
+          setError("No bills found for this representative in the 118th Congress.");
         } else {
+          setBills(fetchedBills);
           setError(null);
         }
+  
+        setLoading(false);
       })
       .catch((error) => {
         console.error("Error fetching bills:", error);
@@ -43,7 +44,7 @@ export default function RepresentativeBill({ bioguideID }) {
         setError("An error occurred while fetching bills.");
       });
   }, [bioguideID]);
-
+  
   const handleBillClick = (bill) => {
     setEmailSent(false);
     setSelectedBill(bill);

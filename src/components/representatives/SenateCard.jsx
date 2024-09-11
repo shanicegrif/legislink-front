@@ -63,6 +63,7 @@ const CardInfo = styled.div`
 `;
 
 const SenateCard = ({ representative }) => {
+  const {bioguideId} = representative
   const [mouseX, setMouseX] = useState(0);
   const [mouseY, setMouseY] = useState(0);
 
@@ -114,7 +115,7 @@ const SenateCard = ({ representative }) => {
           <CardActions>
             <Button size="small">
               <Link
-                to={`/representatives/${representative.id}`}
+                to={`/representatives/${bioguideId}`}
                 state={{ representative: representative }}
               >
                 Learn More

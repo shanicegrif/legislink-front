@@ -1,4 +1,4 @@
-import billImage from "../../assets/billImage";
+import React from "react";
 import Card from "@mui/material/Card";
 import CardMedia from "@mui/material/CardMedia";
 import CardContent from "@mui/material/CardContent";
@@ -7,7 +7,8 @@ import ListItemText from "@mui/material/ListItemText";
 import styled from "styled-components";
 import Tooltip from "@mui/material/Tooltip";
 import IconButton from "@mui/material/IconButton";
-import iconImage from "../Icons";
+import billImage from "../../assets/billImage";
+import iconImage from "../Icons"; // Ensure this path is correct
 
 const CustomTypography = styled.div`
   font-family: "Merriweather", serif;
@@ -19,12 +20,11 @@ const CustomTypography = styled.div`
 const CustomTypographyTwo = styled.div`
   font-family: "Merriweather", serif;
   font-weight: 400;
-  font-style: normal;
   font-size: 15px;
 `;
 
 const ListWrapper = styled.div`
-  margin-top: 20px; // Align the list items to the bottom of the card
+  margin-top: 20px;
   margin-bottom: -25px;
   margin-left: -20px;
 `;
@@ -32,26 +32,26 @@ const ListWrapper = styled.div`
 const CustomListItemText = styled.div`
   font-family: "Merriweather", serif;
   font-weight: 400;
-  font-style: normal;
   font-size: 13px;
 `;
 
 const IconContainer = styled.div`
   display: flex;
-  flex-wrap: wrap; /* Allow icons to wrap to the next line */
-  gap: 10px; /* Add space between icons */
+  flex-wrap: wrap;
+  gap: 10px;
 `;
 
 const RepBillCard = ({ bill, onClick }) => {
-  let majorAction = bill.latest_major_action.split("Committee on").pop();
+  // Using bill.latestAction.text instead of latest_major_action
+  const majorAction = bill.latestAction?.text || "No recent action";
   const maxTextLength = 50;
 
   const truncatedMajorAction =
-    majorAction && majorAction.length > maxTextLength
+    majorAction.length > maxTextLength
       ? majorAction.slice(0, maxTextLength) + "..."
       : majorAction;
 
-  const foundActionImage = (majorAction) => {
+  const foundActionImage = () => {
     if (majorAction) {
       const lowerMajorAction = majorAction.toLowerCase();
       for (const key of Object.keys(billImage)) {
@@ -63,7 +63,7 @@ const RepBillCard = ({ bill, onClick }) => {
     return billImage.unknown;
   };
 
-  const foundActionIcon = (majorAction) => {
+  const foundActionIcon = () => {
     if (majorAction) {
       const words = majorAction.split(/\s+/);
       const icons = words.map((word) => {
@@ -75,40 +75,38 @@ const RepBillCard = ({ bill, onClick }) => {
           }
         }
       });
-      const filteredIcons = icons.filter((icon) => icon !== undefined);
-      return filteredIcons.length
-        ? filteredIcons
-        : [{ name: "unknown", icon: iconImage.unknown }]; // Return unknown icon if no matches
+      return icons.filter((icon) => icon !== undefined);
     }
-    return [{ name: "unknown", icon: iconImage.unknown }]; // Return unknown icon if majorAction is falsy
+    return [{ name: "unknown", icon: iconImage.unknown }];
   };
-  const icons = foundActionIcon(majorAction);
 
-  const getStatusColor = (bill) => {
+  const icons = foundActionIcon();
+
+  const getStatusColor = () => {
     if (bill.vetoed) {
       return "red";
     } else if (bill.passed) {
       return "green";
-    } else if (bill.introduced_date) {
+    } else if (bill.introducedDate) {
       return "orange";
     } else {
-      return "white"; // Default color
+      return "white";
     }
   };
-  const statusColor = getStatusColor(bill);
+  const statusColor = getStatusColor();
 
-  const getStatusText = (bill) => {
+  const getStatusText = () => {
     if (bill.vetoed) {
       return <span style={{ color: "red" }}>Rejected</span>;
     } else if (bill.passed) {
       return <span style={{ color: "green" }}>Approved</span>;
-    } else if (bill.introduced_date) {
+    } else if (bill.introducedDate) {
       return <span style={{ color: "orange" }}>Pending</span>;
     } else {
       return <span style={{ color: "black" }}>Unknown</span>;
     }
   };
-  const statusText = getStatusText(bill);
+  const statusText = getStatusText();
 
   return (
     <Card
@@ -127,14 +125,14 @@ const RepBillCard = ({ bill, onClick }) => {
       />
       <CardContent sx={{ borderLeft: `5px solid ${statusColor}` }}>
         <CustomTypography variant="body2">
-          Subject: {majorAction}
+          Subject: {truncatedMajorAction}
         </CustomTypography>
         <br />
         <CustomTypographyTwo variant="h6" component="div">
-          {bill.short_title}
+          {bill.title}
         </CustomTypographyTwo>
         <ListWrapper>
-        <IconContainer>
+          <IconContainer>
             {icons.map((icon, index) => (
               <Tooltip key={index} title={icon.name} arrow>
                 <IconButton>{icon.icon}</IconButton>
@@ -145,7 +143,9 @@ const RepBillCard = ({ bill, onClick }) => {
             <CustomListItemText>Status: {statusText}</CustomListItemText>
           </ListItem>
           <ListItem>
-            <CustomListItemText>{`Date: ${bill.latest_major_action_date}`}</CustomListItemText>
+            <CustomListItemText>
+              {`Date: ${bill.latestAction?.actionDate || "Unknown"}`}
+            </CustomListItemText>
           </ListItem>
         </ListWrapper>
       </CardContent>
