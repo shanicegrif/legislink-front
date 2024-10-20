@@ -144,7 +144,7 @@ const RepBillCard = ({ bill, onClick }) => {
           </ListItem>
           <ListItem>
             <CustomListItemText>
-              {`Date: ${bill.latestAction?.actionDate || "Unknown"}`}
+              {`Latest Action Date: ${bill.latestAction?.actionDate || "Unknown"}`}
             </CustomListItemText>
           </ListItem>
         </ListWrapper>

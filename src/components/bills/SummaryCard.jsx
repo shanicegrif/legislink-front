@@ -10,7 +10,7 @@ import Tooltip from "@mui/material/Tooltip";
 import { useAuth } from "../../hooks/useAuth";
 import axios from "axios";
 
-const congressApi = import.meta.env.VITE_BASE_CONGRESS_API_KEY;
+const congressApi = import.meta.env.VITE_BASE_CONGRESS_API_KEY
 const serverURL = import.meta.env.VITE_BASE_URL;
 
 const ThumbsUpIcon = styled(FontAwesomeIcon)`
@@ -79,26 +79,31 @@ const EmailSentMessage = styled.div`
 export default function SummaryCard({ selectedBill, emailSent, setEmailSent }) {
   const user = useAuth();
   const [billSummary, setBillSummary] = useState("");
+  const [cosponsors, setCosponsors] = useState([]);
   async function fetchEmailToBack(body) {
     return await axios.post(`${serverURL}/email`, body);
   }
 
   useEffect(() => {
-    console.log(selectedBill);
-    axios
-      .get(
-        `https://api.congress.gov/v3/bill/118/${selectedBill.bill_type}/${
-          selectedBill.bill_slug
-            ? selectedBill.bill_slug.match(/\d+/)
-            : selectedBill.bill_id.match(/\d+/)
-        }/summaries?&api_key=${congressApi}&format=json`
-      )
-      .then((res) => {
-        const summaryText = res.data.summaries[0].text;
-        // Remove HTML tags from summary
-        const cleanSummary = summaryText.replace(/<[^>]*>?/gm, "");
+    console.log("Selected bill:", selectedBill);
+  
+    const fetchSummary = async () => {
+      try {
+        const billType = selectedBill.type.toLowerCase() || null;
+        const response = await axios.get(
+          `https://api.congress.gov/v3/bill/${selectedBill.congress}/${billType}/${selectedBill.number}/summaries?api_key=${congressApi}&format=json`
+        );
+  
+        const summaryText = response.data.summaries[0]?.text || "No summary available.";
+        const cleanSummary = summaryText.replace(/<[^>]*>?/gm, ""); 
         setBillSummary(cleanSummary);
-      });
+      } catch (error) {
+        console.error("Error fetching summary:", error);
+        setBillSummary("An error occurred while fetching the bill summary.");
+      }
+    };
+  
+    if (selectedBill) fetchSummary();
   }, [selectedBill]);
 
   const sendEmail = (isSupportive) => {
@@ -107,7 +112,7 @@ export default function SummaryCard({ selectedBill, emailSent, setEmailSent }) {
         <p>I am writing to express my ${
           isSupportive ? "strong support" : "opposition"
         } for the bill titled "<em>${
-      selectedBill.short_title
+      selectedBill.title
     }</em>." This bill addresses an important issue that affects our community, and I believe it will ${
       isSupportive ? "have a positive impact" : "have negative consequences"
     } if enacted into law.</p>
@@ -124,7 +129,7 @@ export default function SummaryCard({ selectedBill, emailSent, setEmailSent }) {
         displayName: user.displayName,
         email: user.email,
         htmlContent: htmlContent,
-        subject: selectedBill.short_title,
+        subject: selectedBill.title,
       })
         .then((res) => {
           if (res.status == 200) {
