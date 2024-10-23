@@ -1,24 +1,29 @@
-.form-fields {
-  display: flex;
-  flex-wrap: wrap;
-  justify-content: space-evenly;
-  align-items: center;
-}
-
 .bill-section {
   display: grid;
-  grid-template-columns: repeat(2, 1fr);
+  grid-template-columns: 1fr 1fr;
   grid-template-rows: 1fr;
   grid-column-gap: 30px;
 }
 
+/* On smaller screens, stack the summary above the bill list */
+@media (max-width: 768px) {
+  .bill-section {
+    grid-template-columns: 1fr;
+    grid-template-rows: auto auto;
+  }
+
+  .bill-summary-container {
+    order: 1; /* Move summary to the top */
+  }
+
+  .bill-list {
+    order: 2; /* Move bill list below */
+  }
+}
+
 .bill-list {
   max-height: 65vh;
-  overflow: auto;
-  && .bill-list-buttons {
-    display: flex;
-    justify-content: center;
-  }
+  overflow-y: scroll;
 }
 
 .bill-date {
@@ -44,14 +49,4 @@ h3 {
 .summary-card {
   display: flex;
   justify-content: center;
-}
-
-@media (max-width: 839px) {
-    .form-fields {
-        flex-direction: column; /* Change to column layout */
-        align-items: flex-start; /* Align items to the start */
-      }
-      .form-fields > * {
-        margin-left: 20px; /* Add margin between form fields */
-      }
 }
